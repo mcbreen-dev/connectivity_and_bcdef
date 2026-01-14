@@ -1,0 +1,31 @@
+# Build outputs
+/build/
+/BC_define/bin/
+
+# CMake artifacts (in case of in-source builds)
+/CMakeCache.txt
+/CMakeFiles/
+/cmake_install.cmake
+/CPackConfig.cmake
+/CPackSourceConfig.cmake
+
+# Logs and test outputs
+/bc_define.log
+/bc_dump.log
+/test/*.log
+/test/*.cgns
+/test/*.x
+/test/1to1s
+/test/bcs
+/1to1s
+/bcs
+
+# OS
+.DS_Store
+
+# Local notes
+/connectivity_todo.txt
+
+# Large meshes
+/meshes/cgns/cube/cube3d_512M.cgns
+/meshes/plot3d/cube/cube3d_512M.x

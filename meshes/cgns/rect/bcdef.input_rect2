@@ -1,0 +1,7 @@
+#bcdef.input
+
+inflow	1	i-
+outflow 2-4	i+
+zerograd 1,3,4 j+
+symmetry 1,2,3	k-
+symmetry 1,2,4	k+

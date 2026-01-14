@@ -1,0 +1,4 @@
+symmetry 1 k+
+inflow 1,2 j+
+outflow 1,2 i+
+outflow 1 i-

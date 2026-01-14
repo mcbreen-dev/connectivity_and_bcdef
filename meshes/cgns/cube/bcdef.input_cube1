@@ -1,0 +1,8 @@
+#bcdef.input
+#cube
+
+inflow	1-4	i-
+outflow 5-8	i+
+zerograd 3-6 j+
+symmetry 1,3,5,7	k-
+symmetry 2,4,6,8	k+

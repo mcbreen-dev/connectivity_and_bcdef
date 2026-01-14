@@ -1,0 +1,6 @@
+#bcdef.input
+#square
+
+inflow	1,2	i-
+outflow 3-4	i+
+zerograd 2,4 j+

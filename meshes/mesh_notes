@@ -1,0 +1,102 @@
+1. square2d_ij100.cgns, bcdef.input_square1
+    Square mesh. 2d. Unit square. 101x101 nodes. 4 domains, 51x51 each.
+    Wall spacing 1e-5. All orientation "normal". i increasing to right, j increasing up.
+    z1 is botton left. z2 is top left. z3 is bottom right. z4 is top right.
+
+2. cube3d_ijk100.cgns, bcdef.input_cube1
+    Cube mesh. 3d. Unit cube. square2d_ij100.cgns extruded one unit along +z.
+    101x101x101 nodes. 8 domains, 51x51x51 each. Wall spacing 1e-5.
+    All orientation "normal". i increasing to right, j increasing up, k increasing along +z.
+    z1 is the (imin, jmin, kmin) corner of the mesh.
+    z2 is the (imin, jmin, kmax) corner of the mesh.
+    z3 is the (imin, jmax, kmin) corner of the mesh.
+    z4 is the (imin, jmax, kmax) corner of the mesh.
+    z5 is the (imax, jmax, kmin) corner of the mesh.
+    z6 is the (imax, jmax, kmax) corner of the mesh.
+    z7 is the (imax, jmin, kmin) corner of the mesh.
+    z8 is the (imax, jmin, kmax) corner of the mesh.
+
+3. square2d_z4ineg.cgns, bcdef.input_square2
+    square2d_ij100.cgns mesh with i orientation reversed in zone 4.
+    z1 imax abuts z3 imin. z1 jmax abuts z2 jmin.
+    z2 imax abuts z4 imax.
+    z3 jmax abuts z4 jmin.
+
+4. square2d_z3ijneg.cgns, bcdef.input_square3
+    square2d_ij100.cgns mesh with i and j orientation reversed in zone 3.
+    z1 imax abuts z3 imax. z1 jmax abuts z2 jmin.
+    z2 imax abuts z4 imin.
+    z3 jmin abuts z4 jmin.
+
+5. cube3d_z6ikswap.cgns, bcdef.input_cube2
+    cube3d_ijk100.cgns mesh with i and k indices swapped, then i reversed in zone 6.
+    3d cube with 8 zones.
+    Zones 1,2,3,4,5,7,8 are oriented the same way: i increasing with x, j increasing with y, and k increasing with z.
+    Zone 6 has a different orientation from the rest: i decreasing with z, j increasing with y, and k increasing with x.
+    z6 imax abuts z5 kmax. z6 kmin abuts z4 imax. z6 jmin abuts z8 jmax.
+     
+6. cube3d_z6lefthanded.cgns, bcdef.input_cube3
+    z6 is left-handed. Error and exit before attempting connectivity.
+
+7. rect2d_3zones.cgns, bcdef.input_rect1
+    2d. z1 is 101x101 unit square. joined on right face to two 51x51 zones.
+    the z2 imin face abuts a patch of the z1 imax face (101,1 to 101,51).
+    the z3 imin face abuts a patch of the z1 imax face (101,51 to 101,101).
+
+8. rect2d_4zones.cgns, bcdef.input_rect3
+    2d. z1 is 51x51 unit square. joined on right face to Z2 (51x21) and Z3 (41x31). z4 (11x31) is to the right of z3. z3 and z4 abut the top edge of z2.
+    z2 imin face abuts a patch of z1 imax (51,1 to 51,21).
+    z3 imin face abuts a patch of z1 imax (51,21 to 51,51). z3 jmin face abuts a patch of z2 jmax (1,21 to 41,21).
+    z4 imin face abuts z3 imax. z4 jmin face abuts a patch of z2 jmax (41,21 to 51,21).
+
+9. rect3d_4zones.cgns, bcdef.input_rect2
+    3d. z1 is 101x101x101 unit cube. joined on right face to two 51x51x51 zones and one 51x51x101 zone.
+    z2 imin face abuts a patch of z1 imax (101,51,1 to 101,101,51). z2 jmin face abuts a patch of z4 jmax (1,51,1 to 51,51,51). z2 kmax face abuts z3 kmin face.
+    z3 imin face abuts a patch of z1 imax (101,51,51 to 101,101,101). z3 jmin face abuts a patch of z4 jmax (1,51,51 to 51,51,101)
+    z4 imin face abuts a patch of z1 imax (101,1,1 to 101,51,101).
+
+10. rect3d_6zones, bcdef.input_rect4
+    3d. z1 is 61x61x61 unit cube, joined on the imax face to zones 2-6.
+    Z2 is 41x41x51, so that the kmin face abutting z1 is a patch in the middle of the z1 imax face, not touching any extrema or sharing any edges of z1.
+    Zones 3-6 surround Z2.
+    z1 imax face abuts kmin face of z2,z3,z4,z5,z6.
+    z3 imax face abuts the z2 imin face, as well as the z4 imin face and z5 imin face.
+    z4 jmin face abuts the z2 jmax face. z4 imin face abuts z3 imax patch. z4 imax face abuts z6 imin patch.
+    z5 jmax face abuts the z2 jmin face. z5 imin face abuts z3 imax patch. z5 imax face abuts z6 imin patch.
+    z6 imin face abuts the z2 imax face, as well as the z4 imax face and z5 imax face.
+
+11. skew3d_6zones.cgns, bcdef.input_skew1
+    3d. subset of real aircraft mesh with multiple orientations, varied dimensions, and non-uniform indices. All faces, no patches.
+    z1 imax abuts z2 imin. z1 kmin abuts z3 jmax and z5 jmax.
+    z2 kmin abuts z4 jmax and z6 jmax.
+    z3 kmin abuts z5 kmax. z3 imax abuts z4 imin.
+    z4 kmin abuts z6 kmax.
+    z5 imax abuts z6 imin.
+    NOTE: additional test - bcdef.input_skew1 has entries out of order, repeat entries, and a skipped line. bc_parser needs to correctly read these entries.
+
+12. blunt3d_1.cgns, bcdef.input_blunt1
+    3d. domains from blunt nose of aircraft. 2 blocks. Some block corners are not coincident. Patch with no connection.
+    the kmin face of z1 partially wraps around z2. with increasing i, the z1 kmin face first touches nothing (unconnected patch from 1,1,1 to 15,44,1), then the z2 kmin face, then the z2 imin face, then the z2 kmax face.
+
+13. blunt3d_2.cgns, bcdef.input_blunt2
+    2d. domains from tail of aircraft. 5 blocks. Challenging orientation and splits.
+    z1 is the "tip". The z1 imin face abuts the z4 imax face. The z1 imax face abuts the z5 imax face. The z1 kmax face abuts the z2 imax face and the z3 imax face.
+    z2 kmin abuts a patch of z4 kmax. the z2 kmax face abuts the z3 kmin face.
+    z3 kmax abuts a patch of the z5 kmin face.
+    z4 unconnected patch (1,1,16 to 34,44,16).
+    z5 unconnected patch (1,1,1 to 59,44,1).
+
+14. omesh_1z.cgns, bcdef.input_o
+    2d. single zone o-mesh. i- is coincident with i+.
+
+15. dmesh_1z.cgns, bcdef.input_b
+    2d. single, self-intersecting zone. zone loops around so that j+ meets a patch of the i- face (1,26 to 1,76).
+
+16. cube3d_512M.cgns, bcdef.input_cube4
+    3d cube. large mesh (12GB). 512 zones for 512M cells.
+    Orientation normal for all zones.
+
+17. tiny_square_4z.cgns, bcdef.input_square1
+    2d square. 4 zones, 4 cells each (3x3 nodes each).
+    For all zones, i increases to the right, j increases up.
+    z1 is botton left. z2 is top left. z3 is bottom right. z4 is top right.

@@ -1,0 +1,4 @@
+symmetry    5   k+
+symmetry    1,4 k-
+inflow 2-5 i-
+outflow 1-5 j+

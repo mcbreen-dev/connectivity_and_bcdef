@@ -1,0 +1,4 @@
+#bcdef.input
+
+inflow	1	i-
+outflow 2-5 k+

@@ -1,0 +1,9 @@
+inflow	1,3,5	i-
+outflow 2,4,6	i+
+zerograd 6,5 k-
+zerograd 4,2 k+
+zerograd 2,1 j+
+zerograd 2 j-
+zerograd 1 k+
+
+zerograd 5 k-
