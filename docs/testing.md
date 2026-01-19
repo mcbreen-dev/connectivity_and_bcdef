@@ -40,6 +40,11 @@ Example:
 - Writes output to `test/test<n>.log`.
 - Copies a fresh mesh into `test/` and keeps it after the run.
 
+## Expected outputs
+
+- macOS reference logs live in `macos/expected/`.
+- Linux reference logs should be generated on a Linux machine and stored in `linux/expected/`.
+
 ## Suggested workflow
 
 - Use `run1test.sh` while iterating on a single case.

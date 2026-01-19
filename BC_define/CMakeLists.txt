@@ -1,5 +1,9 @@
 cmake_minimum_required(VERSION 3.20)
 
+if(NOT DEFINED CGNS_TARGET)
+  message(FATAL_ERROR "CGNS_TARGET not set. Configure from the top-level CMakeLists.txt")
+endif()
+
 set(BC_DEFINE_COMMON_FLAGS -O3 -march=native -ffast-math)
 
 function(bc_define_target_setup target_name)
@@ -7,7 +11,7 @@ function(bc_define_target_setup target_name)
   target_compile_options(${target_name} PRIVATE ${BC_DEFINE_COMMON_FLAGS})
   target_compile_definitions(${target_name} PRIVATE VERIFY_TRANSFORM)
   target_include_directories(${target_name} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
-  target_link_libraries(${target_name} PRIVATE CGNS::cgns-static)
+  target_link_libraries(${target_name} PRIVATE ${CGNS_TARGET})
   set_target_properties(${target_name} PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/bin"
   )

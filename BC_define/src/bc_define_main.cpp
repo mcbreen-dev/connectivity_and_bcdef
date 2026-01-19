@@ -1,6 +1,17 @@
 /*─────────────────────────────────────────────────────────────
   File: src/bc_define_main.cpp
-  CLI entry point and high-level flow
+
+  Command-line entry point for boundary-condition definition
+  and multizone connectivity processing.
+
+  This file:
+  - Parses CLI arguments and validates combinations
+  - Dispatches to either CGNS or Plot3D workflows
+  - Orchestrates connectivity detection, BC definition, and writing
+  - Handles optional destructive overwrite and I/O benchmarking
+
+  All geometry processing, connectivity detection, and BC writing
+  are delegated to other modules; this file contains no mesh math.
 ─────────────────────────────────────────────────────────────*/
 #include "bc_define_internal.hpp"
 #include "logger.hpp"
@@ -11,6 +22,13 @@
 
 namespace {
 
+/*-------------------------------------------------------------
+  Print CLI usage and exit conditions.
+
+  The CLI supports two mutually exclusive operating modes:
+  1) Normal BC + connectivity definition
+  2) CGNS coordinate I/O benchmarking (--bench-io)
+-------------------------------------------------------------*/
 void usage()
 {
     std::cerr << "Usage: bc_define mesh.cgns bcdef.input "
@@ -18,10 +36,26 @@ void usage()
                  "       bc_define mesh.cgns [bcdef.input] --bench-io [--bench-iter N]\n";
 }
 
-} // namespace
+} // anonymous namespace
 
+
+/*=====================================================================
+  Program entry point.
+
+  Control flow overview:
+
+  1) Parse CLI arguments
+  2) Determine mesh format (CGNS vs Plot3D)
+  3) Initialize logging
+  4) Dispatch to:
+     - Plot3D connectivity + BC file generation, OR
+     - CGNS connectivity detection and in-file BC writing
+=====================================================================*/
 int main(int argc, char** argv)
 {
+    /*---------------------------------------------------------
+      Basic argument validation: at least a mesh path is required
+    ---------------------------------------------------------*/
     if (argc < 2) {
         usage();
         return 1;
@@ -30,6 +64,16 @@ int main(int argc, char** argv)
     const std::string meshPath = argv[1];
     std::string bcdefPath;
 
+    /*---------------------------------------------------------
+      CLI flags with defaults.
+
+      overwrite      : delete existing BC/connectivity nodes first
+      autowall       : assign BCWall to unspecified boundary faces
+      autofarfield   : assign BCFarfield to unspecified boundary faces
+      bench_io       : run coordinate I/O benchmark instead of BC logic
+      threads        : worker thread count (0 → auto)
+      bench_iters    : benchmark iterations per read
+    ---------------------------------------------------------*/
     bool overwrite = false;
     bool autowall = false;
     bool autofarfield = false;
@@ -37,12 +81,21 @@ int main(int argc, char** argv)
     int threads = 0;
     int bench_iters = 3;
 
+    /*---------------------------------------------------------
+      Optional positional bcdef file:
+      - Must appear immediately after mesh path
+      - Must not begin with '-'
+    ---------------------------------------------------------*/
     int argi = 2;
     if (argi < argc && argv[argi][0] != '-') {
         bcdefPath = argv[argi];
         ++argi;
     }
 
+
+    /*---------------------------------------------------------
+      Parse remaining flags
+    ---------------------------------------------------------*/
     for (int i = argi; i < argc; ++i) {
         std::string flag = argv[i];
         if (flag == "--overwrite") overwrite = true;
@@ -71,8 +124,16 @@ int main(int argc, char** argv)
         }
     }
 
+    /*---------------------------------------------------------
+      Mesh format detection:
+      Plot3D meshes are identified purely by filename extension.
+    ---------------------------------------------------------*/
     const bool is_plot3d = fs::bc::is_plot3d_mesh(meshPath);
 
+    /*---------------------------------------------------------
+      Logger initialization.
+      The log file is written next to the mesh file.
+    ---------------------------------------------------------*/
     std::filesystem::path logPath = std::filesystem::path(meshPath).parent_path() /
                                     "bc_define.log";
     fs::Logger log(logPath.string());
@@ -81,6 +142,9 @@ int main(int argc, char** argv)
     if (!bcdefPath.empty())
         log.info("BC file  : " + bcdefPath);
 
+    /*---------------------------------------------------------
+      Flag validation
+    ---------------------------------------------------------*/
     if (autowall && autofarfield) {
         std::cerr << "Error: --autowall and --autofarfield are mutually exclusive\n";
         return 1;
@@ -91,6 +155,9 @@ int main(int argc, char** argv)
         return 1;
     }
 
+    /*---------------------------------------------------------
+      Log effective operating mode
+    ---------------------------------------------------------*/
     if (bench_io) {
         log.info("Flags    : bench_io=yes iters=" + std::to_string(bench_iters));
     } else {
@@ -102,6 +169,12 @@ int main(int argc, char** argv)
     }
 
     try {
+        /*=====================================================
+          Plot3D workflow:
+          - Read mesh
+          - Detect connectivity
+          - Write text-based 1to1s and BC files
+        =====================================================*/
         if (is_plot3d) {
             if (bcdefPath.empty()) {
                 usage();
@@ -125,9 +198,16 @@ int main(int argc, char** argv)
             return 0;
         }
 
+        /*=====================================================
+          CGNS workflow
+        =====================================================*/
         fs::Mesh mesh;
         mesh.open(meshPath, /*modify=*/!bench_io);
 
+        /*-----------------------------------------------------
+          Optional I/O benchmark mode:
+          No BCs or connectivity are modified.
+        -----------------------------------------------------*/
         if (bench_io) {
             fs::bc::run_io_benchmark(mesh, log, bench_iters);
             mesh.close();
@@ -145,18 +225,39 @@ int main(int argc, char** argv)
                      " zone(s)");
         }
 
+        /*-----------------------------------------------------
+          Optional destructive cleanup:
+          Removes existing BC_t and GridConnectivity_t nodes.
+        -----------------------------------------------------*/
         if (overwrite)
             fs::purge_BC_and_connectivity(mesh, log);
+
+/*
+CGNS-SIDS design intent:
+A given zone boundary segment should be covered by either (a) a BoundaryCondition_t entry, or
+(b) a multizone interface connectivity entry (e.g., GridConnectivity1to1_t), but not both.
+This program treats detected 1-to-1 matches as connectivity and assigns BCs only to remaining
+unmatched boundary patches; --overwrite removes existing BC/connectivity nodes before rewriting.
+
+CGNS User Guide. CGNS/SIDS - Standard Interface Data Structures/8:Multizone Interface Connectivity
+https://cgns.org/standard/SIDS/multizone.html
+*/
 
         std::vector<fs::BoundaryPatch> boundary_patches =
             fs::ConnectivityDetector::run(mesh, log, fs::GEOM_TOL, overwrite, threads);
 
+        /*-----------------------------------------------------
+          Write BCs only if uncovered boundary patches exist
+        -----------------------------------------------------*/
         if (!boundary_patches.empty()) {
             auto bc_specs = fs::bc::parse_bcdef(bcdefPath);
             fs::bc::write_boundary_conditions(mesh, boundary_patches, bc_specs,
                                               autowall, autofarfield);
         }
 
+        /*-----------------------------------------------------
+          Remove unused CGNS Family_t nodes after overwrite
+        -----------------------------------------------------*/
         if (overwrite)
             fs::prune_unused_families(mesh, log);
 

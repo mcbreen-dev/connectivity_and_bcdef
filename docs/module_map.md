@@ -6,8 +6,10 @@ This project is organized around the BC_define tool and its supporting utilities
 - BC_define/     - C++ source, headers, build artifacts, and scripts
 - build/         - Top-level CMake build output
 - docs/          - User and developer documentation
+- macos/         - macOS-specific Makefile, IO bench scripts, and expected outputs
+- linux/         - Linux-specific Makefile, IO bench scripts, and expected outputs
 - meshes/        - Test meshes and bcdef inputs
-- test/          - Test scripts and expected outputs
+- test/          - Test scripts and working files
 
 ## Docs
 - docs/usage.md
@@ -80,11 +82,23 @@ This project is organized around the BC_define tool and its supporting utilities
 - BC_define/CMakeLists.txt
   - CMake build targets
 - BC_define/Makefile
-  - Makefile build targets
+  - Stub Makefile that points to OS-specific Makefiles
+- macos/BC_define.Makefile
+  - macOS Makefile build targets
+- linux/BC_define.Makefile
+  - Linux Makefile build targets
+- macos/cmake/Defaults.cmake
+  - macOS CMake defaults (Homebrew CGNS/HDF5 paths)
+- linux/cmake/Defaults.cmake
+  - Linux CMake defaults (common CGNS/HDF5 paths)
 - BC_define/scripts/compute_k_values.sh
   - Computes k2d/k3d used for IO strategy selection
 - BC_define/scripts/io_bench/
-  - Bench scripts used by compute_k_values.sh
+  - IO bench source files used by OS-specific scripts
+- macos/io_bench/
+  - macOS IO bench scripts and binaries
+- linux/io_bench/
+  - Linux IO bench scripts and binaries
 
 ## Tests
 - test/runtests_cgns.sh
@@ -93,7 +107,9 @@ This project is organized around the BC_define tool and its supporting utilities
   - Plot3D integration tests
 - test/run1test.sh
   - Runs a single test case
-- test/tests_correct_output_cgns
-  - Expected CGNS test output
-- test/tests_correct_output_plot3d
-  - Expected Plot3D test output
+- macos/expected/tests_correct_output_cgns
+  - Expected CGNS test output (macOS)
+- macos/expected/tests_correct_output_plot3d
+  - Expected Plot3D test output (macOS)
+- linux/expected/
+  - Place Linux expected outputs here

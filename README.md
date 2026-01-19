@@ -21,25 +21,51 @@ Given a structured mesh:
 	•	Writes all results back into the mesh file (CGNS) or into generated sidecar files (Plot3D)
 
 ## Requirements
-- macOS/Homebrew CGNS (`/opt/homebrew/include/cgnslib.h`, `/opt/homebrew/lib/libcgns.dylib`)
 - CMake 3.20+ or Make
-- C++17 compiler
+- C++20 compiler
+- CGNS (with HDF5). CMake can auto-fetch pinned CGNS + HDF5 when
+  `AUTO_DEPS=ON`.
 
 ## Build
 From the top-level directory:
 
-CMake:
+### MacOS
+
+macOS (CMake):
 ```
 cmake -S . -B build
 cmake --build build
 ```
 
-Makefile (alternative method, inside `BC_define/`):
+macOS (Makefile):
 ```
-make -C BC_define
+make -C BC_define -f ../macos/BC_define.Makefile
+```
+
+### Linux
+
+Linux (CMake):
+```
+sudo apt-get update
+sudo apt-get install -y libhdf5-dev libcgns-dev
+rm -rf build
+cmake -S . -B build -DAUTO_DEPS=OFF
+cmake --build build
+```
+
+Linux (Makefile):
+```
+make -C BC_define -f ../linux/BC_define.Makefile CGNS_INC=/path/include CGNS_LIB=/path/lib
 ```
 
 Binaries are written to `BC_define/bin/`.
+
+Note: CMake will try to find CGNS first. If it is not found and
+`AUTO_DEPS=ON` (default), CMake downloads pinned CGNS + HDF5 into
+the build tree. Set `-DAUTO_DEPS=OFF` and provide CGNS via
+`CGNS_INCLUDE_DIR`/`CGNS_LIBRARY` or a `cgns` CMake package to use
+a system install. AUTO_DEPS applies to CMake only; the Makefile
+expects CGNS/HDF5 to be installed.
 
 ## Quick start
 CGNS:
@@ -140,5 +166,6 @@ Plot3D tests:
 ```
 
 Expected outputs:
-- `test/tests_correct_output_cgns`
-- `test/tests_correct_output_plot3d`
+- `macos/expected/tests_correct_output_cgns`
+- `macos/expected/tests_correct_output_plot3d`
+- `linux/expected/` (generate by running tests on Linux)

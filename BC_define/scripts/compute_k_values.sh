@@ -3,10 +3,24 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 ROOT_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
-MESH_SCRIPTS_DIR="${ROOT_DIR}/scripts/io_bench"
+TOP_DIR="$(cd "${ROOT_DIR}/.." && pwd)"
+
+OS_NAME="unknown"
+case "$(uname -s)" in
+    Darwin) OS_NAME="macos" ;;
+    Linux) OS_NAME="linux" ;;
+esac
+
+MESH_SCRIPTS_DIR="${TOP_DIR}/${OS_NAME}/io_bench"
 
 GEN_SCRIPT="${MESH_SCRIPTS_DIR}/generate_io_meshes.sh"
 BENCH_SCRIPT="${MESH_SCRIPTS_DIR}/bench_io_k.sh"
+
+if [[ ! -x "$GEN_SCRIPT" || ! -x "$BENCH_SCRIPT" ]]; then
+    echo "Missing io_bench scripts for ${OS_NAME}." >&2
+    echo "Expected: ${GEN_SCRIPT} and ${BENCH_SCRIPT}" >&2
+    exit 1
+fi
 
 TMP_DIR="$(mktemp -d)"
 cleanup() {

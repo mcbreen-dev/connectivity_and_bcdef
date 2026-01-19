@@ -1,0 +1,7 @@
+# macOS defaults for CGNS lookup (Homebrew)
+if(NOT CGNS_INCLUDE_DIR)
+  find_path(CGNS_INCLUDE_DIR cgnslib.h PATHS /opt/homebrew/include)
+endif()
+if(NOT CGNS_LIBRARY)
+  find_library(CGNS_LIBRARY cgns PATHS /opt/homebrew/lib)
+endif()

@@ -29,3 +29,9 @@
 # Large meshes
 /meshes/cgns/cube/cube3d_512M.cgns
 /meshes/plot3d/cube/cube3d_512M.x
+
+# io_bench binaries
+/macos/io_bench/io_bench
+/macos/io_bench/io_mesh_gen
+/linux/io_bench/io_bench
+/linux/io_bench/io_mesh_gen

@@ -1,6 +1,30 @@
 /*─────────────────────────────────────────────────────────────
   File: src/bc_define_helpers.cpp
   Shared small utilities for bc_define
+─────────────────────────────────────────────────────────────
+  This file collects small, pure helper routines used across the
+  bc_define toolchain.
+
+  Responsibilities:
+    - Whitespace trimming and token normalization for config parsing
+    - Zone selector parsing (single values, ranges, comma lists)
+    - Simple mesh-type detection (CGNS vs Plot3D) from filename suffix
+    - Stable BC patch naming with CGNS name-length constraints
+    - Conversion from vertex-index patch bounds to *cell-center* ranges
+      suitable for BC definitions (FaceCenter / IFaceCenter / etc.)
+
+  Notes on index conventions:
+    - User-facing and internal zone/face selection uses 1-based
+      vertex indices (I,J,K) consistent with CGNS / Plot3D conventions.
+    - BC point ranges in this codebase are written on *cell centers*.
+      For structured grids, that means valid indices are 1..(N-1) in
+      each varying direction.
+    - face_center_range() performs the vertex→cell conversion by taking
+      a vertex span [lo..hi] and mapping it to cell indices [lo..hi-1].
+      Degenerate dimensions (dim<=1) collapse to 1..1.
+
+  This module intentionally avoids any CGNS I/O and has no side effects
+  beyond returning computed values.
 ─────────────────────────────────────────────────────────────*/
 #include "bc_define_internal.hpp"
 
@@ -10,6 +34,15 @@
 
 namespace fs::bc {
 
+/*=====================================================================
+  trim
+
+  Remove leading/trailing ASCII whitespace from a string.
+
+  Used by:
+    - bc_define_bcspec.cpp while parsing bcdef lines
+    - parse_zone_list() while splitting comma-separated tokens
+=====================================================================*/
 std::string trim(const std::string& s)
 {
     size_t start = 0;
@@ -21,6 +54,23 @@ std::string trim(const std::string& s)
     return s.substr(start, end - start);
 }
 
+/*=====================================================================
+  normalize_token
+
+  Canonicalize a free-form token for robust comparison.
+
+  Normalization rules:
+    - Keep only alphanumeric characters
+    - Convert to lowercase
+
+  This makes user inputs tolerant of:
+    - case differences (Wall vs wall)
+    - punctuation / separators (BC-Wall, bc_wall, etc.)
+
+  Used by:
+    - bc type parsing (parse_bc_type)
+    - family-key mapping to preserve stable family names
+=====================================================================*/
 std::string normalize_token(const std::string& s)
 {
     std::string out;
@@ -32,6 +82,24 @@ std::string normalize_token(const std::string& s)
     return out;
 }
 
+/*=====================================================================
+  parse_zone_list
+
+  Parse a zone selector token into a sorted unique list of zone IDs.
+
+  Supported forms (whitespace is trimmed per component):
+    - "3"         -> {3}
+    - "1-4"       -> {1,2,3,4}
+    - "1,3,7-9"   -> {1,3,7,8,9}
+
+  Behavior:
+    - Ranges with a>b are accepted and swapped (e.g. "4-1")
+    - Output is sorted and deduplicated
+    - Invalid numeric fragments will throw via std::stoi
+
+  Used by:
+    - bc_define_bcspec.cpp to expand per-line zone selections
+=====================================================================*/
 std::vector<int> parse_zone_list(const std::string& token)
 {
     std::vector<int> zones;
@@ -62,6 +130,17 @@ std::vector<int> parse_zone_list(const std::string& token)
     return zones;
 }
 
+/*=====================================================================
+  is_plot3d_mesh
+
+  Lightweight mesh-type sniffing based on filename extension.
+
+  Convention used by this project:
+    - ".x" indicates a Plot3D multi-block grid file
+
+  This is only a heuristic; higher-level code may still validate the file
+  by attempting to parse it.
+=====================================================================*/
 bool is_plot3d_mesh(const std::string& path)
 {
     std::string ext = std::filesystem::path(path).extension().string();
@@ -73,6 +152,20 @@ bool is_plot3d_mesh(const std::string& path)
     return ext_lower == ".x";
 }
 
+/*=====================================================================
+  bc_patch_name
+
+  Construct a BC_t node name for a patch written under ZoneBC_t.
+
+  Naming scheme:
+      <family>_<face>_<index>
+
+  Notes:
+    - CGNS imposes a maximum name length (CGNS_MAX_NAME_LENGTH).
+    - If truncation occurs, the name is clipped to that maximum length.
+      (This preserves CGNS validity but can reduce uniqueness if users
+       choose extremely long family names.)
+=====================================================================*/
 std::string bc_patch_name(const std::string& family, fs::FaceDir face, int index)
 {
     std::string name = family + "_" + fs::facedir_to_string(face) + "_" + std::to_string(index);
@@ -81,9 +174,34 @@ std::string bc_patch_name(const std::string& family, fs::FaceDir face, int index
     return name;
 }
 
+/*=====================================================================
+  face_center_range (Zone overload)
+
+  Convert a vertex-index patch range on a zone face into a PointRange
+  expressed in *cell-center* indices for BC writing.
+
+  Inputs:
+    - zone     : structured CGNS Zone metadata (Ni,Nj,Nk are vertex sizes)
+    - face     : which face the patch lies on
+    - vtxBegin : 1-based vertex indices at one corner of the patch
+    - vtxEnd   : 1-based vertex indices at the opposite corner
+
+  Output:
+    - PointRange pr in (I,J,K) index space, where varying axes are cell
+      indices in 1..(N-1) and the collapsed face-normal axis is fixed:
+        IMIN -> i==1
+        IMAX -> i==Ni-1   (cell-center plane adjacent to max vertex)
+        etc.
+
+  Key conversion:
+    - For a varying axis, a vertex span [lo..hi] maps to cell indices
+      [lo .. hi-1]. This corresponds to the cells between successive
+      vertices.
+=====================================================================*/
 fs::PointRange face_center_range(const fs::Zone& zone, fs::FaceDir face,
                                  const fs::IJK& vtxBegin, const fs::IJK& vtxEnd)
 {
+    /* Normalize corner ordering so vmin <= vmax component-wise. */
     fs::IJK vmin = {
         std::min(vtxBegin[0], vtxEnd[0]),
         std::min(vtxBegin[1], vtxEnd[1]),
@@ -96,6 +214,8 @@ fs::PointRange face_center_range(const fs::Zone& zone, fs::FaceDir face,
     };
 
     fs::PointRange pr{};
+
+    /* Helper: set a varying axis' cell-center bounds. */
     auto set_var = [&](int axis, long long lo, long long hi, long long dim) {
         if (dim <= 1) {
             pr.begin[axis] = 1;
@@ -148,6 +268,14 @@ fs::PointRange face_center_range(const fs::Zone& zone, fs::FaceDir face,
     return pr;
 }
 
+/*=====================================================================
+  face_center_range (Plot3DZone overload)
+
+  Same as the Zone overload, but uses Plot3DZone accessors.
+
+  This is used by the Plot3D BC writer path to convert connectivity
+  patches (in vertex space) into cell-center index ranges.
+=====================================================================*/
 fs::PointRange face_center_range(const fs::Plot3DZone& zone, fs::FaceDir face,
                                  const fs::IJK& vtxBegin, const fs::IJK& vtxEnd)
 {

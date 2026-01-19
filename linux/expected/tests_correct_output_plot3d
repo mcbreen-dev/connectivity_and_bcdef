@@ -1,0 +1,2293 @@
+PWD: /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/test
+======================
+       Test 1
+======================
+Removing old mesh: square2d_ij100.x
+Copying mesh to current directory: /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/meshes/plot3d/square/square2d_ij100.x
+Running: /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/BC_define/bin/bc_define square2d_ij100.x /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/meshes/plot3d/square/bcdef.input_square1
+INFO  BC_define started
+INFO  Mesh     : ./square2d_ij100.x
+INFO  BC file  : /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/meshes/plot3d/square/bcdef.input_square1
+INFO  Flags    : overwrite=yes autowall=yes autofarfield=no threads=16
+INFO  Opened Plot3D mesh with 4 zone(s)
+INFO  Faces read: 16/16
+INFO  Creating 1:1 connections
+INFO  interior Z1 i+ ↔ Z3 i-  (T=1,2,0)
+INFO  interior Z1 j+ ↔ Z2 j-  (T=1,2,0)
+INFO  interior Z2 i+ ↔ Z4 i-  (T=1,2,0)
+INFO  interior Z3 j+ ↔ Z4 j-  (T=1,2,0)
+INFO  Connectivity scan complete.
+INFO  Assigning boundary conditions
+INFO  boundary Z1 i-
+INFO  boundary Z1 j-
+INFO  boundary Z2 i-
+INFO  boundary Z2 j+
+INFO  boundary Z3 i+
+INFO  boundary Z3 j-
+INFO  boundary Z4 i+
+INFO  boundary Z4 j+
+INFO  Finished OK.  Exiting.
+-------------------------------------------
+======================
+       Test 2
+======================
+Removing old mesh: cube3d_ijk100.x
+Copying mesh to current directory: /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/meshes/plot3d/cube/cube3d_ijk100.x
+Running: /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/BC_define/bin/bc_define cube3d_ijk100.x /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/meshes/plot3d/cube/bcdef.input_cube1
+INFO  BC_define started
+INFO  Mesh     : ./cube3d_ijk100.x
+INFO  BC file  : /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/meshes/plot3d/cube/bcdef.input_cube1
+INFO  Flags    : overwrite=yes autowall=yes autofarfield=no threads=16
+INFO  Opened Plot3D mesh with 8 zone(s)
+INFO  All zones right-handed (OK)
+INFO  Faces read: 48/48
+INFO  Creating 1:1 connections
+INFO  interior Z1 i+ ↔ Z7 i-  (T=1,2,3)
+INFO  interior Z1 j+ ↔ Z3 j-  (T=1,2,3)
+INFO  interior Z1 k+ ↔ Z2 k-  (T=1,2,3)
+INFO  interior Z2 i+ ↔ Z8 i-  (T=1,2,3)
+INFO  interior Z2 j+ ↔ Z4 j-  (T=1,2,3)
+INFO  interior Z3 i+ ↔ Z5 i-  (T=1,2,3)
+INFO  interior Z3 k+ ↔ Z4 k-  (T=1,2,3)
+INFO  interior Z4 i+ ↔ Z6 i-  (T=1,2,3)
+INFO  interior Z5 j- ↔ Z7 j+  (T=1,2,3)
+INFO  interior Z5 k+ ↔ Z6 k-  (T=1,2,3)
+INFO  interior Z6 j- ↔ Z8 j+  (T=1,2,3)
+INFO  interior Z7 k+ ↔ Z8 k-  (T=1,2,3)
+INFO  Connectivity scan complete.
+INFO  Assigning boundary conditions
+INFO  boundary Z1 i-
+INFO  boundary Z1 j-
+INFO  boundary Z1 k-
+INFO  boundary Z2 i-
+INFO  boundary Z2 j-
+INFO  boundary Z2 k+
+INFO  boundary Z3 i-
+INFO  boundary Z3 j+
+INFO  boundary Z3 k-
+INFO  boundary Z4 i-
+INFO  boundary Z4 j+
+INFO  boundary Z4 k+
+INFO  boundary Z5 i+
+INFO  boundary Z5 j+
+INFO  boundary Z5 k-
+INFO  boundary Z6 i+
+INFO  boundary Z6 j+
+INFO  boundary Z6 k+
+INFO  boundary Z7 i+
+INFO  boundary Z7 j-
+INFO  boundary Z7 k-
+INFO  boundary Z8 i+
+INFO  boundary Z8 j-
+INFO  boundary Z8 k+
+INFO  Finished OK.  Exiting.
+-------------------------------------------
+======================
+       Test 3
+======================
+Removing old mesh: square2d_z4ineg.x
+Copying mesh to current directory: /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/meshes/plot3d/square/square2d_z4ineg.x
+Running: /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/BC_define/bin/bc_define square2d_z4ineg.x /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/meshes/plot3d/square/bcdef.input_square2
+INFO  BC_define started
+INFO  Mesh     : ./square2d_z4ineg.x
+INFO  BC file  : /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/meshes/plot3d/square/bcdef.input_square2
+INFO  Flags    : overwrite=yes autowall=yes autofarfield=no threads=16
+INFO  Opened Plot3D mesh with 4 zone(s)
+INFO  Faces read: 16/16
+INFO  Creating 1:1 connections
+INFO  interior Z1 i+ ↔ Z3 i-  (T=1,2,0)
+INFO  interior Z1 j+ ↔ Z2 j-  (T=1,2,0)
+INFO  interior Z2 i+ ↔ Z4 i+  (T=-1,2,0)
+INFO  interior Z3 j+ ↔ Z4 j-  (T=-1,2,0)
+INFO  Connectivity scan complete.
+INFO  Assigning boundary conditions
+INFO  boundary Z1 i-
+INFO  boundary Z1 j-
+INFO  boundary Z2 i-
+INFO  boundary Z2 j+
+INFO  boundary Z3 i+
+INFO  boundary Z3 j-
+INFO  boundary Z4 i-
+INFO  boundary Z4 j+
+INFO  Finished OK.  Exiting.
+-------------------------------------------
+======================
+       Test 4
+======================
+Removing old mesh: square2d_z3ijneg.x
+Copying mesh to current directory: /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/meshes/plot3d/square/square2d_z3ijneg.x
+Running: /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/BC_define/bin/bc_define square2d_z3ijneg.x /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/meshes/plot3d/square/bcdef.input_square3
+INFO  BC_define started
+INFO  Mesh     : ./square2d_z3ijneg.x
+INFO  BC file  : /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/meshes/plot3d/square/bcdef.input_square3
+INFO  Flags    : overwrite=yes autowall=yes autofarfield=no threads=16
+INFO  Opened Plot3D mesh with 4 zone(s)
+INFO  Faces read: 16/16
+INFO  Creating 1:1 connections
+INFO  interior Z1 i+ ↔ Z3 i+  (T=-1,-2,0)
+INFO  interior Z1 j+ ↔ Z2 j-  (T=1,2,0)
+INFO  interior Z2 i+ ↔ Z4 i-  (T=1,2,0)
+INFO  interior Z3 j- ↔ Z4 j-  (T=-1,-2,0)
+INFO  Connectivity scan complete.
+INFO  Assigning boundary conditions
+INFO  boundary Z1 i-
+INFO  boundary Z1 j-
+INFO  boundary Z2 i-
+INFO  boundary Z2 j+
+INFO  boundary Z3 i-
+INFO  boundary Z3 j+
+INFO  boundary Z4 i+
+INFO  boundary Z4 j+
+INFO  Finished OK.  Exiting.
+-------------------------------------------
+======================
+       Test 5
+======================
+Removing old mesh: cube3d_z6ikswap.x
+Copying mesh to current directory: /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/meshes/plot3d/cube/cube3d_z6ikswap.x
+Running: /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/BC_define/bin/bc_define cube3d_z6ikswap.x /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/meshes/plot3d/cube/bcdef.input_cube2
+INFO  BC_define started
+INFO  Mesh     : ./cube3d_z6ikswap.x
+INFO  BC file  : /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/meshes/plot3d/cube/bcdef.input_cube2
+INFO  Flags    : overwrite=yes autowall=yes autofarfield=no threads=16
+INFO  Opened Plot3D mesh with 8 zone(s)
+INFO  All zones right-handed (OK)
+INFO  Faces read: 48/48
+INFO  Creating 1:1 connections
+INFO  interior Z1 i+ ↔ Z7 i-  (T=1,2,3)
+INFO  interior Z1 j+ ↔ Z3 j-  (T=1,2,3)
+INFO  interior Z1 k+ ↔ Z2 k-  (T=1,2,3)
+INFO  interior Z2 i+ ↔ Z8 i-  (T=1,2,3)
+INFO  interior Z2 j+ ↔ Z4 j-  (T=1,2,3)
+INFO  interior Z3 i+ ↔ Z5 i-  (T=1,2,3)
+INFO  interior Z3 k+ ↔ Z4 k-  (T=1,2,3)
+INFO  interior Z4 i+ ↔ Z6 k-  (T=3,2,-1)
+INFO  interior Z5 j- ↔ Z7 j+  (T=1,2,3)
+INFO  interior Z5 k+ ↔ Z6 i+  (T=3,2,-1)
+INFO  interior Z6 j- ↔ Z8 j+  (T=-3,2,1)
+INFO  interior Z7 k+ ↔ Z8 k-  (T=1,2,3)
+INFO  Connectivity scan complete.
+INFO  Assigning boundary conditions
+INFO  boundary Z1 i-
+INFO  boundary Z1 j-
+INFO  boundary Z1 k-
+INFO  boundary Z2 i-
+INFO  boundary Z2 j-
+INFO  boundary Z2 k+
+INFO  boundary Z3 i-
+INFO  boundary Z3 j+
+INFO  boundary Z3 k-
+INFO  boundary Z4 i-
+INFO  boundary Z4 j+
+INFO  boundary Z4 k+
+INFO  boundary Z5 i+
+INFO  boundary Z5 j+
+INFO  boundary Z5 k-
+INFO  boundary Z6 i-
+INFO  boundary Z6 j+
+INFO  boundary Z6 k+
+INFO  boundary Z7 i+
+INFO  boundary Z7 j-
+INFO  boundary Z7 k-
+INFO  boundary Z8 i+
+INFO  boundary Z8 j-
+INFO  boundary Z8 k+
+INFO  Finished OK.  Exiting.
+-------------------------------------------
+======================
+       Test 6
+======================
+Removing old mesh: cube3d_z6lefthanded.x
+Copying mesh to current directory: /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/meshes/plot3d/cube/cube3d_z6lefthanded.x
+Running: /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/BC_define/bin/bc_define cube3d_z6lefthanded.x /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/meshes/plot3d/cube/bcdef.input_cube3
+INFO  BC_define started
+INFO  Mesh     : ./cube3d_z6lefthanded.x
+INFO  BC file  : /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/meshes/plot3d/cube/bcdef.input_cube3
+INFO  Flags    : overwrite=yes autowall=yes autofarfield=no threads=16
+INFO  Opened Plot3D mesh with 8 zone(s)
+ERROR  Zone 6 left-handed
+Fatal: Zone 6 left-handed
+-------------------------------------------
+======================
+       Test 7
+======================
+Removing old mesh: rect2d_3zones.x
+Copying mesh to current directory: /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/meshes/plot3d/rect/rect2d_3zones.x
+Running: /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/BC_define/bin/bc_define rect2d_3zones.x /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/meshes/plot3d/rect/bcdef.input_rect1
+INFO  BC_define started
+INFO  Mesh     : ./rect2d_3zones.x
+INFO  BC file  : /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/meshes/plot3d/rect/bcdef.input_rect1
+INFO  Flags    : overwrite=yes autowall=yes autofarfield=no threads=16
+INFO  Opened Plot3D mesh with 3 zone(s)
+INFO  Faces read: 12/12
+INFO  Creating 1:1 connections
+INFO  interior PATCH Z1 i+ ↔ Z2 i-  (T=1,2,0)
+INFO  interior PATCH Z1 i+ ↔ Z3 i-  (T=1,2,0)
+INFO  interior Z2 j+ ↔ Z3 j-  (T=1,2,0)
+INFO  Connectivity scan complete.
+INFO  Assigning boundary conditions
+INFO  boundary Z1 i-
+INFO  boundary Z1 j-
+INFO  boundary Z1 j+
+INFO  boundary Z2 i+
+INFO  boundary Z2 j-
+INFO  boundary Z3 i+
+INFO  boundary Z3 j+
+INFO  Finished OK.  Exiting.
+-------------------------------------------
+======================
+       Test 8
+======================
+Removing old mesh: rect2d_4zones.x
+Copying mesh to current directory: /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/meshes/plot3d/rect/rect2d_4zones.x
+Running: /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/BC_define/bin/bc_define rect2d_4zones.x /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/meshes/plot3d/rect/bcdef.input_rect3
+INFO  BC_define started
+INFO  Mesh     : ./rect2d_4zones.x
+INFO  BC file  : /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/meshes/plot3d/rect/bcdef.input_rect3
+INFO  Flags    : overwrite=yes autowall=yes autofarfield=no threads=16
+INFO  Opened Plot3D mesh with 4 zone(s)
+INFO  Faces read: 16/16
+INFO  Creating 1:1 connections
+INFO  interior PATCH Z1 i+ ↔ Z2 i-  (T=1,2,0)
+INFO  interior PATCH Z1 i+ ↔ Z3 i-  (T=1,2,0)
+INFO  interior PATCH Z2 j+ ↔ Z3 j-  (T=1,2,0)
+INFO  interior PATCH Z2 j+ ↔ Z4 j-  (T=1,2,0)
+INFO  interior Z3 i+ ↔ Z4 i-  (T=1,2,0)
+INFO  Connectivity scan complete.
+INFO  Assigning boundary conditions
+INFO  boundary Z1 i-
+INFO  boundary Z1 j-
+INFO  boundary Z1 j+
+INFO  boundary Z2 i+
+INFO  boundary Z2 j-
+INFO  boundary Z3 j+
+INFO  boundary Z4 i+
+INFO  boundary Z4 j+
+INFO  Finished OK.  Exiting.
+-------------------------------------------
+======================
+       Test 9
+======================
+Removing old mesh: rect3d_4zones.x
+Copying mesh to current directory: /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/meshes/plot3d/rect/rect3d_4zones.x
+Running: /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/BC_define/bin/bc_define rect3d_4zones.x /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/meshes/plot3d/rect/bcdef.input_rect2
+INFO  BC_define started
+INFO  Mesh     : ./rect3d_4zones.x
+INFO  BC file  : /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/meshes/plot3d/rect/bcdef.input_rect2
+INFO  Flags    : overwrite=yes autowall=yes autofarfield=no threads=16
+INFO  Opened Plot3D mesh with 4 zone(s)
+INFO  All zones right-handed (OK)
+INFO  Faces read: 24/24
+INFO  Creating 1:1 connections
+INFO  interior PATCH Z1 i+ ↔ Z4 i-  (T=1,2,3)
+INFO  interior PATCH Z1 i+ ↔ Z2 i-  (T=1,2,3)
+INFO  interior PATCH Z1 i+ ↔ Z3 i-  (T=1,2,3)
+INFO  interior Z2 j- ↔ Z4 j+  (T=1,2,3)
+INFO  interior Z2 k+ ↔ Z3 k-  (T=1,2,3)
+INFO  interior Z3 j- ↔ Z4 j+  (T=1,2,3)
+INFO  Connectivity scan complete.
+INFO  Assigning boundary conditions
+INFO  boundary Z1 i-
+INFO  boundary Z1 j-
+INFO  boundary Z1 j+
+INFO  boundary Z1 k-
+INFO  boundary Z1 k+
+INFO  boundary Z2 i+
+INFO  boundary Z2 j+
+INFO  boundary Z2 k-
+INFO  boundary Z3 i+
+INFO  boundary Z3 j+
+INFO  boundary Z3 k+
+INFO  boundary Z4 i+
+INFO  boundary Z4 j-
+INFO  boundary Z4 k-
+INFO  boundary Z4 k+
+INFO  Finished OK.  Exiting.
+-------------------------------------------
+======================
+       Test 10
+======================
+Removing old mesh: rect3d_6zones.x
+Copying mesh to current directory: /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/meshes/plot3d/rect/rect3d_6zones.x
+Running: /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/BC_define/bin/bc_define rect3d_6zones.x /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/meshes/plot3d/rect/bcdef.input_rect4
+INFO  BC_define started
+INFO  Mesh     : ./rect3d_6zones.x
+INFO  BC file  : /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/meshes/plot3d/rect/bcdef.input_rect4
+INFO  Flags    : overwrite=yes autowall=yes autofarfield=no threads=16
+INFO  Opened Plot3D mesh with 6 zone(s)
+INFO  All zones right-handed (OK)
+INFO  Faces read: 36/36
+INFO  Creating 1:1 connections
+INFO  interior PATCH Z1 i+ ↔ Z3 k-  (T=3,1,2)
+INFO  interior PATCH Z1 i+ ↔ Z5 k-  (T=3,1,2)
+INFO  interior PATCH Z1 i+ ↔ Z6 k-  (T=3,1,2)
+INFO  interior PATCH Z1 i+ ↔ Z2 k-  (T=3,1,2)
+INFO  interior PATCH Z1 i+ ↔ Z4 k-  (T=3,1,2)
+INFO  interior Z2 i- ↔ Z3 i+  (T=1,2,3)
+INFO  interior Z2 i+ ↔ Z6 i-  (T=1,2,3)
+INFO  interior Z2 j- ↔ Z5 j+  (T=1,2,3)
+INFO  interior Z2 j+ ↔ Z4 j-  (T=1,2,3)
+INFO  interior PATCH Z3 i+ ↔ Z5 i-  (T=1,2,3)
+INFO  interior PATCH Z3 i+ ↔ Z4 i-  (T=1,2,3)
+INFO  interior Z4 i+ ↔ Z6 i-  (T=1,2,3)
+INFO  interior Z5 i+ ↔ Z6 i-  (T=1,2,3)
+INFO  Connectivity scan complete.
+INFO  Assigning boundary conditions
+INFO  boundary Z1 i-
+INFO  boundary Z1 j-
+INFO  boundary Z1 j+
+INFO  boundary Z1 k-
+INFO  boundary Z1 k+
+INFO  boundary Z2 k+
+INFO  boundary Z3 i-
+INFO  boundary Z3 j-
+INFO  boundary Z3 j+
+INFO  boundary Z3 k+
+INFO  boundary Z4 j+
+INFO  boundary Z4 k+
+INFO  boundary Z5 j-
+INFO  boundary Z5 k+
+INFO  boundary Z6 i+
+INFO  boundary Z6 j-
+INFO  boundary Z6 j+
+INFO  boundary Z6 k+
+INFO  Finished OK.  Exiting.
+-------------------------------------------
+======================
+       Test 11
+======================
+Removing old mesh: skew3d_6zones.x
+Copying mesh to current directory: /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/meshes/plot3d/skew/skew3d_6zones.x
+Running: /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/BC_define/bin/bc_define skew3d_6zones.x /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/meshes/plot3d/skew/bcdef.input_skew1
+INFO  BC_define started
+INFO  Mesh     : ./skew3d_6zones.x
+INFO  BC file  : /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/meshes/plot3d/skew/bcdef.input_skew1
+INFO  Flags    : overwrite=yes autowall=yes autofarfield=no threads=16
+INFO  Opened Plot3D mesh with 6 zone(s)
+INFO  All zones right-handed (OK)
+INFO  Faces read: 36/36
+INFO  Creating 1:1 connections
+INFO  interior Z1 i+ ↔ Z2 i-  (T=1,2,3)
+INFO  interior PATCH Z1 k- ↔ Z3 j+  (T=1,-3,2)
+INFO  interior PATCH Z1 k- ↔ Z5 j+  (T=1,-3,2)
+INFO  interior PATCH Z2 k- ↔ Z4 j+  (T=1,-3,2)
+INFO  interior PATCH Z2 k- ↔ Z6 j+  (T=1,-3,2)
+INFO  interior Z3 i+ ↔ Z4 i-  (T=1,2,3)
+INFO  interior Z3 k- ↔ Z5 k+  (T=1,2,3)
+INFO  interior Z4 k- ↔ Z6 k+  (T=1,2,3)
+INFO  interior Z5 i+ ↔ Z6 i-  (T=1,2,3)
+INFO  Connectivity scan complete.
+INFO  Assigning boundary conditions
+INFO  boundary Z1 i-
+INFO  boundary Z1 j-
+INFO  boundary Z1 j+
+INFO  boundary Z1 k+
+INFO  boundary Z2 i+
+INFO  boundary Z2 j-
+INFO  boundary Z2 j+
+INFO  boundary Z2 k+
+INFO  boundary Z3 i-
+INFO  boundary Z3 j-
+INFO  boundary Z3 k+
+INFO  boundary Z4 i+
+INFO  boundary Z4 j-
+INFO  boundary Z4 k+
+INFO  boundary Z5 i-
+INFO  boundary Z5 j-
+INFO  boundary Z5 k-
+INFO  boundary Z6 i+
+INFO  boundary Z6 j-
+INFO  boundary Z6 k-
+INFO  Finished OK.  Exiting.
+-------------------------------------------
+======================
+       Test 12
+======================
+Removing old mesh: blunt3d_1.x
+Copying mesh to current directory: /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/meshes/plot3d/blunt/blunt3d_1.x
+Running: /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/BC_define/bin/bc_define blunt3d_1.x /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/meshes/plot3d/blunt/bcdef.input_blunt1
+INFO  BC_define started
+INFO  Mesh     : ./blunt3d_1.x
+INFO  BC file  : /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/meshes/plot3d/blunt/bcdef.input_blunt1
+INFO  Flags    : overwrite=yes autowall=yes autofarfield=no threads=16
+INFO  Opened Plot3D mesh with 2 zone(s)
+INFO  All zones right-handed (OK)
+INFO  Faces read: 12/12
+INFO  Creating 1:1 connections
+INFO  interior PATCH Z1 k- ↔ Z2 k-  (T=-1,2,-3)
+INFO  interior PATCH Z1 k- ↔ Z2 i-  (T=3,2,-1)
+INFO  interior PATCH Z1 k- ↔ Z2 k+  (T=1,2,3)
+INFO  Connectivity scan complete.
+INFO  Assigning boundary conditions
+INFO  boundary Z1 i-
+INFO  boundary Z1 i+
+INFO  boundary Z1 j-
+INFO  boundary Z1 j+
+INFO  boundary PATCH Z1 k-  r:[1,1,1]-[15,44,1]
+INFO  boundary Z1 k+
+INFO  boundary Z2 i+
+INFO  boundary Z2 j-
+INFO  boundary Z2 j+
+INFO  Finished OK.  Exiting.
+-------------------------------------------
+======================
+       Test 13
+======================
+Removing old mesh: blunt3d_2.x
+Copying mesh to current directory: /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/meshes/plot3d/blunt/blunt3d_2.x
+Running: /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/BC_define/bin/bc_define blunt3d_2.x /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/meshes/plot3d/blunt/bcdef.input_blunt2
+INFO  BC_define started
+INFO  Mesh     : ./blunt3d_2.x
+INFO  BC file  : /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/meshes/plot3d/blunt/bcdef.input_blunt2
+INFO  Flags    : overwrite=yes autowall=yes autofarfield=no threads=16
+INFO  Opened Plot3D mesh with 5 zone(s)
+INFO  All zones right-handed (OK)
+INFO  Faces read: 30/30
+INFO  Creating 1:1 connections
+INFO  interior Z1 i- ↔ Z4 i+  (T=1,2,3)
+INFO  interior Z1 i+ ↔ Z5 i+  (T=-1,2,-3)
+INFO  interior PATCH Z1 k+ ↔ Z2 i+  (T=3,2,-1)
+INFO  interior PATCH Z1 k+ ↔ Z3 i+  (T=3,2,-1)
+INFO  interior Z2 k- ↔ Z4 k+  (T=1,2,3)
+INFO  interior Z2 k+ ↔ Z3 k-  (T=1,2,3)
+INFO  interior Z3 k+ ↔ Z5 k-  (T=1,2,3)
+INFO  Connectivity scan complete.
+INFO  Assigning boundary conditions
+INFO  boundary Z1 j-
+INFO  boundary Z1 j+
+INFO  boundary Z1 k-
+INFO  boundary Z2 i-
+INFO  boundary Z2 j-
+INFO  boundary Z2 j+
+INFO  boundary Z3 i-
+INFO  boundary Z3 j-
+INFO  boundary Z3 j+
+INFO  boundary Z4 i-
+INFO  boundary Z4 j-
+INFO  boundary Z4 j+
+INFO  boundary Z4 k-
+INFO  boundary PATCH Z4 k+  r:[1,1,16]-[34,44,16]
+INFO  boundary Z5 i-
+INFO  boundary Z5 j-
+INFO  boundary Z5 j+
+INFO  boundary PATCH Z5 k-  r:[1,1,1]-[59,44,1]
+INFO  boundary Z5 k+
+INFO  Finished OK.  Exiting.
+-------------------------------------------
+======================
+       Test 14
+======================
+Removing old mesh: omesh_1z.x
+Copying mesh to current directory: /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/meshes/plot3d/omesh/omesh_1z.x
+Running: /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/BC_define/bin/bc_define omesh_1z.x /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/meshes/plot3d/omesh/bcdef.input_o
+INFO  BC_define started
+INFO  Mesh     : ./omesh_1z.x
+INFO  BC file  : /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/meshes/plot3d/omesh/bcdef.input_o
+INFO  Flags    : overwrite=yes autowall=yes autofarfield=no threads=16
+INFO  Opened Plot3D mesh with 1 zone(s)
+INFO  Faces read: 4/4
+INFO  Creating 1:1 connections
+INFO  interior Z1 i- ↔ Z1 i+  (T=1,2,0)
+INFO  Connectivity scan complete.
+INFO  Assigning boundary conditions
+INFO  boundary Z1 j-
+INFO  boundary Z1 j+
+INFO  Finished OK.  Exiting.
+-------------------------------------------
+======================
+       Test 15
+======================
+Removing old mesh: dmesh_1z.x
+Copying mesh to current directory: /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/meshes/plot3d/omesh/dmesh_1z.x
+Running: /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/BC_define/bin/bc_define dmesh_1z.x /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/meshes/plot3d/omesh/bcdef.input_b
+INFO  BC_define started
+INFO  Mesh     : ./dmesh_1z.x
+INFO  BC file  : /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/meshes/plot3d/omesh/bcdef.input_b
+INFO  Flags    : overwrite=yes autowall=yes autofarfield=no threads=16
+INFO  Opened Plot3D mesh with 1 zone(s)
+INFO  Faces read: 4/4
+INFO  Creating 1:1 connections
+INFO  interior PATCH Z1 i- ↔ Z1 j+  (T=2,-1,0)
+INFO  Connectivity scan complete.
+INFO  Assigning boundary conditions
+INFO  boundary PATCH Z1 i-  r:[1,1,1]-[1,26,1]
+INFO  boundary PATCH Z1 i-  r:[1,76,1]-[1,301,1]
+INFO  boundary Z1 i+
+INFO  boundary Z1 j-
+INFO  Finished OK.  Exiting.
+-------------------------------------------
+======================
+       Test 16
+======================
+Removing old mesh: cube3d_512M.x
+Copying mesh to current directory: /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/meshes/plot3d/cube/cube3d_512M.x
+Running: /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/BC_define/bin/bc_define cube3d_512M.x /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/meshes/plot3d/cube/bcdef.input_cube4
+INFO  BC_define started
+INFO  Mesh     : ./cube3d_512M.x
+INFO  BC file  : /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/meshes/plot3d/cube/bcdef.input_cube4
+INFO  Flags    : overwrite=yes autowall=yes autofarfield=no threads=16
+INFO  Opened Plot3D mesh with 512 zone(s)
+INFO  All zones right-handed (OK)
+INFO  Faces read: 3072/3072
+INFO  Creating 1:1 connections
+INFO  interior Z1 i+ ↔ Z112 i-  (T=1,2,3)
+INFO  interior Z1 j+ ↔ Z502 j-  (T=1,2,3)
+INFO  interior Z1 k+ ↔ Z475 k-  (T=1,2,3)
+INFO  interior Z2 i- ↔ Z502 i+  (T=1,2,3)
+INFO  interior Z2 i+ ↔ Z13 i-  (T=1,2,3)
+INFO  interior Z2 j- ↔ Z112 j+  (T=1,2,3)
+INFO  interior Z2 j+ ↔ Z90 j-  (T=1,2,3)
+INFO  interior Z2 k+ ↔ Z485 k-  (T=1,2,3)
+INFO  interior Z3 i- ↔ Z512 i+  (T=1,2,3)
+INFO  interior Z3 i+ ↔ Z4 i-  (T=1,2,3)
+INFO  interior Z3 j- ↔ Z505 j+  (T=1,2,3)
+INFO  interior Z3 j+ ↔ Z11 j-  (T=1,2,3)
+INFO  interior Z3 k- ↔ Z290 k+  (T=1,2,3)
+INFO  interior Z3 k+ ↔ Z73 k-  (T=1,2,3)
+INFO  interior Z4 i+ ↔ Z5 i-  (T=1,2,3)
+INFO  interior Z4 j- ↔ Z506 j+  (T=1,2,3)
+INFO  interior Z4 j+ ↔ Z12 j-  (T=1,2,3)
+INFO  interior Z4 k- ↔ Z301 k+  (T=1,2,3)
+INFO  interior Z4 k+ ↔ Z74 k-  (T=1,2,3)
+INFO  interior Z5 i+ ↔ Z6 i-  (T=1,2,3)
+INFO  interior Z5 j- ↔ Z507 j+  (T=1,2,3)
+INFO  interior Z5 j+ ↔ Z14 j-  (T=1,2,3)
+INFO  interior Z5 k- ↔ Z312 k+  (T=1,2,3)
+INFO  interior Z5 k+ ↔ Z75 k-  (T=1,2,3)
+INFO  interior Z6 i+ ↔ Z7 i-  (T=1,2,3)
+INFO  interior Z6 j- ↔ Z508 j+  (T=1,2,3)
+INFO  interior Z6 j+ ↔ Z15 j-  (T=1,2,3)
+INFO  interior Z6 k- ↔ Z323 k+  (T=1,2,3)
+INFO  interior Z6 k+ ↔ Z76 k-  (T=1,2,3)
+INFO  interior Z7 j- ↔ Z509 j+  (T=1,2,3)
+INFO  interior Z7 j+ ↔ Z16 j-  (T=1,2,3)
+INFO  interior Z7 k- ↔ Z335 k+  (T=1,2,3)
+INFO  interior Z7 k+ ↔ Z77 k-  (T=1,2,3)
+INFO  interior Z8 i+ ↔ Z9 i-  (T=1,2,3)
+INFO  interior Z8 j- ↔ Z510 j+  (T=1,2,3)
+INFO  interior Z8 j+ ↔ Z17 j-  (T=1,2,3)
+INFO  interior Z8 k- ↔ Z346 k+  (T=1,2,3)
+INFO  interior Z8 k+ ↔ Z78 k-  (T=1,2,3)
+INFO  interior Z9 i+ ↔ Z10 i-  (T=1,2,3)
+INFO  interior Z9 j- ↔ Z511 j+  (T=1,2,3)
+INFO  interior Z9 j+ ↔ Z18 j-  (T=1,2,3)
+INFO  interior Z9 k- ↔ Z357 k+  (T=1,2,3)
+INFO  interior Z9 k+ ↔ Z80 k-  (T=1,2,3)
+INFO  interior Z10 i+ ↔ Z11 i-  (T=1,2,3)
+INFO  interior Z10 j- ↔ Z512 j+  (T=1,2,3)
+INFO  interior Z10 j+ ↔ Z19 j-  (T=1,2,3)
+INFO  interior Z10 k- ↔ Z368 k+  (T=1,2,3)
+INFO  interior Z10 k+ ↔ Z81 k-  (T=1,2,3)
+INFO  interior Z11 i+ ↔ Z12 i-  (T=1,2,3)
+INFO  interior Z11 j+ ↔ Z20 j-  (T=1,2,3)
+INFO  interior Z11 k- ↔ Z379 k+  (T=1,2,3)
+INFO  interior Z11 k+ ↔ Z82 k-  (T=1,2,3)
+INFO  interior Z12 i+ ↔ Z14 i-  (T=1,2,3)
+INFO  interior Z12 j+ ↔ Z21 j-  (T=1,2,3)
+INFO  interior Z12 k- ↔ Z390 k+  (T=1,2,3)
+INFO  interior Z12 k+ ↔ Z83 k-  (T=1,2,3)
+INFO  interior Z13 i+ ↔ Z24 i-  (T=1,2,3)
+INFO  interior Z13 j- ↔ Z223 j+  (T=1,2,3)
+INFO  interior Z13 j+ ↔ Z101 j-  (T=1,2,3)
+INFO  interior Z13 k+ ↔ Z486 k-  (T=1,2,3)
+INFO  interior Z14 i+ ↔ Z15 i-  (T=1,2,3)
+INFO  interior Z14 j+ ↔ Z22 j-  (T=1,2,3)
+INFO  interior Z14 k- ↔ Z401 k+  (T=1,2,3)
+INFO  interior Z14 k+ ↔ Z84 k-  (T=1,2,3)
+INFO  interior Z15 i+ ↔ Z16 i-  (T=1,2,3)
+INFO  interior Z15 j+ ↔ Z23 j-  (T=1,2,3)
+INFO  interior Z15 k- ↔ Z412 k+  (T=1,2,3)
+INFO  interior Z15 k+ ↔ Z85 k-  (T=1,2,3)
+INFO  interior Z16 j+ ↔ Z25 j-  (T=1,2,3)
+INFO  interior Z16 k- ↔ Z423 k+  (T=1,2,3)
+INFO  interior Z16 k+ ↔ Z86 k-  (T=1,2,3)
+INFO  interior Z17 i+ ↔ Z18 i-  (T=1,2,3)
+INFO  interior Z17 j+ ↔ Z26 j-  (T=1,2,3)
+INFO  interior Z17 k- ↔ Z434 k+  (T=1,2,3)
+INFO  interior Z17 k+ ↔ Z87 k-  (T=1,2,3)
+INFO  interior Z18 i+ ↔ Z19 i-  (T=1,2,3)
+INFO  interior Z18 j+ ↔ Z27 j-  (T=1,2,3)
+INFO  interior Z18 k- ↔ Z446 k+  (T=1,2,3)
+INFO  interior Z18 k+ ↔ Z88 k-  (T=1,2,3)
+INFO  interior Z19 i+ ↔ Z20 i-  (T=1,2,3)
+INFO  interior Z19 j+ ↔ Z28 j-  (T=1,2,3)
+INFO  interior Z19 k- ↔ Z457 k+  (T=1,2,3)
+INFO  interior Z19 k+ ↔ Z89 k-  (T=1,2,3)
+INFO  interior Z20 i+ ↔ Z21 i-  (T=1,2,3)
+INFO  interior Z20 j+ ↔ Z29 j-  (T=1,2,3)
+INFO  interior Z20 k- ↔ Z461 k+  (T=1,2,3)
+INFO  interior Z20 k+ ↔ Z91 k-  (T=1,2,3)
+INFO  interior Z21 i+ ↔ Z22 i-  (T=1,2,3)
+INFO  interior Z21 j+ ↔ Z30 j-  (T=1,2,3)
+INFO  interior Z21 k- ↔ Z462 k+  (T=1,2,3)
+INFO  interior Z21 k+ ↔ Z92 k-  (T=1,2,3)
+INFO  interior Z22 i+ ↔ Z23 i-  (T=1,2,3)
+INFO  interior Z22 j+ ↔ Z31 j-  (T=1,2,3)
+INFO  interior Z22 k- ↔ Z463 k+  (T=1,2,3)
+INFO  interior Z22 k+ ↔ Z93 k-  (T=1,2,3)
+INFO  interior Z23 i+ ↔ Z25 i-  (T=1,2,3)
+INFO  interior Z23 j+ ↔ Z32 j-  (T=1,2,3)
+INFO  interior Z23 k- ↔ Z464 k+  (T=1,2,3)
+INFO  interior Z23 k+ ↔ Z94 k-  (T=1,2,3)
+INFO  interior Z24 i+ ↔ Z35 i-  (T=1,2,3)
+INFO  interior Z24 j- ↔ Z334 j+  (T=1,2,3)
+INFO  interior Z24 j+ ↔ Z113 j-  (T=1,2,3)
+INFO  interior Z24 k+ ↔ Z487 k-  (T=1,2,3)
+INFO  interior Z25 j+ ↔ Z33 j-  (T=1,2,3)
+INFO  interior Z25 k- ↔ Z465 k+  (T=1,2,3)
+INFO  interior Z25 k+ ↔ Z95 k-  (T=1,2,3)
+INFO  interior Z26 i+ ↔ Z27 i-  (T=1,2,3)
+INFO  interior Z26 k- ↔ Z466 k+  (T=1,2,3)
+INFO  interior Z26 k+ ↔ Z96 k-  (T=1,2,3)
+INFO  interior Z27 i+ ↔ Z28 i-  (T=1,2,3)
+INFO  interior Z27 k- ↔ Z467 k+  (T=1,2,3)
+INFO  interior Z27 k+ ↔ Z97 k-  (T=1,2,3)
+INFO  interior Z28 i+ ↔ Z29 i-  (T=1,2,3)
+INFO  interior Z28 k- ↔ Z468 k+  (T=1,2,3)
+INFO  interior Z28 k+ ↔ Z98 k-  (T=1,2,3)
+INFO  interior Z29 i+ ↔ Z30 i-  (T=1,2,3)
+INFO  interior Z29 k- ↔ Z470 k+  (T=1,2,3)
+INFO  interior Z29 k+ ↔ Z99 k-  (T=1,2,3)
+INFO  interior Z30 i+ ↔ Z31 i-  (T=1,2,3)
+INFO  interior Z30 k- ↔ Z471 k+  (T=1,2,3)
+INFO  interior Z30 k+ ↔ Z100 k-  (T=1,2,3)
+INFO  interior Z31 i+ ↔ Z32 i-  (T=1,2,3)
+INFO  interior Z31 k- ↔ Z472 k+  (T=1,2,3)
+INFO  interior Z31 k+ ↔ Z102 k-  (T=1,2,3)
+INFO  interior Z32 i+ ↔ Z33 i-  (T=1,2,3)
+INFO  interior Z32 k- ↔ Z473 k+  (T=1,2,3)
+INFO  interior Z32 k+ ↔ Z103 k-  (T=1,2,3)
+INFO  interior Z33 k- ↔ Z474 k+  (T=1,2,3)
+INFO  interior Z33 k+ ↔ Z104 k-  (T=1,2,3)
+INFO  interior Z34 i+ ↔ Z36 i-  (T=1,2,3)
+INFO  interior Z34 j+ ↔ Z43 j-  (T=1,2,3)
+INFO  interior Z34 k- ↔ Z475 k+  (T=1,2,3)
+INFO  interior Z34 k+ ↔ Z105 k-  (T=1,2,3)
+INFO  interior Z35 i+ ↔ Z46 i-  (T=1,2,3)
+INFO  interior Z35 j- ↔ Z445 j+  (T=1,2,3)
+INFO  interior Z35 j+ ↔ Z124 j-  (T=1,2,3)
+INFO  interior Z35 k+ ↔ Z488 k-  (T=1,2,3)
+INFO  interior Z36 i+ ↔ Z37 i-  (T=1,2,3)
+INFO  interior Z36 j+ ↔ Z44 j-  (T=1,2,3)
+INFO  interior Z36 k- ↔ Z476 k+  (T=1,2,3)
+INFO  interior Z36 k+ ↔ Z106 k-  (T=1,2,3)
+INFO  interior Z37 i+ ↔ Z38 i-  (T=1,2,3)
+INFO  interior Z37 j+ ↔ Z45 j-  (T=1,2,3)
+INFO  interior Z37 k- ↔ Z477 k+  (T=1,2,3)
+INFO  interior Z37 k+ ↔ Z107 k-  (T=1,2,3)
+INFO  interior Z38 i+ ↔ Z39 i-  (T=1,2,3)
+INFO  interior Z38 j+ ↔ Z47 j-  (T=1,2,3)
+INFO  interior Z38 k- ↔ Z478 k+  (T=1,2,3)
+INFO  interior Z38 k+ ↔ Z108 k-  (T=1,2,3)
+INFO  interior Z39 i+ ↔ Z40 i-  (T=1,2,3)
+INFO  interior Z39 j+ ↔ Z48 j-  (T=1,2,3)
+INFO  interior Z39 k- ↔ Z479 k+  (T=1,2,3)
+INFO  interior Z39 k+ ↔ Z109 k-  (T=1,2,3)
+INFO  interior Z40 i+ ↔ Z41 i-  (T=1,2,3)
+INFO  interior Z40 j+ ↔ Z49 j-  (T=1,2,3)
+INFO  interior Z40 k- ↔ Z481 k+  (T=1,2,3)
+INFO  interior Z40 k+ ↔ Z110 k-  (T=1,2,3)
+INFO  interior Z41 i+ ↔ Z42 i-  (T=1,2,3)
+INFO  interior Z41 j+ ↔ Z50 j-  (T=1,2,3)
+INFO  interior Z41 k- ↔ Z482 k+  (T=1,2,3)
+INFO  interior Z41 k+ ↔ Z111 k-  (T=1,2,3)
+INFO  interior Z42 j+ ↔ Z51 j-  (T=1,2,3)
+INFO  interior Z42 k- ↔ Z483 k+  (T=1,2,3)
+INFO  interior Z42 k+ ↔ Z114 k-  (T=1,2,3)
+INFO  interior Z43 i+ ↔ Z44 i-  (T=1,2,3)
+INFO  interior Z43 j+ ↔ Z52 j-  (T=1,2,3)
+INFO  interior Z43 k- ↔ Z484 k+  (T=1,2,3)
+INFO  interior Z43 k+ ↔ Z115 k-  (T=1,2,3)
+INFO  interior Z44 i+ ↔ Z45 i-  (T=1,2,3)
+INFO  interior Z44 j+ ↔ Z53 j-  (T=1,2,3)
+INFO  interior Z44 k- ↔ Z485 k+  (T=1,2,3)
+INFO  interior Z44 k+ ↔ Z116 k-  (T=1,2,3)
+INFO  interior Z45 i+ ↔ Z47 i-  (T=1,2,3)
+INFO  interior Z45 j+ ↔ Z54 j-  (T=1,2,3)
+INFO  interior Z45 k- ↔ Z486 k+  (T=1,2,3)
+INFO  interior Z45 k+ ↔ Z117 k-  (T=1,2,3)
+INFO  interior Z46 i+ ↔ Z57 i-  (T=1,2,3)
+INFO  interior Z46 j- ↔ Z469 j+  (T=1,2,3)
+INFO  interior Z46 j+ ↔ Z135 j-  (T=1,2,3)
+INFO  interior Z46 k+ ↔ Z489 k-  (T=1,2,3)
+INFO  interior Z47 i+ ↔ Z48 i-  (T=1,2,3)
+INFO  interior Z47 j+ ↔ Z55 j-  (T=1,2,3)
+INFO  interior Z47 k- ↔ Z487 k+  (T=1,2,3)
+INFO  interior Z47 k+ ↔ Z118 k-  (T=1,2,3)
+INFO  interior Z48 i+ ↔ Z49 i-  (T=1,2,3)
+INFO  interior Z48 j+ ↔ Z56 j-  (T=1,2,3)
+INFO  interior Z48 k- ↔ Z488 k+  (T=1,2,3)
+INFO  interior Z48 k+ ↔ Z119 k-  (T=1,2,3)
+INFO  interior Z49 i+ ↔ Z50 i-  (T=1,2,3)
+INFO  interior Z49 j+ ↔ Z58 j-  (T=1,2,3)
+INFO  interior Z49 k- ↔ Z489 k+  (T=1,2,3)
+INFO  interior Z49 k+ ↔ Z120 k-  (T=1,2,3)
+INFO  interior Z50 i+ ↔ Z51 i-  (T=1,2,3)
+INFO  interior Z50 j+ ↔ Z59 j-  (T=1,2,3)
+INFO  interior Z50 k- ↔ Z490 k+  (T=1,2,3)
+INFO  interior Z50 k+ ↔ Z121 k-  (T=1,2,3)
+INFO  interior Z51 j+ ↔ Z60 j-  (T=1,2,3)
+INFO  interior Z51 k- ↔ Z492 k+  (T=1,2,3)
+INFO  interior Z51 k+ ↔ Z122 k-  (T=1,2,3)
+INFO  interior Z52 i+ ↔ Z53 i-  (T=1,2,3)
+INFO  interior Z52 j+ ↔ Z61 j-  (T=1,2,3)
+INFO  interior Z52 k- ↔ Z493 k+  (T=1,2,3)
+INFO  interior Z52 k+ ↔ Z123 k-  (T=1,2,3)
+INFO  interior Z53 i+ ↔ Z54 i-  (T=1,2,3)
+INFO  interior Z53 j+ ↔ Z62 j-  (T=1,2,3)
+INFO  interior Z53 k- ↔ Z494 k+  (T=1,2,3)
+INFO  interior Z53 k+ ↔ Z125 k-  (T=1,2,3)
+INFO  interior Z54 i+ ↔ Z55 i-  (T=1,2,3)
+INFO  interior Z54 j+ ↔ Z63 j-  (T=1,2,3)
+INFO  interior Z54 k- ↔ Z495 k+  (T=1,2,3)
+INFO  interior Z54 k+ ↔ Z126 k-  (T=1,2,3)
+INFO  interior Z55 i+ ↔ Z56 i-  (T=1,2,3)
+INFO  interior Z55 j+ ↔ Z64 j-  (T=1,2,3)
+INFO  interior Z55 k- ↔ Z496 k+  (T=1,2,3)
+INFO  interior Z55 k+ ↔ Z127 k-  (T=1,2,3)
+INFO  interior Z56 i+ ↔ Z58 i-  (T=1,2,3)
+INFO  interior Z56 j+ ↔ Z65 j-  (T=1,2,3)
+INFO  interior Z56 k- ↔ Z497 k+  (T=1,2,3)
+INFO  interior Z56 k+ ↔ Z128 k-  (T=1,2,3)
+INFO  interior Z57 i+ ↔ Z68 i-  (T=1,2,3)
+INFO  interior Z57 j- ↔ Z480 j+  (T=1,2,3)
+INFO  interior Z57 j+ ↔ Z146 j-  (T=1,2,3)
+INFO  interior Z57 k+ ↔ Z490 k-  (T=1,2,3)
+INFO  interior Z58 i+ ↔ Z59 i-  (T=1,2,3)
+INFO  interior Z58 j+ ↔ Z66 j-  (T=1,2,3)
+INFO  interior Z58 k- ↔ Z498 k+  (T=1,2,3)
+INFO  interior Z58 k+ ↔ Z129 k-  (T=1,2,3)
+INFO  interior Z59 i+ ↔ Z60 i-  (T=1,2,3)
+INFO  interior Z59 j+ ↔ Z67 j-  (T=1,2,3)
+INFO  interior Z59 k- ↔ Z499 k+  (T=1,2,3)
+INFO  interior Z59 k+ ↔ Z130 k-  (T=1,2,3)
+INFO  interior Z60 j+ ↔ Z69 j-  (T=1,2,3)
+INFO  interior Z60 k- ↔ Z500 k+  (T=1,2,3)
+INFO  interior Z60 k+ ↔ Z131 k-  (T=1,2,3)
+INFO  interior Z61 i+ ↔ Z62 i-  (T=1,2,3)
+INFO  interior Z61 j+ ↔ Z70 j-  (T=1,2,3)
+INFO  interior Z61 k- ↔ Z501 k+  (T=1,2,3)
+INFO  interior Z61 k+ ↔ Z132 k-  (T=1,2,3)
+INFO  interior Z62 i+ ↔ Z63 i-  (T=1,2,3)
+INFO  interior Z62 j+ ↔ Z71 j-  (T=1,2,3)
+INFO  interior Z62 k- ↔ Z503 k+  (T=1,2,3)
+INFO  interior Z62 k+ ↔ Z133 k-  (T=1,2,3)
+INFO  interior Z63 i+ ↔ Z64 i-  (T=1,2,3)
+INFO  interior Z63 j+ ↔ Z72 j-  (T=1,2,3)
+INFO  interior Z63 k- ↔ Z504 k+  (T=1,2,3)
+INFO  interior Z63 k+ ↔ Z134 k-  (T=1,2,3)
+INFO  interior Z64 i+ ↔ Z65 i-  (T=1,2,3)
+INFO  interior Z64 j+ ↔ Z73 j-  (T=1,2,3)
+INFO  interior Z64 k- ↔ Z505 k+  (T=1,2,3)
+INFO  interior Z64 k+ ↔ Z136 k-  (T=1,2,3)
+INFO  interior Z65 i+ ↔ Z66 i-  (T=1,2,3)
+INFO  interior Z65 j+ ↔ Z74 j-  (T=1,2,3)
+INFO  interior Z65 k- ↔ Z506 k+  (T=1,2,3)
+INFO  interior Z65 k+ ↔ Z137 k-  (T=1,2,3)
+INFO  interior Z66 i+ ↔ Z67 i-  (T=1,2,3)
+INFO  interior Z66 j+ ↔ Z75 j-  (T=1,2,3)
+INFO  interior Z66 k- ↔ Z507 k+  (T=1,2,3)
+INFO  interior Z66 k+ ↔ Z138 k-  (T=1,2,3)
+INFO  interior Z67 i+ ↔ Z69 i-  (T=1,2,3)
+INFO  interior Z67 j+ ↔ Z76 j-  (T=1,2,3)
+INFO  interior Z67 k- ↔ Z508 k+  (T=1,2,3)
+INFO  interior Z67 k+ ↔ Z139 k-  (T=1,2,3)
+INFO  interior Z68 j- ↔ Z491 j+  (T=1,2,3)
+INFO  interior Z68 j+ ↔ Z157 j-  (T=1,2,3)
+INFO  interior Z68 k+ ↔ Z492 k-  (T=1,2,3)
+INFO  interior Z69 j+ ↔ Z77 j-  (T=1,2,3)
+INFO  interior Z69 k- ↔ Z509 k+  (T=1,2,3)
+INFO  interior Z69 k+ ↔ Z140 k-  (T=1,2,3)
+INFO  interior Z70 i+ ↔ Z71 i-  (T=1,2,3)
+INFO  interior Z70 j+ ↔ Z78 j-  (T=1,2,3)
+INFO  interior Z70 k- ↔ Z510 k+  (T=1,2,3)
+INFO  interior Z70 k+ ↔ Z141 k-  (T=1,2,3)
+INFO  interior Z71 i+ ↔ Z72 i-  (T=1,2,3)
+INFO  interior Z71 j+ ↔ Z80 j-  (T=1,2,3)
+INFO  interior Z71 k- ↔ Z511 k+  (T=1,2,3)
+INFO  interior Z71 k+ ↔ Z142 k-  (T=1,2,3)
+INFO  interior Z72 i+ ↔ Z73 i-  (T=1,2,3)
+INFO  interior Z72 j+ ↔ Z81 j-  (T=1,2,3)
+INFO  interior Z72 k- ↔ Z512 k+  (T=1,2,3)
+INFO  interior Z72 k+ ↔ Z143 k-  (T=1,2,3)
+INFO  interior Z73 i+ ↔ Z74 i-  (T=1,2,3)
+INFO  interior Z73 j+ ↔ Z82 j-  (T=1,2,3)
+INFO  interior Z73 k+ ↔ Z144 k-  (T=1,2,3)
+INFO  interior Z74 i+ ↔ Z75 i-  (T=1,2,3)
+INFO  interior Z74 j+ ↔ Z83 j-  (T=1,2,3)
+INFO  interior Z74 k+ ↔ Z145 k-  (T=1,2,3)
+INFO  interior Z75 i+ ↔ Z76 i-  (T=1,2,3)
+INFO  interior Z75 j+ ↔ Z84 j-  (T=1,2,3)
+INFO  interior Z75 k+ ↔ Z147 k-  (T=1,2,3)
+INFO  interior Z76 i+ ↔ Z77 i-  (T=1,2,3)
+INFO  interior Z76 j+ ↔ Z85 j-  (T=1,2,3)
+INFO  interior Z76 k+ ↔ Z148 k-  (T=1,2,3)
+INFO  interior Z77 j+ ↔ Z86 j-  (T=1,2,3)
+INFO  interior Z77 k+ ↔ Z149 k-  (T=1,2,3)
+INFO  interior Z78 i+ ↔ Z80 i-  (T=1,2,3)
+INFO  interior Z78 j+ ↔ Z87 j-  (T=1,2,3)
+INFO  interior Z78 k+ ↔ Z150 k-  (T=1,2,3)
+INFO  interior Z79 i+ ↔ Z90 i-  (T=1,2,3)
+INFO  interior Z79 j- ↔ Z502 j+  (T=1,2,3)
+INFO  interior Z79 j+ ↔ Z168 j-  (T=1,2,3)
+INFO  interior Z79 k+ ↔ Z493 k-  (T=1,2,3)
+INFO  interior Z80 i+ ↔ Z81 i-  (T=1,2,3)
+INFO  interior Z80 j+ ↔ Z88 j-  (T=1,2,3)
+INFO  interior Z80 k+ ↔ Z151 k-  (T=1,2,3)
+INFO  interior Z81 i+ ↔ Z82 i-  (T=1,2,3)
+INFO  interior Z81 j+ ↔ Z89 j-  (T=1,2,3)
+INFO  interior Z81 k+ ↔ Z152 k-  (T=1,2,3)
+INFO  interior Z82 i+ ↔ Z83 i-  (T=1,2,3)
+INFO  interior Z82 j+ ↔ Z91 j-  (T=1,2,3)
+INFO  interior Z82 k+ ↔ Z153 k-  (T=1,2,3)
+INFO  interior Z83 i+ ↔ Z84 i-  (T=1,2,3)
+INFO  interior Z83 j+ ↔ Z92 j-  (T=1,2,3)
+INFO  interior Z83 k+ ↔ Z154 k-  (T=1,2,3)
+INFO  interior Z84 i+ ↔ Z85 i-  (T=1,2,3)
+INFO  interior Z84 j+ ↔ Z93 j-  (T=1,2,3)
+INFO  interior Z84 k+ ↔ Z155 k-  (T=1,2,3)
+INFO  interior Z85 i+ ↔ Z86 i-  (T=1,2,3)
+INFO  interior Z85 j+ ↔ Z94 j-  (T=1,2,3)
+INFO  interior Z85 k+ ↔ Z156 k-  (T=1,2,3)
+INFO  interior Z86 j+ ↔ Z95 j-  (T=1,2,3)
+INFO  interior Z86 k+ ↔ Z158 k-  (T=1,2,3)
+INFO  interior Z87 i+ ↔ Z88 i-  (T=1,2,3)
+INFO  interior Z87 j+ ↔ Z96 j-  (T=1,2,3)
+INFO  interior Z87 k+ ↔ Z159 k-  (T=1,2,3)
+INFO  interior Z88 i+ ↔ Z89 i-  (T=1,2,3)
+INFO  interior Z88 j+ ↔ Z97 j-  (T=1,2,3)
+INFO  interior Z88 k+ ↔ Z160 k-  (T=1,2,3)
+INFO  interior Z89 i+ ↔ Z91 i-  (T=1,2,3)
+INFO  interior Z89 j+ ↔ Z98 j-  (T=1,2,3)
+INFO  interior Z89 k+ ↔ Z161 k-  (T=1,2,3)
+INFO  interior Z90 i+ ↔ Z101 i-  (T=1,2,3)
+INFO  interior Z90 j+ ↔ Z179 j-  (T=1,2,3)
+INFO  interior Z90 k+ ↔ Z494 k-  (T=1,2,3)
+INFO  interior Z91 i+ ↔ Z92 i-  (T=1,2,3)
+INFO  interior Z91 j+ ↔ Z99 j-  (T=1,2,3)
+INFO  interior Z91 k+ ↔ Z162 k-  (T=1,2,3)
+INFO  interior Z92 i+ ↔ Z93 i-  (T=1,2,3)
+INFO  interior Z92 j+ ↔ Z100 j-  (T=1,2,3)
+INFO  interior Z92 k+ ↔ Z163 k-  (T=1,2,3)
+INFO  interior Z93 i+ ↔ Z94 i-  (T=1,2,3)
+INFO  interior Z93 j+ ↔ Z102 j-  (T=1,2,3)
+INFO  interior Z93 k+ ↔ Z164 k-  (T=1,2,3)
+INFO  interior Z94 i+ ↔ Z95 i-  (T=1,2,3)
+INFO  interior Z94 j+ ↔ Z103 j-  (T=1,2,3)
+INFO  interior Z94 k+ ↔ Z165 k-  (T=1,2,3)
+INFO  interior Z95 j+ ↔ Z104 j-  (T=1,2,3)
+INFO  interior Z95 k+ ↔ Z166 k-  (T=1,2,3)
+INFO  interior Z96 i+ ↔ Z97 i-  (T=1,2,3)
+INFO  interior Z96 k+ ↔ Z167 k-  (T=1,2,3)
+INFO  interior Z97 i+ ↔ Z98 i-  (T=1,2,3)
+INFO  interior Z97 k+ ↔ Z169 k-  (T=1,2,3)
+INFO  interior Z98 i+ ↔ Z99 i-  (T=1,2,3)
+INFO  interior Z98 k+ ↔ Z170 k-  (T=1,2,3)
+INFO  interior Z99 i+ ↔ Z100 i-  (T=1,2,3)
+INFO  interior Z99 k+ ↔ Z171 k-  (T=1,2,3)
+INFO  interior Z100 i+ ↔ Z102 i-  (T=1,2,3)
+INFO  interior Z100 k+ ↔ Z172 k-  (T=1,2,3)
+INFO  interior Z101 i+ ↔ Z113 i-  (T=1,2,3)
+INFO  interior Z101 j+ ↔ Z190 j-  (T=1,2,3)
+INFO  interior Z101 k+ ↔ Z495 k-  (T=1,2,3)
+INFO  interior Z102 i+ ↔ Z103 i-  (T=1,2,3)
+INFO  interior Z102 k+ ↔ Z173 k-  (T=1,2,3)
+INFO  interior Z103 i+ ↔ Z104 i-  (T=1,2,3)
+INFO  interior Z103 k+ ↔ Z174 k-  (T=1,2,3)
+INFO  interior Z104 k+ ↔ Z175 k-  (T=1,2,3)
+INFO  interior Z105 i+ ↔ Z106 i-  (T=1,2,3)
+INFO  interior Z105 j+ ↔ Z115 j-  (T=1,2,3)
+INFO  interior Z105 k+ ↔ Z176 k-  (T=1,2,3)
+INFO  interior Z106 i+ ↔ Z107 i-  (T=1,2,3)
+INFO  interior Z106 j+ ↔ Z116 j-  (T=1,2,3)
+INFO  interior Z106 k+ ↔ Z177 k-  (T=1,2,3)
+INFO  interior Z107 i+ ↔ Z108 i-  (T=1,2,3)
+INFO  interior Z107 j+ ↔ Z117 j-  (T=1,2,3)
+INFO  interior Z107 k+ ↔ Z178 k-  (T=1,2,3)
+INFO  interior Z108 i+ ↔ Z109 i-  (T=1,2,3)
+INFO  interior Z108 j+ ↔ Z118 j-  (T=1,2,3)
+INFO  interior Z108 k+ ↔ Z180 k-  (T=1,2,3)
+INFO  interior Z109 i+ ↔ Z110 i-  (T=1,2,3)
+INFO  interior Z109 j+ ↔ Z119 j-  (T=1,2,3)
+INFO  interior Z109 k+ ↔ Z181 k-  (T=1,2,3)
+INFO  interior Z110 i+ ↔ Z111 i-  (T=1,2,3)
+INFO  interior Z110 j+ ↔ Z120 j-  (T=1,2,3)
+INFO  interior Z110 k+ ↔ Z182 k-  (T=1,2,3)
+INFO  interior Z111 i+ ↔ Z114 i-  (T=1,2,3)
+INFO  interior Z111 j+ ↔ Z121 j-  (T=1,2,3)
+INFO  interior Z111 k+ ↔ Z183 k-  (T=1,2,3)
+INFO  interior Z112 i+ ↔ Z223 i-  (T=1,2,3)
+INFO  interior Z112 k+ ↔ Z476 k-  (T=1,2,3)
+INFO  interior Z113 i+ ↔ Z124 i-  (T=1,2,3)
+INFO  interior Z113 j+ ↔ Z201 j-  (T=1,2,3)
+INFO  interior Z113 k+ ↔ Z496 k-  (T=1,2,3)
+INFO  interior Z114 j+ ↔ Z122 j-  (T=1,2,3)
+INFO  interior Z114 k+ ↔ Z184 k-  (T=1,2,3)
+INFO  interior Z115 i+ ↔ Z116 i-  (T=1,2,3)
+INFO  interior Z115 j+ ↔ Z123 j-  (T=1,2,3)
+INFO  interior Z115 k+ ↔ Z185 k-  (T=1,2,3)
+INFO  interior Z116 i+ ↔ Z117 i-  (T=1,2,3)
+INFO  interior Z116 j+ ↔ Z125 j-  (T=1,2,3)
+INFO  interior Z116 k+ ↔ Z186 k-  (T=1,2,3)
+INFO  interior Z117 i+ ↔ Z118 i-  (T=1,2,3)
+INFO  interior Z117 j+ ↔ Z126 j-  (T=1,2,3)
+INFO  interior Z117 k+ ↔ Z187 k-  (T=1,2,3)
+INFO  interior Z118 i+ ↔ Z119 i-  (T=1,2,3)
+INFO  interior Z118 j+ ↔ Z127 j-  (T=1,2,3)
+INFO  interior Z118 k+ ↔ Z188 k-  (T=1,2,3)
+INFO  interior Z119 i+ ↔ Z120 i-  (T=1,2,3)
+INFO  interior Z119 j+ ↔ Z128 j-  (T=1,2,3)
+INFO  interior Z119 k+ ↔ Z189 k-  (T=1,2,3)
+INFO  interior Z120 i+ ↔ Z121 i-  (T=1,2,3)
+INFO  interior Z120 j+ ↔ Z129 j-  (T=1,2,3)
+INFO  interior Z120 k+ ↔ Z191 k-  (T=1,2,3)
+INFO  interior Z121 i+ ↔ Z122 i-  (T=1,2,3)
+INFO  interior Z121 j+ ↔ Z130 j-  (T=1,2,3)
+INFO  interior Z121 k+ ↔ Z192 k-  (T=1,2,3)
+INFO  interior Z122 j+ ↔ Z131 j-  (T=1,2,3)
+INFO  interior Z122 k+ ↔ Z193 k-  (T=1,2,3)
+INFO  interior Z123 i+ ↔ Z125 i-  (T=1,2,3)
+INFO  interior Z123 j+ ↔ Z132 j-  (T=1,2,3)
+INFO  interior Z123 k+ ↔ Z194 k-  (T=1,2,3)
+INFO  interior Z124 i+ ↔ Z135 i-  (T=1,2,3)
+INFO  interior Z124 j+ ↔ Z212 j-  (T=1,2,3)
+INFO  interior Z124 k+ ↔ Z497 k-  (T=1,2,3)
+INFO  interior Z125 i+ ↔ Z126 i-  (T=1,2,3)
+INFO  interior Z125 j+ ↔ Z133 j-  (T=1,2,3)
+INFO  interior Z125 k+ ↔ Z195 k-  (T=1,2,3)
+INFO  interior Z126 i+ ↔ Z127 i-  (T=1,2,3)
+INFO  interior Z126 j+ ↔ Z134 j-  (T=1,2,3)
+INFO  interior Z126 k+ ↔ Z196 k-  (T=1,2,3)
+INFO  interior Z127 i+ ↔ Z128 i-  (T=1,2,3)
+INFO  interior Z127 j+ ↔ Z136 j-  (T=1,2,3)
+INFO  interior Z127 k+ ↔ Z197 k-  (T=1,2,3)
+INFO  interior Z128 i+ ↔ Z129 i-  (T=1,2,3)
+INFO  interior Z128 j+ ↔ Z137 j-  (T=1,2,3)
+INFO  interior Z128 k+ ↔ Z198 k-  (T=1,2,3)
+INFO  interior Z129 i+ ↔ Z130 i-  (T=1,2,3)
+INFO  interior Z129 j+ ↔ Z138 j-  (T=1,2,3)
+INFO  interior Z129 k+ ↔ Z199 k-  (T=1,2,3)
+INFO  interior Z130 i+ ↔ Z131 i-  (T=1,2,3)
+INFO  interior Z130 j+ ↔ Z139 j-  (T=1,2,3)
+INFO  interior Z130 k+ ↔ Z200 k-  (T=1,2,3)
+INFO  interior Z131 j+ ↔ Z140 j-  (T=1,2,3)
+INFO  interior Z131 k+ ↔ Z202 k-  (T=1,2,3)
+INFO  interior Z132 i+ ↔ Z133 i-  (T=1,2,3)
+INFO  interior Z132 j+ ↔ Z141 j-  (T=1,2,3)
+INFO  interior Z132 k+ ↔ Z203 k-  (T=1,2,3)
+INFO  interior Z133 i+ ↔ Z134 i-  (T=1,2,3)
+INFO  interior Z133 j+ ↔ Z142 j-  (T=1,2,3)
+INFO  interior Z133 k+ ↔ Z204 k-  (T=1,2,3)
+INFO  interior Z134 i+ ↔ Z136 i-  (T=1,2,3)
+INFO  interior Z134 j+ ↔ Z143 j-  (T=1,2,3)
+INFO  interior Z134 k+ ↔ Z205 k-  (T=1,2,3)
+INFO  interior Z135 i+ ↔ Z146 i-  (T=1,2,3)
+INFO  interior Z135 j+ ↔ Z224 j-  (T=1,2,3)
+INFO  interior Z135 k+ ↔ Z498 k-  (T=1,2,3)
+INFO  interior Z136 i+ ↔ Z137 i-  (T=1,2,3)
+INFO  interior Z136 j+ ↔ Z144 j-  (T=1,2,3)
+INFO  interior Z136 k+ ↔ Z206 k-  (T=1,2,3)
+INFO  interior Z137 i+ ↔ Z138 i-  (T=1,2,3)
+INFO  interior Z137 j+ ↔ Z145 j-  (T=1,2,3)
+INFO  interior Z137 k+ ↔ Z207 k-  (T=1,2,3)
+INFO  interior Z138 i+ ↔ Z139 i-  (T=1,2,3)
+INFO  interior Z138 j+ ↔ Z147 j-  (T=1,2,3)
+INFO  interior Z138 k+ ↔ Z208 k-  (T=1,2,3)
+INFO  interior Z139 i+ ↔ Z140 i-  (T=1,2,3)
+INFO  interior Z139 j+ ↔ Z148 j-  (T=1,2,3)
+INFO  interior Z139 k+ ↔ Z209 k-  (T=1,2,3)
+INFO  interior Z140 j+ ↔ Z149 j-  (T=1,2,3)
+INFO  interior Z140 k+ ↔ Z210 k-  (T=1,2,3)
+INFO  interior Z141 i+ ↔ Z142 i-  (T=1,2,3)
+INFO  interior Z141 j+ ↔ Z150 j-  (T=1,2,3)
+INFO  interior Z141 k+ ↔ Z211 k-  (T=1,2,3)
+INFO  interior Z142 i+ ↔ Z143 i-  (T=1,2,3)
+INFO  interior Z142 j+ ↔ Z151 j-  (T=1,2,3)
+INFO  interior Z142 k+ ↔ Z213 k-  (T=1,2,3)
+INFO  interior Z143 i+ ↔ Z144 i-  (T=1,2,3)
+INFO  interior Z143 j+ ↔ Z152 j-  (T=1,2,3)
+INFO  interior Z143 k+ ↔ Z214 k-  (T=1,2,3)
+INFO  interior Z144 i+ ↔ Z145 i-  (T=1,2,3)
+INFO  interior Z144 j+ ↔ Z153 j-  (T=1,2,3)
+INFO  interior Z144 k+ ↔ Z215 k-  (T=1,2,3)
+INFO  interior Z145 i+ ↔ Z147 i-  (T=1,2,3)
+INFO  interior Z145 j+ ↔ Z154 j-  (T=1,2,3)
+INFO  interior Z145 k+ ↔ Z216 k-  (T=1,2,3)
+INFO  interior Z146 i+ ↔ Z157 i-  (T=1,2,3)
+INFO  interior Z146 j+ ↔ Z235 j-  (T=1,2,3)
+INFO  interior Z146 k+ ↔ Z499 k-  (T=1,2,3)
+INFO  interior Z147 i+ ↔ Z148 i-  (T=1,2,3)
+INFO  interior Z147 j+ ↔ Z155 j-  (T=1,2,3)
+INFO  interior Z147 k+ ↔ Z217 k-  (T=1,2,3)
+INFO  interior Z148 i+ ↔ Z149 i-  (T=1,2,3)
+INFO  interior Z148 j+ ↔ Z156 j-  (T=1,2,3)
+INFO  interior Z148 k+ ↔ Z218 k-  (T=1,2,3)
+INFO  interior Z149 j+ ↔ Z158 j-  (T=1,2,3)
+INFO  interior Z149 k+ ↔ Z219 k-  (T=1,2,3)
+INFO  interior Z150 i+ ↔ Z151 i-  (T=1,2,3)
+INFO  interior Z150 j+ ↔ Z159 j-  (T=1,2,3)
+INFO  interior Z150 k+ ↔ Z220 k-  (T=1,2,3)
+INFO  interior Z151 i+ ↔ Z152 i-  (T=1,2,3)
+INFO  interior Z151 j+ ↔ Z160 j-  (T=1,2,3)
+INFO  interior Z151 k+ ↔ Z221 k-  (T=1,2,3)
+INFO  interior Z152 i+ ↔ Z153 i-  (T=1,2,3)
+INFO  interior Z152 j+ ↔ Z161 j-  (T=1,2,3)
+INFO  interior Z152 k+ ↔ Z222 k-  (T=1,2,3)
+INFO  interior Z153 i+ ↔ Z154 i-  (T=1,2,3)
+INFO  interior Z153 j+ ↔ Z162 j-  (T=1,2,3)
+INFO  interior Z153 k+ ↔ Z225 k-  (T=1,2,3)
+INFO  interior Z154 i+ ↔ Z155 i-  (T=1,2,3)
+INFO  interior Z154 j+ ↔ Z163 j-  (T=1,2,3)
+INFO  interior Z154 k+ ↔ Z226 k-  (T=1,2,3)
+INFO  interior Z155 i+ ↔ Z156 i-  (T=1,2,3)
+INFO  interior Z155 j+ ↔ Z164 j-  (T=1,2,3)
+INFO  interior Z155 k+ ↔ Z227 k-  (T=1,2,3)
+INFO  interior Z156 i+ ↔ Z158 i-  (T=1,2,3)
+INFO  interior Z156 j+ ↔ Z165 j-  (T=1,2,3)
+INFO  interior Z156 k+ ↔ Z228 k-  (T=1,2,3)
+INFO  interior Z157 j+ ↔ Z246 j-  (T=1,2,3)
+INFO  interior Z157 k+ ↔ Z500 k-  (T=1,2,3)
+INFO  interior Z158 j+ ↔ Z166 j-  (T=1,2,3)
+INFO  interior Z158 k+ ↔ Z229 k-  (T=1,2,3)
+INFO  interior Z159 i+ ↔ Z160 i-  (T=1,2,3)
+INFO  interior Z159 j+ ↔ Z167 j-  (T=1,2,3)
+INFO  interior Z159 k+ ↔ Z230 k-  (T=1,2,3)
+INFO  interior Z160 i+ ↔ Z161 i-  (T=1,2,3)
+INFO  interior Z160 j+ ↔ Z169 j-  (T=1,2,3)
+INFO  interior Z160 k+ ↔ Z231 k-  (T=1,2,3)
+INFO  interior Z161 i+ ↔ Z162 i-  (T=1,2,3)
+INFO  interior Z161 j+ ↔ Z170 j-  (T=1,2,3)
+INFO  interior Z161 k+ ↔ Z232 k-  (T=1,2,3)
+INFO  interior Z162 i+ ↔ Z163 i-  (T=1,2,3)
+INFO  interior Z162 j+ ↔ Z171 j-  (T=1,2,3)
+INFO  interior Z162 k+ ↔ Z233 k-  (T=1,2,3)
+INFO  interior Z163 i+ ↔ Z164 i-  (T=1,2,3)
+INFO  interior Z163 j+ ↔ Z172 j-  (T=1,2,3)
+INFO  interior Z163 k+ ↔ Z234 k-  (T=1,2,3)
+INFO  interior Z164 i+ ↔ Z165 i-  (T=1,2,3)
+INFO  interior Z164 j+ ↔ Z173 j-  (T=1,2,3)
+INFO  interior Z164 k+ ↔ Z236 k-  (T=1,2,3)
+INFO  interior Z165 i+ ↔ Z166 i-  (T=1,2,3)
+INFO  interior Z165 j+ ↔ Z174 j-  (T=1,2,3)
+INFO  interior Z165 k+ ↔ Z237 k-  (T=1,2,3)
+INFO  interior Z166 j+ ↔ Z175 j-  (T=1,2,3)
+INFO  interior Z166 k+ ↔ Z238 k-  (T=1,2,3)
+INFO  interior Z167 i+ ↔ Z169 i-  (T=1,2,3)
+INFO  interior Z167 k+ ↔ Z239 k-  (T=1,2,3)
+INFO  interior Z168 i+ ↔ Z179 i-  (T=1,2,3)
+INFO  interior Z168 j+ ↔ Z257 j-  (T=1,2,3)
+INFO  interior Z168 k+ ↔ Z501 k-  (T=1,2,3)
+INFO  interior Z169 i+ ↔ Z170 i-  (T=1,2,3)
+INFO  interior Z169 k+ ↔ Z240 k-  (T=1,2,3)
+INFO  interior Z170 i+ ↔ Z171 i-  (T=1,2,3)
+INFO  interior Z170 k+ ↔ Z241 k-  (T=1,2,3)
+INFO  interior Z171 i+ ↔ Z172 i-  (T=1,2,3)
+INFO  interior Z171 k+ ↔ Z242 k-  (T=1,2,3)
+INFO  interior Z172 i+ ↔ Z173 i-  (T=1,2,3)
+INFO  interior Z172 k+ ↔ Z243 k-  (T=1,2,3)
+INFO  interior Z173 i+ ↔ Z174 i-  (T=1,2,3)
+INFO  interior Z173 k+ ↔ Z244 k-  (T=1,2,3)
+INFO  interior Z174 i+ ↔ Z175 i-  (T=1,2,3)
+INFO  interior Z174 k+ ↔ Z245 k-  (T=1,2,3)
+INFO  interior Z175 k+ ↔ Z247 k-  (T=1,2,3)
+INFO  interior Z176 i+ ↔ Z177 i-  (T=1,2,3)
+INFO  interior Z176 j+ ↔ Z185 j-  (T=1,2,3)
+INFO  interior Z176 k+ ↔ Z248 k-  (T=1,2,3)
+INFO  interior Z177 i+ ↔ Z178 i-  (T=1,2,3)
+INFO  interior Z177 j+ ↔ Z186 j-  (T=1,2,3)
+INFO  interior Z177 k+ ↔ Z249 k-  (T=1,2,3)
+INFO  interior Z178 i+ ↔ Z180 i-  (T=1,2,3)
+INFO  interior Z178 j+ ↔ Z187 j-  (T=1,2,3)
+INFO  interior Z178 k+ ↔ Z250 k-  (T=1,2,3)
+INFO  interior Z179 i+ ↔ Z190 i-  (T=1,2,3)
+INFO  interior Z179 j+ ↔ Z268 j-  (T=1,2,3)
+INFO  interior Z179 k+ ↔ Z503 k-  (T=1,2,3)
+INFO  interior Z180 i+ ↔ Z181 i-  (T=1,2,3)
+INFO  interior Z180 j+ ↔ Z188 j-  (T=1,2,3)
+INFO  interior Z180 k+ ↔ Z251 k-  (T=1,2,3)
+INFO  interior Z181 i+ ↔ Z182 i-  (T=1,2,3)
+INFO  interior Z181 j+ ↔ Z189 j-  (T=1,2,3)
+INFO  interior Z181 k+ ↔ Z252 k-  (T=1,2,3)
+INFO  interior Z182 i+ ↔ Z183 i-  (T=1,2,3)
+INFO  interior Z182 j+ ↔ Z191 j-  (T=1,2,3)
+INFO  interior Z182 k+ ↔ Z253 k-  (T=1,2,3)
+INFO  interior Z183 i+ ↔ Z184 i-  (T=1,2,3)
+INFO  interior Z183 j+ ↔ Z192 j-  (T=1,2,3)
+INFO  interior Z183 k+ ↔ Z254 k-  (T=1,2,3)
+INFO  interior Z184 j+ ↔ Z193 j-  (T=1,2,3)
+INFO  interior Z184 k+ ↔ Z255 k-  (T=1,2,3)
+INFO  interior Z185 i+ ↔ Z186 i-  (T=1,2,3)
+INFO  interior Z185 j+ ↔ Z194 j-  (T=1,2,3)
+INFO  interior Z185 k+ ↔ Z256 k-  (T=1,2,3)
+INFO  interior Z186 i+ ↔ Z187 i-  (T=1,2,3)
+INFO  interior Z186 j+ ↔ Z195 j-  (T=1,2,3)
+INFO  interior Z186 k+ ↔ Z258 k-  (T=1,2,3)
+INFO  interior Z187 i+ ↔ Z188 i-  (T=1,2,3)
+INFO  interior Z187 j+ ↔ Z196 j-  (T=1,2,3)
+INFO  interior Z187 k+ ↔ Z259 k-  (T=1,2,3)
+INFO  interior Z188 i+ ↔ Z189 i-  (T=1,2,3)
+INFO  interior Z188 j+ ↔ Z197 j-  (T=1,2,3)
+INFO  interior Z188 k+ ↔ Z260 k-  (T=1,2,3)
+INFO  interior Z189 i+ ↔ Z191 i-  (T=1,2,3)
+INFO  interior Z189 j+ ↔ Z198 j-  (T=1,2,3)
+INFO  interior Z189 k+ ↔ Z261 k-  (T=1,2,3)
+INFO  interior Z190 i+ ↔ Z201 i-  (T=1,2,3)
+INFO  interior Z190 j+ ↔ Z279 j-  (T=1,2,3)
+INFO  interior Z190 k+ ↔ Z504 k-  (T=1,2,3)
+INFO  interior Z191 i+ ↔ Z192 i-  (T=1,2,3)
+INFO  interior Z191 j+ ↔ Z199 j-  (T=1,2,3)
+INFO  interior Z191 k+ ↔ Z262 k-  (T=1,2,3)
+INFO  interior Z192 i+ ↔ Z193 i-  (T=1,2,3)
+INFO  interior Z192 j+ ↔ Z200 j-  (T=1,2,3)
+INFO  interior Z192 k+ ↔ Z263 k-  (T=1,2,3)
+INFO  interior Z193 j+ ↔ Z202 j-  (T=1,2,3)
+INFO  interior Z193 k+ ↔ Z264 k-  (T=1,2,3)
+INFO  interior Z194 i+ ↔ Z195 i-  (T=1,2,3)
+INFO  interior Z194 j+ ↔ Z203 j-  (T=1,2,3)
+INFO  interior Z194 k+ ↔ Z265 k-  (T=1,2,3)
+INFO  interior Z195 i+ ↔ Z196 i-  (T=1,2,3)
+INFO  interior Z195 j+ ↔ Z204 j-  (T=1,2,3)
+INFO  interior Z195 k+ ↔ Z266 k-  (T=1,2,3)
+INFO  interior Z196 i+ ↔ Z197 i-  (T=1,2,3)
+INFO  interior Z196 j+ ↔ Z205 j-  (T=1,2,3)
+INFO  interior Z196 k+ ↔ Z267 k-  (T=1,2,3)
+INFO  interior Z197 i+ ↔ Z198 i-  (T=1,2,3)
+INFO  interior Z197 j+ ↔ Z206 j-  (T=1,2,3)
+INFO  interior Z197 k+ ↔ Z269 k-  (T=1,2,3)
+INFO  interior Z198 i+ ↔ Z199 i-  (T=1,2,3)
+INFO  interior Z198 j+ ↔ Z207 j-  (T=1,2,3)
+INFO  interior Z198 k+ ↔ Z270 k-  (T=1,2,3)
+INFO  interior Z199 i+ ↔ Z200 i-  (T=1,2,3)
+INFO  interior Z199 j+ ↔ Z208 j-  (T=1,2,3)
+INFO  interior Z199 k+ ↔ Z271 k-  (T=1,2,3)
+INFO  interior Z200 i+ ↔ Z202 i-  (T=1,2,3)
+INFO  interior Z200 j+ ↔ Z209 j-  (T=1,2,3)
+INFO  interior Z200 k+ ↔ Z272 k-  (T=1,2,3)
+INFO  interior Z201 i+ ↔ Z212 i-  (T=1,2,3)
+INFO  interior Z201 j+ ↔ Z290 j-  (T=1,2,3)
+INFO  interior Z201 k+ ↔ Z505 k-  (T=1,2,3)
+INFO  interior Z202 j+ ↔ Z210 j-  (T=1,2,3)
+INFO  interior Z202 k+ ↔ Z273 k-  (T=1,2,3)
+INFO  interior Z203 i+ ↔ Z204 i-  (T=1,2,3)
+INFO  interior Z203 j+ ↔ Z211 j-  (T=1,2,3)
+INFO  interior Z203 k+ ↔ Z274 k-  (T=1,2,3)
+INFO  interior Z204 i+ ↔ Z205 i-  (T=1,2,3)
+INFO  interior Z204 j+ ↔ Z213 j-  (T=1,2,3)
+INFO  interior Z204 k+ ↔ Z275 k-  (T=1,2,3)
+INFO  interior Z205 i+ ↔ Z206 i-  (T=1,2,3)
+INFO  interior Z205 j+ ↔ Z214 j-  (T=1,2,3)
+INFO  interior Z205 k+ ↔ Z276 k-  (T=1,2,3)
+INFO  interior Z206 i+ ↔ Z207 i-  (T=1,2,3)
+INFO  interior Z206 j+ ↔ Z215 j-  (T=1,2,3)
+INFO  interior Z206 k+ ↔ Z277 k-  (T=1,2,3)
+INFO  interior Z207 i+ ↔ Z208 i-  (T=1,2,3)
+INFO  interior Z207 j+ ↔ Z216 j-  (T=1,2,3)
+INFO  interior Z207 k+ ↔ Z278 k-  (T=1,2,3)
+INFO  interior Z208 i+ ↔ Z209 i-  (T=1,2,3)
+INFO  interior Z208 j+ ↔ Z217 j-  (T=1,2,3)
+INFO  interior Z208 k+ ↔ Z280 k-  (T=1,2,3)
+INFO  interior Z209 i+ ↔ Z210 i-  (T=1,2,3)
+INFO  interior Z209 j+ ↔ Z218 j-  (T=1,2,3)
+INFO  interior Z209 k+ ↔ Z281 k-  (T=1,2,3)
+INFO  interior Z210 j+ ↔ Z219 j-  (T=1,2,3)
+INFO  interior Z210 k+ ↔ Z282 k-  (T=1,2,3)
+INFO  interior Z211 i+ ↔ Z213 i-  (T=1,2,3)
+INFO  interior Z211 j+ ↔ Z220 j-  (T=1,2,3)
+INFO  interior Z211 k+ ↔ Z283 k-  (T=1,2,3)
+INFO  interior Z212 i+ ↔ Z224 i-  (T=1,2,3)
+INFO  interior Z212 j+ ↔ Z301 j-  (T=1,2,3)
+INFO  interior Z212 k+ ↔ Z506 k-  (T=1,2,3)
+INFO  interior Z213 i+ ↔ Z214 i-  (T=1,2,3)
+INFO  interior Z213 j+ ↔ Z221 j-  (T=1,2,3)
+INFO  interior Z213 k+ ↔ Z284 k-  (T=1,2,3)
+INFO  interior Z214 i+ ↔ Z215 i-  (T=1,2,3)
+INFO  interior Z214 j+ ↔ Z222 j-  (T=1,2,3)
+INFO  interior Z214 k+ ↔ Z285 k-  (T=1,2,3)
+INFO  interior Z215 i+ ↔ Z216 i-  (T=1,2,3)
+INFO  interior Z215 j+ ↔ Z225 j-  (T=1,2,3)
+INFO  interior Z215 k+ ↔ Z286 k-  (T=1,2,3)
+INFO  interior Z216 i+ ↔ Z217 i-  (T=1,2,3)
+INFO  interior Z216 j+ ↔ Z226 j-  (T=1,2,3)
+INFO  interior Z216 k+ ↔ Z287 k-  (T=1,2,3)
+INFO  interior Z217 i+ ↔ Z218 i-  (T=1,2,3)
+INFO  interior Z217 j+ ↔ Z227 j-  (T=1,2,3)
+INFO  interior Z217 k+ ↔ Z288 k-  (T=1,2,3)
+INFO  interior Z218 i+ ↔ Z219 i-  (T=1,2,3)
+INFO  interior Z218 j+ ↔ Z228 j-  (T=1,2,3)
+INFO  interior Z218 k+ ↔ Z289 k-  (T=1,2,3)
+INFO  interior Z219 j+ ↔ Z229 j-  (T=1,2,3)
+INFO  interior Z219 k+ ↔ Z291 k-  (T=1,2,3)
+INFO  interior Z220 i+ ↔ Z221 i-  (T=1,2,3)
+INFO  interior Z220 j+ ↔ Z230 j-  (T=1,2,3)
+INFO  interior Z220 k+ ↔ Z292 k-  (T=1,2,3)
+INFO  interior Z221 i+ ↔ Z222 i-  (T=1,2,3)
+INFO  interior Z221 j+ ↔ Z231 j-  (T=1,2,3)
+INFO  interior Z221 k+ ↔ Z293 k-  (T=1,2,3)
+INFO  interior Z222 i+ ↔ Z225 i-  (T=1,2,3)
+INFO  interior Z222 j+ ↔ Z232 j-  (T=1,2,3)
+INFO  interior Z222 k+ ↔ Z294 k-  (T=1,2,3)
+INFO  interior Z223 i+ ↔ Z334 i-  (T=1,2,3)
+INFO  interior Z223 k+ ↔ Z477 k-  (T=1,2,3)
+INFO  interior Z224 i+ ↔ Z235 i-  (T=1,2,3)
+INFO  interior Z224 j+ ↔ Z312 j-  (T=1,2,3)
+INFO  interior Z224 k+ ↔ Z507 k-  (T=1,2,3)
+INFO  interior Z225 i+ ↔ Z226 i-  (T=1,2,3)
+INFO  interior Z225 j+ ↔ Z233 j-  (T=1,2,3)
+INFO  interior Z225 k+ ↔ Z295 k-  (T=1,2,3)
+INFO  interior Z226 i+ ↔ Z227 i-  (T=1,2,3)
+INFO  interior Z226 j+ ↔ Z234 j-  (T=1,2,3)
+INFO  interior Z226 k+ ↔ Z296 k-  (T=1,2,3)
+INFO  interior Z227 i+ ↔ Z228 i-  (T=1,2,3)
+INFO  interior Z227 j+ ↔ Z236 j-  (T=1,2,3)
+INFO  interior Z227 k+ ↔ Z297 k-  (T=1,2,3)
+INFO  interior Z228 i+ ↔ Z229 i-  (T=1,2,3)
+INFO  interior Z228 j+ ↔ Z237 j-  (T=1,2,3)
+INFO  interior Z228 k+ ↔ Z298 k-  (T=1,2,3)
+INFO  interior Z229 j+ ↔ Z238 j-  (T=1,2,3)
+INFO  interior Z229 k+ ↔ Z299 k-  (T=1,2,3)
+INFO  interior Z230 i+ ↔ Z231 i-  (T=1,2,3)
+INFO  interior Z230 j+ ↔ Z239 j-  (T=1,2,3)
+INFO  interior Z230 k+ ↔ Z300 k-  (T=1,2,3)
+INFO  interior Z231 i+ ↔ Z232 i-  (T=1,2,3)
+INFO  interior Z231 j+ ↔ Z240 j-  (T=1,2,3)
+INFO  interior Z231 k+ ↔ Z302 k-  (T=1,2,3)
+INFO  interior Z232 i+ ↔ Z233 i-  (T=1,2,3)
+INFO  interior Z232 j+ ↔ Z241 j-  (T=1,2,3)
+INFO  interior Z232 k+ ↔ Z303 k-  (T=1,2,3)
+INFO  interior Z233 i+ ↔ Z234 i-  (T=1,2,3)
+INFO  interior Z233 j+ ↔ Z242 j-  (T=1,2,3)
+INFO  interior Z233 k+ ↔ Z304 k-  (T=1,2,3)
+INFO  interior Z234 i+ ↔ Z236 i-  (T=1,2,3)
+INFO  interior Z234 j+ ↔ Z243 j-  (T=1,2,3)
+INFO  interior Z234 k+ ↔ Z305 k-  (T=1,2,3)
+INFO  interior Z235 i+ ↔ Z246 i-  (T=1,2,3)
+INFO  interior Z235 j+ ↔ Z323 j-  (T=1,2,3)
+INFO  interior Z235 k+ ↔ Z508 k-  (T=1,2,3)
+INFO  interior Z236 i+ ↔ Z237 i-  (T=1,2,3)
+INFO  interior Z236 j+ ↔ Z244 j-  (T=1,2,3)
+INFO  interior Z236 k+ ↔ Z306 k-  (T=1,2,3)
+INFO  interior Z237 i+ ↔ Z238 i-  (T=1,2,3)
+INFO  interior Z237 j+ ↔ Z245 j-  (T=1,2,3)
+INFO  interior Z237 k+ ↔ Z307 k-  (T=1,2,3)
+INFO  interior Z238 j+ ↔ Z247 j-  (T=1,2,3)
+INFO  interior Z238 k+ ↔ Z308 k-  (T=1,2,3)
+INFO  interior Z239 i+ ↔ Z240 i-  (T=1,2,3)
+INFO  interior Z239 k+ ↔ Z309 k-  (T=1,2,3)
+INFO  interior Z240 i+ ↔ Z241 i-  (T=1,2,3)
+INFO  interior Z240 k+ ↔ Z310 k-  (T=1,2,3)
+INFO  interior Z241 i+ ↔ Z242 i-  (T=1,2,3)
+INFO  interior Z241 k+ ↔ Z311 k-  (T=1,2,3)
+INFO  interior Z242 i+ ↔ Z243 i-  (T=1,2,3)
+INFO  interior Z242 k+ ↔ Z313 k-  (T=1,2,3)
+INFO  interior Z243 i+ ↔ Z244 i-  (T=1,2,3)
+INFO  interior Z243 k+ ↔ Z314 k-  (T=1,2,3)
+INFO  interior Z244 i+ ↔ Z245 i-  (T=1,2,3)
+INFO  interior Z244 k+ ↔ Z315 k-  (T=1,2,3)
+INFO  interior Z245 i+ ↔ Z247 i-  (T=1,2,3)
+INFO  interior Z245 k+ ↔ Z316 k-  (T=1,2,3)
+INFO  interior Z246 j+ ↔ Z335 j-  (T=1,2,3)
+INFO  interior Z246 k+ ↔ Z509 k-  (T=1,2,3)
+INFO  interior Z247 k+ ↔ Z317 k-  (T=1,2,3)
+INFO  interior Z248 i+ ↔ Z249 i-  (T=1,2,3)
+INFO  interior Z248 j+ ↔ Z256 j-  (T=1,2,3)
+INFO  interior Z248 k+ ↔ Z318 k-  (T=1,2,3)
+INFO  interior Z249 i+ ↔ Z250 i-  (T=1,2,3)
+INFO  interior Z249 j+ ↔ Z258 j-  (T=1,2,3)
+INFO  interior Z249 k+ ↔ Z319 k-  (T=1,2,3)
+INFO  interior Z250 i+ ↔ Z251 i-  (T=1,2,3)
+INFO  interior Z250 j+ ↔ Z259 j-  (T=1,2,3)
+INFO  interior Z250 k+ ↔ Z320 k-  (T=1,2,3)
+INFO  interior Z251 i+ ↔ Z252 i-  (T=1,2,3)
+INFO  interior Z251 j+ ↔ Z260 j-  (T=1,2,3)
+INFO  interior Z251 k+ ↔ Z321 k-  (T=1,2,3)
+INFO  interior Z252 i+ ↔ Z253 i-  (T=1,2,3)
+INFO  interior Z252 j+ ↔ Z261 j-  (T=1,2,3)
+INFO  interior Z252 k+ ↔ Z322 k-  (T=1,2,3)
+INFO  interior Z253 i+ ↔ Z254 i-  (T=1,2,3)
+INFO  interior Z253 j+ ↔ Z262 j-  (T=1,2,3)
+INFO  interior Z253 k+ ↔ Z324 k-  (T=1,2,3)
+INFO  interior Z254 i+ ↔ Z255 i-  (T=1,2,3)
+INFO  interior Z254 j+ ↔ Z263 j-  (T=1,2,3)
+INFO  interior Z254 k+ ↔ Z325 k-  (T=1,2,3)
+INFO  interior Z255 j+ ↔ Z264 j-  (T=1,2,3)
+INFO  interior Z255 k+ ↔ Z326 k-  (T=1,2,3)
+INFO  interior Z256 i+ ↔ Z258 i-  (T=1,2,3)
+INFO  interior Z256 j+ ↔ Z265 j-  (T=1,2,3)
+INFO  interior Z256 k+ ↔ Z327 k-  (T=1,2,3)
+INFO  interior Z257 i+ ↔ Z268 i-  (T=1,2,3)
+INFO  interior Z257 j+ ↔ Z346 j-  (T=1,2,3)
+INFO  interior Z257 k+ ↔ Z510 k-  (T=1,2,3)
+INFO  interior Z258 i+ ↔ Z259 i-  (T=1,2,3)
+INFO  interior Z258 j+ ↔ Z266 j-  (T=1,2,3)
+INFO  interior Z258 k+ ↔ Z328 k-  (T=1,2,3)
+INFO  interior Z259 i+ ↔ Z260 i-  (T=1,2,3)
+INFO  interior Z259 j+ ↔ Z267 j-  (T=1,2,3)
+INFO  interior Z259 k+ ↔ Z329 k-  (T=1,2,3)
+INFO  interior Z260 i+ ↔ Z261 i-  (T=1,2,3)
+INFO  interior Z260 j+ ↔ Z269 j-  (T=1,2,3)
+INFO  interior Z260 k+ ↔ Z330 k-  (T=1,2,3)
+INFO  interior Z261 i+ ↔ Z262 i-  (T=1,2,3)
+INFO  interior Z261 j+ ↔ Z270 j-  (T=1,2,3)
+INFO  interior Z261 k+ ↔ Z331 k-  (T=1,2,3)
+INFO  interior Z262 i+ ↔ Z263 i-  (T=1,2,3)
+INFO  interior Z262 j+ ↔ Z271 j-  (T=1,2,3)
+INFO  interior Z262 k+ ↔ Z332 k-  (T=1,2,3)
+INFO  interior Z263 i+ ↔ Z264 i-  (T=1,2,3)
+INFO  interior Z263 j+ ↔ Z272 j-  (T=1,2,3)
+INFO  interior Z263 k+ ↔ Z333 k-  (T=1,2,3)
+INFO  interior Z264 j+ ↔ Z273 j-  (T=1,2,3)
+INFO  interior Z264 k+ ↔ Z336 k-  (T=1,2,3)
+INFO  interior Z265 i+ ↔ Z266 i-  (T=1,2,3)
+INFO  interior Z265 j+ ↔ Z274 j-  (T=1,2,3)
+INFO  interior Z265 k+ ↔ Z337 k-  (T=1,2,3)
+INFO  interior Z266 i+ ↔ Z267 i-  (T=1,2,3)
+INFO  interior Z266 j+ ↔ Z275 j-  (T=1,2,3)
+INFO  interior Z266 k+ ↔ Z338 k-  (T=1,2,3)
+INFO  interior Z267 i+ ↔ Z269 i-  (T=1,2,3)
+INFO  interior Z267 j+ ↔ Z276 j-  (T=1,2,3)
+INFO  interior Z267 k+ ↔ Z339 k-  (T=1,2,3)
+INFO  interior Z268 i+ ↔ Z279 i-  (T=1,2,3)
+INFO  interior Z268 j+ ↔ Z357 j-  (T=1,2,3)
+INFO  interior Z268 k+ ↔ Z511 k-  (T=1,2,3)
+INFO  interior Z269 i+ ↔ Z270 i-  (T=1,2,3)
+INFO  interior Z269 j+ ↔ Z277 j-  (T=1,2,3)
+INFO  interior Z269 k+ ↔ Z340 k-  (T=1,2,3)
+INFO  interior Z270 i+ ↔ Z271 i-  (T=1,2,3)
+INFO  interior Z270 j+ ↔ Z278 j-  (T=1,2,3)
+INFO  interior Z270 k+ ↔ Z341 k-  (T=1,2,3)
+INFO  interior Z271 i+ ↔ Z272 i-  (T=1,2,3)
+INFO  interior Z271 j+ ↔ Z280 j-  (T=1,2,3)
+INFO  interior Z271 k+ ↔ Z342 k-  (T=1,2,3)
+INFO  interior Z272 i+ ↔ Z273 i-  (T=1,2,3)
+INFO  interior Z272 j+ ↔ Z281 j-  (T=1,2,3)
+INFO  interior Z272 k+ ↔ Z343 k-  (T=1,2,3)
+INFO  interior Z273 j+ ↔ Z282 j-  (T=1,2,3)
+INFO  interior Z273 k+ ↔ Z344 k-  (T=1,2,3)
+INFO  interior Z274 i+ ↔ Z275 i-  (T=1,2,3)
+INFO  interior Z274 j+ ↔ Z283 j-  (T=1,2,3)
+INFO  interior Z274 k+ ↔ Z345 k-  (T=1,2,3)
+INFO  interior Z275 i+ ↔ Z276 i-  (T=1,2,3)
+INFO  interior Z275 j+ ↔ Z284 j-  (T=1,2,3)
+INFO  interior Z275 k+ ↔ Z347 k-  (T=1,2,3)
+INFO  interior Z276 i+ ↔ Z277 i-  (T=1,2,3)
+INFO  interior Z276 j+ ↔ Z285 j-  (T=1,2,3)
+INFO  interior Z276 k+ ↔ Z348 k-  (T=1,2,3)
+INFO  interior Z277 i+ ↔ Z278 i-  (T=1,2,3)
+INFO  interior Z277 j+ ↔ Z286 j-  (T=1,2,3)
+INFO  interior Z277 k+ ↔ Z349 k-  (T=1,2,3)
+INFO  interior Z278 i+ ↔ Z280 i-  (T=1,2,3)
+INFO  interior Z278 j+ ↔ Z287 j-  (T=1,2,3)
+INFO  interior Z278 k+ ↔ Z350 k-  (T=1,2,3)
+INFO  interior Z279 i+ ↔ Z290 i-  (T=1,2,3)
+INFO  interior Z279 j+ ↔ Z368 j-  (T=1,2,3)
+INFO  interior Z279 k+ ↔ Z512 k-  (T=1,2,3)
+INFO  interior Z280 i+ ↔ Z281 i-  (T=1,2,3)
+INFO  interior Z280 j+ ↔ Z288 j-  (T=1,2,3)
+INFO  interior Z280 k+ ↔ Z351 k-  (T=1,2,3)
+INFO  interior Z281 i+ ↔ Z282 i-  (T=1,2,3)
+INFO  interior Z281 j+ ↔ Z289 j-  (T=1,2,3)
+INFO  interior Z281 k+ ↔ Z352 k-  (T=1,2,3)
+INFO  interior Z282 j+ ↔ Z291 j-  (T=1,2,3)
+INFO  interior Z282 k+ ↔ Z353 k-  (T=1,2,3)
+INFO  interior Z283 i+ ↔ Z284 i-  (T=1,2,3)
+INFO  interior Z283 j+ ↔ Z292 j-  (T=1,2,3)
+INFO  interior Z283 k+ ↔ Z354 k-  (T=1,2,3)
+INFO  interior Z284 i+ ↔ Z285 i-  (T=1,2,3)
+INFO  interior Z284 j+ ↔ Z293 j-  (T=1,2,3)
+INFO  interior Z284 k+ ↔ Z355 k-  (T=1,2,3)
+INFO  interior Z285 i+ ↔ Z286 i-  (T=1,2,3)
+INFO  interior Z285 j+ ↔ Z294 j-  (T=1,2,3)
+INFO  interior Z285 k+ ↔ Z356 k-  (T=1,2,3)
+INFO  interior Z286 i+ ↔ Z287 i-  (T=1,2,3)
+INFO  interior Z286 j+ ↔ Z295 j-  (T=1,2,3)
+INFO  interior Z286 k+ ↔ Z358 k-  (T=1,2,3)
+INFO  interior Z287 i+ ↔ Z288 i-  (T=1,2,3)
+INFO  interior Z287 j+ ↔ Z296 j-  (T=1,2,3)
+INFO  interior Z287 k+ ↔ Z359 k-  (T=1,2,3)
+INFO  interior Z288 i+ ↔ Z289 i-  (T=1,2,3)
+INFO  interior Z288 j+ ↔ Z297 j-  (T=1,2,3)
+INFO  interior Z288 k+ ↔ Z360 k-  (T=1,2,3)
+INFO  interior Z289 i+ ↔ Z291 i-  (T=1,2,3)
+INFO  interior Z289 j+ ↔ Z298 j-  (T=1,2,3)
+INFO  interior Z289 k+ ↔ Z361 k-  (T=1,2,3)
+INFO  interior Z290 i+ ↔ Z301 i-  (T=1,2,3)
+INFO  interior Z290 j+ ↔ Z379 j-  (T=1,2,3)
+INFO  interior Z291 j+ ↔ Z299 j-  (T=1,2,3)
+INFO  interior Z291 k+ ↔ Z362 k-  (T=1,2,3)
+INFO  interior Z292 i+ ↔ Z293 i-  (T=1,2,3)
+INFO  interior Z292 j+ ↔ Z300 j-  (T=1,2,3)
+INFO  interior Z292 k+ ↔ Z363 k-  (T=1,2,3)
+INFO  interior Z293 i+ ↔ Z294 i-  (T=1,2,3)
+INFO  interior Z293 j+ ↔ Z302 j-  (T=1,2,3)
+INFO  interior Z293 k+ ↔ Z364 k-  (T=1,2,3)
+INFO  interior Z294 i+ ↔ Z295 i-  (T=1,2,3)
+INFO  interior Z294 j+ ↔ Z303 j-  (T=1,2,3)
+INFO  interior Z294 k+ ↔ Z365 k-  (T=1,2,3)
+INFO  interior Z295 i+ ↔ Z296 i-  (T=1,2,3)
+INFO  interior Z295 j+ ↔ Z304 j-  (T=1,2,3)
+INFO  interior Z295 k+ ↔ Z366 k-  (T=1,2,3)
+INFO  interior Z296 i+ ↔ Z297 i-  (T=1,2,3)
+INFO  interior Z296 j+ ↔ Z305 j-  (T=1,2,3)
+INFO  interior Z296 k+ ↔ Z367 k-  (T=1,2,3)
+INFO  interior Z297 i+ ↔ Z298 i-  (T=1,2,3)
+INFO  interior Z297 j+ ↔ Z306 j-  (T=1,2,3)
+INFO  interior Z297 k+ ↔ Z369 k-  (T=1,2,3)
+INFO  interior Z298 i+ ↔ Z299 i-  (T=1,2,3)
+INFO  interior Z298 j+ ↔ Z307 j-  (T=1,2,3)
+INFO  interior Z298 k+ ↔ Z370 k-  (T=1,2,3)
+INFO  interior Z299 j+ ↔ Z308 j-  (T=1,2,3)
+INFO  interior Z299 k+ ↔ Z371 k-  (T=1,2,3)
+INFO  interior Z300 i+ ↔ Z302 i-  (T=1,2,3)
+INFO  interior Z300 j+ ↔ Z309 j-  (T=1,2,3)
+INFO  interior Z300 k+ ↔ Z372 k-  (T=1,2,3)
+INFO  interior Z301 i+ ↔ Z312 i-  (T=1,2,3)
+INFO  interior Z301 j+ ↔ Z390 j-  (T=1,2,3)
+INFO  interior Z302 i+ ↔ Z303 i-  (T=1,2,3)
+INFO  interior Z302 j+ ↔ Z310 j-  (T=1,2,3)
+INFO  interior Z302 k+ ↔ Z373 k-  (T=1,2,3)
+INFO  interior Z303 i+ ↔ Z304 i-  (T=1,2,3)
+INFO  interior Z303 j+ ↔ Z311 j-  (T=1,2,3)
+INFO  interior Z303 k+ ↔ Z374 k-  (T=1,2,3)
+INFO  interior Z304 i+ ↔ Z305 i-  (T=1,2,3)
+INFO  interior Z304 j+ ↔ Z313 j-  (T=1,2,3)
+INFO  interior Z304 k+ ↔ Z375 k-  (T=1,2,3)
+INFO  interior Z305 i+ ↔ Z306 i-  (T=1,2,3)
+INFO  interior Z305 j+ ↔ Z314 j-  (T=1,2,3)
+INFO  interior Z305 k+ ↔ Z376 k-  (T=1,2,3)
+INFO  interior Z306 i+ ↔ Z307 i-  (T=1,2,3)
+INFO  interior Z306 j+ ↔ Z315 j-  (T=1,2,3)
+INFO  interior Z306 k+ ↔ Z377 k-  (T=1,2,3)
+INFO  interior Z307 i+ ↔ Z308 i-  (T=1,2,3)
+INFO  interior Z307 j+ ↔ Z316 j-  (T=1,2,3)
+INFO  interior Z307 k+ ↔ Z378 k-  (T=1,2,3)
+INFO  interior Z308 j+ ↔ Z317 j-  (T=1,2,3)
+INFO  interior Z308 k+ ↔ Z380 k-  (T=1,2,3)
+INFO  interior Z309 i+ ↔ Z310 i-  (T=1,2,3)
+INFO  interior Z309 k+ ↔ Z381 k-  (T=1,2,3)
+INFO  interior Z310 i+ ↔ Z311 i-  (T=1,2,3)
+INFO  interior Z310 k+ ↔ Z382 k-  (T=1,2,3)
+INFO  interior Z311 i+ ↔ Z313 i-  (T=1,2,3)
+INFO  interior Z311 k+ ↔ Z383 k-  (T=1,2,3)
+INFO  interior Z312 i+ ↔ Z323 i-  (T=1,2,3)
+INFO  interior Z312 j+ ↔ Z401 j-  (T=1,2,3)
+INFO  interior Z313 i+ ↔ Z314 i-  (T=1,2,3)
+INFO  interior Z313 k+ ↔ Z384 k-  (T=1,2,3)
+INFO  interior Z314 i+ ↔ Z315 i-  (T=1,2,3)
+INFO  interior Z314 k+ ↔ Z385 k-  (T=1,2,3)
+INFO  interior Z315 i+ ↔ Z316 i-  (T=1,2,3)
+INFO  interior Z315 k+ ↔ Z386 k-  (T=1,2,3)
+INFO  interior Z316 i+ ↔ Z317 i-  (T=1,2,3)
+INFO  interior Z316 k+ ↔ Z387 k-  (T=1,2,3)
+INFO  interior Z317 k+ ↔ Z388 k-  (T=1,2,3)
+INFO  interior Z318 i+ ↔ Z319 i-  (T=1,2,3)
+INFO  interior Z318 j+ ↔ Z327 j-  (T=1,2,3)
+INFO  interior Z318 k+ ↔ Z389 k-  (T=1,2,3)
+INFO  interior Z319 i+ ↔ Z320 i-  (T=1,2,3)
+INFO  interior Z319 j+ ↔ Z328 j-  (T=1,2,3)
+INFO  interior Z319 k+ ↔ Z391 k-  (T=1,2,3)
+INFO  interior Z320 i+ ↔ Z321 i-  (T=1,2,3)
+INFO  interior Z320 j+ ↔ Z329 j-  (T=1,2,3)
+INFO  interior Z320 k+ ↔ Z392 k-  (T=1,2,3)
+INFO  interior Z321 i+ ↔ Z322 i-  (T=1,2,3)
+INFO  interior Z321 j+ ↔ Z330 j-  (T=1,2,3)
+INFO  interior Z321 k+ ↔ Z393 k-  (T=1,2,3)
+INFO  interior Z322 i+ ↔ Z324 i-  (T=1,2,3)
+INFO  interior Z322 j+ ↔ Z331 j-  (T=1,2,3)
+INFO  interior Z322 k+ ↔ Z394 k-  (T=1,2,3)
+INFO  interior Z323 i+ ↔ Z335 i-  (T=1,2,3)
+INFO  interior Z323 j+ ↔ Z412 j-  (T=1,2,3)
+INFO  interior Z324 i+ ↔ Z325 i-  (T=1,2,3)
+INFO  interior Z324 j+ ↔ Z332 j-  (T=1,2,3)
+INFO  interior Z324 k+ ↔ Z395 k-  (T=1,2,3)
+INFO  interior Z325 i+ ↔ Z326 i-  (T=1,2,3)
+INFO  interior Z325 j+ ↔ Z333 j-  (T=1,2,3)
+INFO  interior Z325 k+ ↔ Z396 k-  (T=1,2,3)
+INFO  interior Z326 j+ ↔ Z336 j-  (T=1,2,3)
+INFO  interior Z326 k+ ↔ Z397 k-  (T=1,2,3)
+INFO  interior Z327 i+ ↔ Z328 i-  (T=1,2,3)
+INFO  interior Z327 j+ ↔ Z337 j-  (T=1,2,3)
+INFO  interior Z327 k+ ↔ Z398 k-  (T=1,2,3)
+INFO  interior Z328 i+ ↔ Z329 i-  (T=1,2,3)
+INFO  interior Z328 j+ ↔ Z338 j-  (T=1,2,3)
+INFO  interior Z328 k+ ↔ Z399 k-  (T=1,2,3)
+INFO  interior Z329 i+ ↔ Z330 i-  (T=1,2,3)
+INFO  interior Z329 j+ ↔ Z339 j-  (T=1,2,3)
+INFO  interior Z329 k+ ↔ Z400 k-  (T=1,2,3)
+INFO  interior Z330 i+ ↔ Z331 i-  (T=1,2,3)
+INFO  interior Z330 j+ ↔ Z340 j-  (T=1,2,3)
+INFO  interior Z330 k+ ↔ Z402 k-  (T=1,2,3)
+INFO  interior Z331 i+ ↔ Z332 i-  (T=1,2,3)
+INFO  interior Z331 j+ ↔ Z341 j-  (T=1,2,3)
+INFO  interior Z331 k+ ↔ Z403 k-  (T=1,2,3)
+INFO  interior Z332 i+ ↔ Z333 i-  (T=1,2,3)
+INFO  interior Z332 j+ ↔ Z342 j-  (T=1,2,3)
+INFO  interior Z332 k+ ↔ Z404 k-  (T=1,2,3)
+INFO  interior Z333 i+ ↔ Z336 i-  (T=1,2,3)
+INFO  interior Z333 j+ ↔ Z343 j-  (T=1,2,3)
+INFO  interior Z333 k+ ↔ Z405 k-  (T=1,2,3)
+INFO  interior Z334 i+ ↔ Z445 i-  (T=1,2,3)
+INFO  interior Z334 k+ ↔ Z478 k-  (T=1,2,3)
+INFO  interior Z335 j+ ↔ Z423 j-  (T=1,2,3)
+INFO  interior Z336 j+ ↔ Z344 j-  (T=1,2,3)
+INFO  interior Z336 k+ ↔ Z406 k-  (T=1,2,3)
+INFO  interior Z337 i+ ↔ Z338 i-  (T=1,2,3)
+INFO  interior Z337 j+ ↔ Z345 j-  (T=1,2,3)
+INFO  interior Z337 k+ ↔ Z407 k-  (T=1,2,3)
+INFO  interior Z338 i+ ↔ Z339 i-  (T=1,2,3)
+INFO  interior Z338 j+ ↔ Z347 j-  (T=1,2,3)
+INFO  interior Z338 k+ ↔ Z408 k-  (T=1,2,3)
+INFO  interior Z339 i+ ↔ Z340 i-  (T=1,2,3)
+INFO  interior Z339 j+ ↔ Z348 j-  (T=1,2,3)
+INFO  interior Z339 k+ ↔ Z409 k-  (T=1,2,3)
+INFO  interior Z340 i+ ↔ Z341 i-  (T=1,2,3)
+INFO  interior Z340 j+ ↔ Z349 j-  (T=1,2,3)
+INFO  interior Z340 k+ ↔ Z410 k-  (T=1,2,3)
+INFO  interior Z341 i+ ↔ Z342 i-  (T=1,2,3)
+INFO  interior Z341 j+ ↔ Z350 j-  (T=1,2,3)
+INFO  interior Z341 k+ ↔ Z411 k-  (T=1,2,3)
+INFO  interior Z342 i+ ↔ Z343 i-  (T=1,2,3)
+INFO  interior Z342 j+ ↔ Z351 j-  (T=1,2,3)
+INFO  interior Z342 k+ ↔ Z413 k-  (T=1,2,3)
+INFO  interior Z343 i+ ↔ Z344 i-  (T=1,2,3)
+INFO  interior Z343 j+ ↔ Z352 j-  (T=1,2,3)
+INFO  interior Z343 k+ ↔ Z414 k-  (T=1,2,3)
+INFO  interior Z344 j+ ↔ Z353 j-  (T=1,2,3)
+INFO  interior Z344 k+ ↔ Z415 k-  (T=1,2,3)
+INFO  interior Z345 i+ ↔ Z347 i-  (T=1,2,3)
+INFO  interior Z345 j+ ↔ Z354 j-  (T=1,2,3)
+INFO  interior Z345 k+ ↔ Z416 k-  (T=1,2,3)
+INFO  interior Z346 i+ ↔ Z357 i-  (T=1,2,3)
+INFO  interior Z346 j+ ↔ Z434 j-  (T=1,2,3)
+INFO  interior Z347 i+ ↔ Z348 i-  (T=1,2,3)
+INFO  interior Z347 j+ ↔ Z355 j-  (T=1,2,3)
+INFO  interior Z347 k+ ↔ Z417 k-  (T=1,2,3)
+INFO  interior Z348 i+ ↔ Z349 i-  (T=1,2,3)
+INFO  interior Z348 j+ ↔ Z356 j-  (T=1,2,3)
+INFO  interior Z348 k+ ↔ Z418 k-  (T=1,2,3)
+INFO  interior Z349 i+ ↔ Z350 i-  (T=1,2,3)
+INFO  interior Z349 j+ ↔ Z358 j-  (T=1,2,3)
+INFO  interior Z349 k+ ↔ Z419 k-  (T=1,2,3)
+INFO  interior Z350 i+ ↔ Z351 i-  (T=1,2,3)
+INFO  interior Z350 j+ ↔ Z359 j-  (T=1,2,3)
+INFO  interior Z350 k+ ↔ Z420 k-  (T=1,2,3)
+INFO  interior Z351 i+ ↔ Z352 i-  (T=1,2,3)
+INFO  interior Z351 j+ ↔ Z360 j-  (T=1,2,3)
+INFO  interior Z351 k+ ↔ Z421 k-  (T=1,2,3)
+INFO  interior Z352 i+ ↔ Z353 i-  (T=1,2,3)
+INFO  interior Z352 j+ ↔ Z361 j-  (T=1,2,3)
+INFO  interior Z352 k+ ↔ Z422 k-  (T=1,2,3)
+INFO  interior Z353 j+ ↔ Z362 j-  (T=1,2,3)
+INFO  interior Z353 k+ ↔ Z424 k-  (T=1,2,3)
+INFO  interior Z354 i+ ↔ Z355 i-  (T=1,2,3)
+INFO  interior Z354 j+ ↔ Z363 j-  (T=1,2,3)
+INFO  interior Z354 k+ ↔ Z425 k-  (T=1,2,3)
+INFO  interior Z355 i+ ↔ Z356 i-  (T=1,2,3)
+INFO  interior Z355 j+ ↔ Z364 j-  (T=1,2,3)
+INFO  interior Z355 k+ ↔ Z426 k-  (T=1,2,3)
+INFO  interior Z356 i+ ↔ Z358 i-  (T=1,2,3)
+INFO  interior Z356 j+ ↔ Z365 j-  (T=1,2,3)
+INFO  interior Z356 k+ ↔ Z427 k-  (T=1,2,3)
+INFO  interior Z357 i+ ↔ Z368 i-  (T=1,2,3)
+INFO  interior Z357 j+ ↔ Z446 j-  (T=1,2,3)
+INFO  interior Z358 i+ ↔ Z359 i-  (T=1,2,3)
+INFO  interior Z358 j+ ↔ Z366 j-  (T=1,2,3)
+INFO  interior Z358 k+ ↔ Z428 k-  (T=1,2,3)
+INFO  interior Z359 i+ ↔ Z360 i-  (T=1,2,3)
+INFO  interior Z359 j+ ↔ Z367 j-  (T=1,2,3)
+INFO  interior Z359 k+ ↔ Z429 k-  (T=1,2,3)
+INFO  interior Z360 i+ ↔ Z361 i-  (T=1,2,3)
+INFO  interior Z360 j+ ↔ Z369 j-  (T=1,2,3)
+INFO  interior Z360 k+ ↔ Z430 k-  (T=1,2,3)
+INFO  interior Z361 i+ ↔ Z362 i-  (T=1,2,3)
+INFO  interior Z361 j+ ↔ Z370 j-  (T=1,2,3)
+INFO  interior Z361 k+ ↔ Z431 k-  (T=1,2,3)
+INFO  interior Z362 j+ ↔ Z371 j-  (T=1,2,3)
+INFO  interior Z362 k+ ↔ Z432 k-  (T=1,2,3)
+INFO  interior Z363 i+ ↔ Z364 i-  (T=1,2,3)
+INFO  interior Z363 j+ ↔ Z372 j-  (T=1,2,3)
+INFO  interior Z363 k+ ↔ Z433 k-  (T=1,2,3)
+INFO  interior Z364 i+ ↔ Z365 i-  (T=1,2,3)
+INFO  interior Z364 j+ ↔ Z373 j-  (T=1,2,3)
+INFO  interior Z364 k+ ↔ Z435 k-  (T=1,2,3)
+INFO  interior Z365 i+ ↔ Z366 i-  (T=1,2,3)
+INFO  interior Z365 j+ ↔ Z374 j-  (T=1,2,3)
+INFO  interior Z365 k+ ↔ Z436 k-  (T=1,2,3)
+INFO  interior Z366 i+ ↔ Z367 i-  (T=1,2,3)
+INFO  interior Z366 j+ ↔ Z375 j-  (T=1,2,3)
+INFO  interior Z366 k+ ↔ Z437 k-  (T=1,2,3)
+INFO  interior Z367 i+ ↔ Z369 i-  (T=1,2,3)
+INFO  interior Z367 j+ ↔ Z376 j-  (T=1,2,3)
+INFO  interior Z367 k+ ↔ Z438 k-  (T=1,2,3)
+INFO  interior Z368 i+ ↔ Z379 i-  (T=1,2,3)
+INFO  interior Z368 j+ ↔ Z457 j-  (T=1,2,3)
+INFO  interior Z369 i+ ↔ Z370 i-  (T=1,2,3)
+INFO  interior Z369 j+ ↔ Z377 j-  (T=1,2,3)
+INFO  interior Z369 k+ ↔ Z439 k-  (T=1,2,3)
+INFO  interior Z370 i+ ↔ Z371 i-  (T=1,2,3)
+INFO  interior Z370 j+ ↔ Z378 j-  (T=1,2,3)
+INFO  interior Z370 k+ ↔ Z440 k-  (T=1,2,3)
+INFO  interior Z371 j+ ↔ Z380 j-  (T=1,2,3)
+INFO  interior Z371 k+ ↔ Z441 k-  (T=1,2,3)
+INFO  interior Z372 i+ ↔ Z373 i-  (T=1,2,3)
+INFO  interior Z372 j+ ↔ Z381 j-  (T=1,2,3)
+INFO  interior Z372 k+ ↔ Z442 k-  (T=1,2,3)
+INFO  interior Z373 i+ ↔ Z374 i-  (T=1,2,3)
+INFO  interior Z373 j+ ↔ Z382 j-  (T=1,2,3)
+INFO  interior Z373 k+ ↔ Z443 k-  (T=1,2,3)
+INFO  interior Z374 i+ ↔ Z375 i-  (T=1,2,3)
+INFO  interior Z374 j+ ↔ Z383 j-  (T=1,2,3)
+INFO  interior Z374 k+ ↔ Z444 k-  (T=1,2,3)
+INFO  interior Z375 i+ ↔ Z376 i-  (T=1,2,3)
+INFO  interior Z375 j+ ↔ Z384 j-  (T=1,2,3)
+INFO  interior Z375 k+ ↔ Z447 k-  (T=1,2,3)
+INFO  interior Z376 i+ ↔ Z377 i-  (T=1,2,3)
+INFO  interior Z376 j+ ↔ Z385 j-  (T=1,2,3)
+INFO  interior Z376 k+ ↔ Z448 k-  (T=1,2,3)
+INFO  interior Z377 i+ ↔ Z378 i-  (T=1,2,3)
+INFO  interior Z377 j+ ↔ Z386 j-  (T=1,2,3)
+INFO  interior Z377 k+ ↔ Z449 k-  (T=1,2,3)
+INFO  interior Z378 i+ ↔ Z380 i-  (T=1,2,3)
+INFO  interior Z378 j+ ↔ Z387 j-  (T=1,2,3)
+INFO  interior Z378 k+ ↔ Z450 k-  (T=1,2,3)
+INFO  interior Z379 i+ ↔ Z390 i-  (T=1,2,3)
+INFO  interior Z379 j+ ↔ Z461 j-  (T=1,2,3)
+INFO  interior Z380 j+ ↔ Z388 j-  (T=1,2,3)
+INFO  interior Z380 k+ ↔ Z451 k-  (T=1,2,3)
+INFO  interior Z381 i+ ↔ Z382 i-  (T=1,2,3)
+INFO  interior Z381 k+ ↔ Z452 k-  (T=1,2,3)
+INFO  interior Z382 i+ ↔ Z383 i-  (T=1,2,3)
+INFO  interior Z382 k+ ↔ Z453 k-  (T=1,2,3)
+INFO  interior Z383 i+ ↔ Z384 i-  (T=1,2,3)
+INFO  interior Z383 k+ ↔ Z454 k-  (T=1,2,3)
+INFO  interior Z384 i+ ↔ Z385 i-  (T=1,2,3)
+INFO  interior Z384 k+ ↔ Z455 k-  (T=1,2,3)
+INFO  interior Z385 i+ ↔ Z386 i-  (T=1,2,3)
+INFO  interior Z385 k+ ↔ Z456 k-  (T=1,2,3)
+INFO  interior Z386 i+ ↔ Z387 i-  (T=1,2,3)
+INFO  interior Z386 k+ ↔ Z458 k-  (T=1,2,3)
+INFO  interior Z387 i+ ↔ Z388 i-  (T=1,2,3)
+INFO  interior Z387 k+ ↔ Z459 k-  (T=1,2,3)
+INFO  interior Z388 k+ ↔ Z460 k-  (T=1,2,3)
+INFO  interior Z389 i+ ↔ Z391 i-  (T=1,2,3)
+INFO  interior Z389 j+ ↔ Z398 j-  (T=1,2,3)
+INFO  interior Z390 i+ ↔ Z401 i-  (T=1,2,3)
+INFO  interior Z390 j+ ↔ Z462 j-  (T=1,2,3)
+INFO  interior Z391 i+ ↔ Z392 i-  (T=1,2,3)
+INFO  interior Z391 j+ ↔ Z399 j-  (T=1,2,3)
+INFO  interior Z392 i+ ↔ Z393 i-  (T=1,2,3)
+INFO  interior Z392 j+ ↔ Z400 j-  (T=1,2,3)
+INFO  interior Z393 i+ ↔ Z394 i-  (T=1,2,3)
+INFO  interior Z393 j+ ↔ Z402 j-  (T=1,2,3)
+INFO  interior Z394 i+ ↔ Z395 i-  (T=1,2,3)
+INFO  interior Z394 j+ ↔ Z403 j-  (T=1,2,3)
+INFO  interior Z395 i+ ↔ Z396 i-  (T=1,2,3)
+INFO  interior Z395 j+ ↔ Z404 j-  (T=1,2,3)
+INFO  interior Z396 i+ ↔ Z397 i-  (T=1,2,3)
+INFO  interior Z396 j+ ↔ Z405 j-  (T=1,2,3)
+INFO  interior Z397 j+ ↔ Z406 j-  (T=1,2,3)
+INFO  interior Z398 i+ ↔ Z399 i-  (T=1,2,3)
+INFO  interior Z398 j+ ↔ Z407 j-  (T=1,2,3)
+INFO  interior Z399 i+ ↔ Z400 i-  (T=1,2,3)
+INFO  interior Z399 j+ ↔ Z408 j-  (T=1,2,3)
+INFO  interior Z400 i+ ↔ Z402 i-  (T=1,2,3)
+INFO  interior Z400 j+ ↔ Z409 j-  (T=1,2,3)
+INFO  interior Z401 i+ ↔ Z412 i-  (T=1,2,3)
+INFO  interior Z401 j+ ↔ Z463 j-  (T=1,2,3)
+INFO  interior Z402 i+ ↔ Z403 i-  (T=1,2,3)
+INFO  interior Z402 j+ ↔ Z410 j-  (T=1,2,3)
+INFO  interior Z403 i+ ↔ Z404 i-  (T=1,2,3)
+INFO  interior Z403 j+ ↔ Z411 j-  (T=1,2,3)
+INFO  interior Z404 i+ ↔ Z405 i-  (T=1,2,3)
+INFO  interior Z404 j+ ↔ Z413 j-  (T=1,2,3)
+INFO  interior Z405 i+ ↔ Z406 i-  (T=1,2,3)
+INFO  interior Z405 j+ ↔ Z414 j-  (T=1,2,3)
+INFO  interior Z406 j+ ↔ Z415 j-  (T=1,2,3)
+INFO  interior Z407 i+ ↔ Z408 i-  (T=1,2,3)
+INFO  interior Z407 j+ ↔ Z416 j-  (T=1,2,3)
+INFO  interior Z408 i+ ↔ Z409 i-  (T=1,2,3)
+INFO  interior Z408 j+ ↔ Z417 j-  (T=1,2,3)
+INFO  interior Z409 i+ ↔ Z410 i-  (T=1,2,3)
+INFO  interior Z409 j+ ↔ Z418 j-  (T=1,2,3)
+INFO  interior Z410 i+ ↔ Z411 i-  (T=1,2,3)
+INFO  interior Z410 j+ ↔ Z419 j-  (T=1,2,3)
+INFO  interior Z411 i+ ↔ Z413 i-  (T=1,2,3)
+INFO  interior Z411 j+ ↔ Z420 j-  (T=1,2,3)
+INFO  interior Z412 i+ ↔ Z423 i-  (T=1,2,3)
+INFO  interior Z412 j+ ↔ Z464 j-  (T=1,2,3)
+INFO  interior Z413 i+ ↔ Z414 i-  (T=1,2,3)
+INFO  interior Z413 j+ ↔ Z421 j-  (T=1,2,3)
+INFO  interior Z414 i+ ↔ Z415 i-  (T=1,2,3)
+INFO  interior Z414 j+ ↔ Z422 j-  (T=1,2,3)
+INFO  interior Z415 j+ ↔ Z424 j-  (T=1,2,3)
+INFO  interior Z416 i+ ↔ Z417 i-  (T=1,2,3)
+INFO  interior Z416 j+ ↔ Z425 j-  (T=1,2,3)
+INFO  interior Z417 i+ ↔ Z418 i-  (T=1,2,3)
+INFO  interior Z417 j+ ↔ Z426 j-  (T=1,2,3)
+INFO  interior Z418 i+ ↔ Z419 i-  (T=1,2,3)
+INFO  interior Z418 j+ ↔ Z427 j-  (T=1,2,3)
+INFO  interior Z419 i+ ↔ Z420 i-  (T=1,2,3)
+INFO  interior Z419 j+ ↔ Z428 j-  (T=1,2,3)
+INFO  interior Z420 i+ ↔ Z421 i-  (T=1,2,3)
+INFO  interior Z420 j+ ↔ Z429 j-  (T=1,2,3)
+INFO  interior Z421 i+ ↔ Z422 i-  (T=1,2,3)
+INFO  interior Z421 j+ ↔ Z430 j-  (T=1,2,3)
+INFO  interior Z422 i+ ↔ Z424 i-  (T=1,2,3)
+INFO  interior Z422 j+ ↔ Z431 j-  (T=1,2,3)
+INFO  interior Z423 j+ ↔ Z465 j-  (T=1,2,3)
+INFO  interior Z424 j+ ↔ Z432 j-  (T=1,2,3)
+INFO  interior Z425 i+ ↔ Z426 i-  (T=1,2,3)
+INFO  interior Z425 j+ ↔ Z433 j-  (T=1,2,3)
+INFO  interior Z426 i+ ↔ Z427 i-  (T=1,2,3)
+INFO  interior Z426 j+ ↔ Z435 j-  (T=1,2,3)
+INFO  interior Z427 i+ ↔ Z428 i-  (T=1,2,3)
+INFO  interior Z427 j+ ↔ Z436 j-  (T=1,2,3)
+INFO  interior Z428 i+ ↔ Z429 i-  (T=1,2,3)
+INFO  interior Z428 j+ ↔ Z437 j-  (T=1,2,3)
+INFO  interior Z429 i+ ↔ Z430 i-  (T=1,2,3)
+INFO  interior Z429 j+ ↔ Z438 j-  (T=1,2,3)
+INFO  interior Z430 i+ ↔ Z431 i-  (T=1,2,3)
+INFO  interior Z430 j+ ↔ Z439 j-  (T=1,2,3)
+INFO  interior Z431 i+ ↔ Z432 i-  (T=1,2,3)
+INFO  interior Z431 j+ ↔ Z440 j-  (T=1,2,3)
+INFO  interior Z432 j+ ↔ Z441 j-  (T=1,2,3)
+INFO  interior Z433 i+ ↔ Z435 i-  (T=1,2,3)
+INFO  interior Z433 j+ ↔ Z442 j-  (T=1,2,3)
+INFO  interior Z434 i+ ↔ Z446 i-  (T=1,2,3)
+INFO  interior Z434 j+ ↔ Z466 j-  (T=1,2,3)
+INFO  interior Z435 i+ ↔ Z436 i-  (T=1,2,3)
+INFO  interior Z435 j+ ↔ Z443 j-  (T=1,2,3)
+INFO  interior Z436 i+ ↔ Z437 i-  (T=1,2,3)
+INFO  interior Z436 j+ ↔ Z444 j-  (T=1,2,3)
+INFO  interior Z437 i+ ↔ Z438 i-  (T=1,2,3)
+INFO  interior Z437 j+ ↔ Z447 j-  (T=1,2,3)
+INFO  interior Z438 i+ ↔ Z439 i-  (T=1,2,3)
+INFO  interior Z438 j+ ↔ Z448 j-  (T=1,2,3)
+INFO  interior Z439 i+ ↔ Z440 i-  (T=1,2,3)
+INFO  interior Z439 j+ ↔ Z449 j-  (T=1,2,3)
+INFO  interior Z440 i+ ↔ Z441 i-  (T=1,2,3)
+INFO  interior Z440 j+ ↔ Z450 j-  (T=1,2,3)
+INFO  interior Z441 j+ ↔ Z451 j-  (T=1,2,3)
+INFO  interior Z442 i+ ↔ Z443 i-  (T=1,2,3)
+INFO  interior Z442 j+ ↔ Z452 j-  (T=1,2,3)
+INFO  interior Z443 i+ ↔ Z444 i-  (T=1,2,3)
+INFO  interior Z443 j+ ↔ Z453 j-  (T=1,2,3)
+INFO  interior Z444 i+ ↔ Z447 i-  (T=1,2,3)
+INFO  interior Z444 j+ ↔ Z454 j-  (T=1,2,3)
+INFO  interior Z445 i+ ↔ Z469 i-  (T=1,2,3)
+INFO  interior Z445 k+ ↔ Z479 k-  (T=1,2,3)
+INFO  interior Z446 i+ ↔ Z457 i-  (T=1,2,3)
+INFO  interior Z446 j+ ↔ Z467 j-  (T=1,2,3)
+INFO  interior Z447 i+ ↔ Z448 i-  (T=1,2,3)
+INFO  interior Z447 j+ ↔ Z455 j-  (T=1,2,3)
+INFO  interior Z448 i+ ↔ Z449 i-  (T=1,2,3)
+INFO  interior Z448 j+ ↔ Z456 j-  (T=1,2,3)
+INFO  interior Z449 i+ ↔ Z450 i-  (T=1,2,3)
+INFO  interior Z449 j+ ↔ Z458 j-  (T=1,2,3)
+INFO  interior Z450 i+ ↔ Z451 i-  (T=1,2,3)
+INFO  interior Z450 j+ ↔ Z459 j-  (T=1,2,3)
+INFO  interior Z451 j+ ↔ Z460 j-  (T=1,2,3)
+INFO  interior Z452 i+ ↔ Z453 i-  (T=1,2,3)
+INFO  interior Z453 i+ ↔ Z454 i-  (T=1,2,3)
+INFO  interior Z454 i+ ↔ Z455 i-  (T=1,2,3)
+INFO  interior Z455 i+ ↔ Z456 i-  (T=1,2,3)
+INFO  interior Z456 i+ ↔ Z458 i-  (T=1,2,3)
+INFO  interior Z457 i+ ↔ Z461 i-  (T=1,2,3)
+INFO  interior Z457 j+ ↔ Z468 j-  (T=1,2,3)
+INFO  interior Z458 i+ ↔ Z459 i-  (T=1,2,3)
+INFO  interior Z459 i+ ↔ Z460 i-  (T=1,2,3)
+INFO  interior Z461 i+ ↔ Z462 i-  (T=1,2,3)
+INFO  interior Z461 j+ ↔ Z470 j-  (T=1,2,3)
+INFO  interior Z462 i+ ↔ Z463 i-  (T=1,2,3)
+INFO  interior Z462 j+ ↔ Z471 j-  (T=1,2,3)
+INFO  interior Z463 i+ ↔ Z464 i-  (T=1,2,3)
+INFO  interior Z463 j+ ↔ Z472 j-  (T=1,2,3)
+INFO  interior Z464 i+ ↔ Z465 i-  (T=1,2,3)
+INFO  interior Z464 j+ ↔ Z473 j-  (T=1,2,3)
+INFO  interior Z465 j+ ↔ Z474 j-  (T=1,2,3)
+INFO  interior Z466 i+ ↔ Z467 i-  (T=1,2,3)
+INFO  interior Z467 i+ ↔ Z468 i-  (T=1,2,3)
+INFO  interior Z468 i+ ↔ Z470 i-  (T=1,2,3)
+INFO  interior Z469 i+ ↔ Z480 i-  (T=1,2,3)
+INFO  interior Z469 k+ ↔ Z481 k-  (T=1,2,3)
+INFO  interior Z470 i+ ↔ Z471 i-  (T=1,2,3)
+INFO  interior Z471 i+ ↔ Z472 i-  (T=1,2,3)
+INFO  interior Z472 i+ ↔ Z473 i-  (T=1,2,3)
+INFO  interior Z473 i+ ↔ Z474 i-  (T=1,2,3)
+INFO  interior Z475 i+ ↔ Z476 i-  (T=1,2,3)
+INFO  interior Z475 j+ ↔ Z484 j-  (T=1,2,3)
+INFO  interior Z476 i+ ↔ Z477 i-  (T=1,2,3)
+INFO  interior Z476 j+ ↔ Z485 j-  (T=1,2,3)
+INFO  interior Z477 i+ ↔ Z478 i-  (T=1,2,3)
+INFO  interior Z477 j+ ↔ Z486 j-  (T=1,2,3)
+INFO  interior Z478 i+ ↔ Z479 i-  (T=1,2,3)
+INFO  interior Z478 j+ ↔ Z487 j-  (T=1,2,3)
+INFO  interior Z479 i+ ↔ Z481 i-  (T=1,2,3)
+INFO  interior Z479 j+ ↔ Z488 j-  (T=1,2,3)
+INFO  interior Z480 i+ ↔ Z491 i-  (T=1,2,3)
+INFO  interior Z480 k+ ↔ Z482 k-  (T=1,2,3)
+INFO  interior Z481 i+ ↔ Z482 i-  (T=1,2,3)
+INFO  interior Z481 j+ ↔ Z489 j-  (T=1,2,3)
+INFO  interior Z482 i+ ↔ Z483 i-  (T=1,2,3)
+INFO  interior Z482 j+ ↔ Z490 j-  (T=1,2,3)
+INFO  interior Z483 j+ ↔ Z492 j-  (T=1,2,3)
+INFO  interior Z483 k- ↔ Z491 k+  (T=1,2,3)
+INFO  interior Z484 i+ ↔ Z485 i-  (T=1,2,3)
+INFO  interior Z484 j+ ↔ Z493 j-  (T=1,2,3)
+INFO  interior Z484 k- ↔ Z502 k+  (T=1,2,3)
+INFO  interior Z485 i+ ↔ Z486 i-  (T=1,2,3)
+INFO  interior Z485 j+ ↔ Z494 j-  (T=1,2,3)
+INFO  interior Z486 i+ ↔ Z487 i-  (T=1,2,3)
+INFO  interior Z486 j+ ↔ Z495 j-  (T=1,2,3)
+INFO  interior Z487 i+ ↔ Z488 i-  (T=1,2,3)
+INFO  interior Z487 j+ ↔ Z496 j-  (T=1,2,3)
+INFO  interior Z488 i+ ↔ Z489 i-  (T=1,2,3)
+INFO  interior Z488 j+ ↔ Z497 j-  (T=1,2,3)
+INFO  interior Z489 i+ ↔ Z490 i-  (T=1,2,3)
+INFO  interior Z489 j+ ↔ Z498 j-  (T=1,2,3)
+INFO  interior Z490 i+ ↔ Z492 i-  (T=1,2,3)
+INFO  interior Z490 j+ ↔ Z499 j-  (T=1,2,3)
+INFO  interior Z492 j+ ↔ Z500 j-  (T=1,2,3)
+INFO  interior Z493 i+ ↔ Z494 i-  (T=1,2,3)
+INFO  interior Z493 j+ ↔ Z501 j-  (T=1,2,3)
+INFO  interior Z494 i+ ↔ Z495 i-  (T=1,2,3)
+INFO  interior Z494 j+ ↔ Z503 j-  (T=1,2,3)
+INFO  interior Z495 i+ ↔ Z496 i-  (T=1,2,3)
+INFO  interior Z495 j+ ↔ Z504 j-  (T=1,2,3)
+INFO  interior Z496 i+ ↔ Z497 i-  (T=1,2,3)
+INFO  interior Z496 j+ ↔ Z505 j-  (T=1,2,3)
+INFO  interior Z497 i+ ↔ Z498 i-  (T=1,2,3)
+INFO  interior Z497 j+ ↔ Z506 j-  (T=1,2,3)
+INFO  interior Z498 i+ ↔ Z499 i-  (T=1,2,3)
+INFO  interior Z498 j+ ↔ Z507 j-  (T=1,2,3)
+INFO  interior Z499 i+ ↔ Z500 i-  (T=1,2,3)
+INFO  interior Z499 j+ ↔ Z508 j-  (T=1,2,3)
+INFO  interior Z500 j+ ↔ Z509 j-  (T=1,2,3)
+INFO  interior Z501 i+ ↔ Z503 i-  (T=1,2,3)
+INFO  interior Z501 j+ ↔ Z510 j-  (T=1,2,3)
+INFO  interior Z503 i+ ↔ Z504 i-  (T=1,2,3)
+INFO  interior Z503 j+ ↔ Z511 j-  (T=1,2,3)
+INFO  interior Z504 i+ ↔ Z505 i-  (T=1,2,3)
+INFO  interior Z504 j+ ↔ Z512 j-  (T=1,2,3)
+INFO  interior Z505 i+ ↔ Z506 i-  (T=1,2,3)
+INFO  interior Z506 i+ ↔ Z507 i-  (T=1,2,3)
+INFO  interior Z507 i+ ↔ Z508 i-  (T=1,2,3)
+INFO  interior Z508 i+ ↔ Z509 i-  (T=1,2,3)
+INFO  interior Z510 i+ ↔ Z511 i-  (T=1,2,3)
+INFO  interior Z511 i+ ↔ Z512 i-  (T=1,2,3)
+INFO  Connectivity scan complete.
+INFO  Assigning boundary conditions
+INFO  boundary Z1 i-
+INFO  boundary Z1 j-
+INFO  boundary Z1 k-
+INFO  boundary Z2 k-
+INFO  boundary Z7 i+
+INFO  boundary Z8 i-
+INFO  boundary Z13 k-
+INFO  boundary Z16 i+
+INFO  boundary Z17 i-
+INFO  boundary Z24 k-
+INFO  boundary Z25 i+
+INFO  boundary Z26 i-
+INFO  boundary Z26 j+
+INFO  boundary Z27 j+
+INFO  boundary Z28 j+
+INFO  boundary Z29 j+
+INFO  boundary Z30 j+
+INFO  boundary Z31 j+
+INFO  boundary Z32 j+
+INFO  boundary Z33 i+
+INFO  boundary Z33 j+
+INFO  boundary Z34 i-
+INFO  boundary Z34 j-
+INFO  boundary Z35 k-
+INFO  boundary Z36 j-
+INFO  boundary Z37 j-
+INFO  boundary Z38 j-
+INFO  boundary Z39 j-
+INFO  boundary Z40 j-
+INFO  boundary Z41 j-
+INFO  boundary Z42 i+
+INFO  boundary Z42 j-
+INFO  boundary Z43 i-
+INFO  boundary Z46 k-
+INFO  boundary Z51 i+
+INFO  boundary Z52 i-
+INFO  boundary Z57 k-
+INFO  boundary Z60 i+
+INFO  boundary Z61 i-
+INFO  boundary Z68 i+
+INFO  boundary Z68 k-
+INFO  boundary Z69 i+
+INFO  boundary Z70 i-
+INFO  boundary Z77 i+
+INFO  boundary Z78 i-
+INFO  boundary Z79 i-
+INFO  boundary Z79 k-
+INFO  boundary Z86 i+
+INFO  boundary Z87 i-
+INFO  boundary Z90 k-
+INFO  boundary Z95 i+
+INFO  boundary Z96 i-
+INFO  boundary Z96 j+
+INFO  boundary Z97 j+
+INFO  boundary Z98 j+
+INFO  boundary Z99 j+
+INFO  boundary Z100 j+
+INFO  boundary Z101 k-
+INFO  boundary Z102 j+
+INFO  boundary Z103 j+
+INFO  boundary Z104 i+
+INFO  boundary Z104 j+
+INFO  boundary Z105 i-
+INFO  boundary Z105 j-
+INFO  boundary Z106 j-
+INFO  boundary Z107 j-
+INFO  boundary Z108 j-
+INFO  boundary Z109 j-
+INFO  boundary Z110 j-
+INFO  boundary Z111 j-
+INFO  boundary Z112 j-
+INFO  boundary Z112 k-
+INFO  boundary Z113 k-
+INFO  boundary Z114 i+
+INFO  boundary Z114 j-
+INFO  boundary Z115 i-
+INFO  boundary Z122 i+
+INFO  boundary Z123 i-
+INFO  boundary Z124 k-
+INFO  boundary Z131 i+
+INFO  boundary Z132 i-
+INFO  boundary Z135 k-
+INFO  boundary Z140 i+
+INFO  boundary Z141 i-
+INFO  boundary Z146 k-
+INFO  boundary Z149 i+
+INFO  boundary Z150 i-
+INFO  boundary Z157 i+
+INFO  boundary Z157 k-
+INFO  boundary Z158 i+
+INFO  boundary Z159 i-
+INFO  boundary Z166 i+
+INFO  boundary Z167 i-
+INFO  boundary Z167 j+
+INFO  boundary Z168 i-
+INFO  boundary Z168 k-
+INFO  boundary Z169 j+
+INFO  boundary Z170 j+
+INFO  boundary Z171 j+
+INFO  boundary Z172 j+
+INFO  boundary Z173 j+
+INFO  boundary Z174 j+
+INFO  boundary Z175 i+
+INFO  boundary Z175 j+
+INFO  boundary Z176 i-
+INFO  boundary Z176 j-
+INFO  boundary Z177 j-
+INFO  boundary Z178 j-
+INFO  boundary Z179 k-
+INFO  boundary Z180 j-
+INFO  boundary Z181 j-
+INFO  boundary Z182 j-
+INFO  boundary Z183 j-
+INFO  boundary Z184 i+
+INFO  boundary Z184 j-
+INFO  boundary Z185 i-
+INFO  boundary Z190 k-
+INFO  boundary Z193 i+
+INFO  boundary Z194 i-
+INFO  boundary Z201 k-
+INFO  boundary Z202 i+
+INFO  boundary Z203 i-
+INFO  boundary Z210 i+
+INFO  boundary Z211 i-
+INFO  boundary Z212 k-
+INFO  boundary Z219 i+
+INFO  boundary Z220 i-
+INFO  boundary Z223 j-
+INFO  boundary Z223 k-
+INFO  boundary Z224 k-
+INFO  boundary Z229 i+
+INFO  boundary Z230 i-
+INFO  boundary Z235 k-
+INFO  boundary Z238 i+
+INFO  boundary Z239 i-
+INFO  boundary Z239 j+
+INFO  boundary Z240 j+
+INFO  boundary Z241 j+
+INFO  boundary Z242 j+
+INFO  boundary Z243 j+
+INFO  boundary Z244 j+
+INFO  boundary Z245 j+
+INFO  boundary Z246 i+
+INFO  boundary Z246 k-
+INFO  boundary Z247 i+
+INFO  boundary Z247 j+
+INFO  boundary Z248 i-
+INFO  boundary Z248 j-
+INFO  boundary Z249 j-
+INFO  boundary Z250 j-
+INFO  boundary Z251 j-
+INFO  boundary Z252 j-
+INFO  boundary Z253 j-
+INFO  boundary Z254 j-
+INFO  boundary Z255 i+
+INFO  boundary Z255 j-
+INFO  boundary Z256 i-
+INFO  boundary Z257 i-
+INFO  boundary Z257 k-
+INFO  boundary Z264 i+
+INFO  boundary Z265 i-
+INFO  boundary Z268 k-
+INFO  boundary Z273 i+
+INFO  boundary Z274 i-
+INFO  boundary Z279 k-
+INFO  boundary Z282 i+
+INFO  boundary Z283 i-
+INFO  boundary Z290 k-
+INFO  boundary Z291 i+
+INFO  boundary Z292 i-
+INFO  boundary Z299 i+
+INFO  boundary Z300 i-
+INFO  boundary Z301 k-
+INFO  boundary Z308 i+
+INFO  boundary Z309 i-
+INFO  boundary Z309 j+
+INFO  boundary Z310 j+
+INFO  boundary Z311 j+
+INFO  boundary Z312 k-
+INFO  boundary Z313 j+
+INFO  boundary Z314 j+
+INFO  boundary Z315 j+
+INFO  boundary Z316 j+
+INFO  boundary Z317 i+
+INFO  boundary Z317 j+
+INFO  boundary Z318 i-
+INFO  boundary Z318 j-
+INFO  boundary Z319 j-
+INFO  boundary Z320 j-
+INFO  boundary Z321 j-
+INFO  boundary Z322 j-
+INFO  boundary Z323 k-
+INFO  boundary Z324 j-
+INFO  boundary Z325 j-
+INFO  boundary Z326 i+
+INFO  boundary Z326 j-
+INFO  boundary Z327 i-
+INFO  boundary Z334 j-
+INFO  boundary Z334 k-
+INFO  boundary Z335 i+
+INFO  boundary Z335 k-
+INFO  boundary Z336 i+
+INFO  boundary Z337 i-
+INFO  boundary Z344 i+
+INFO  boundary Z345 i-
+INFO  boundary Z346 i-
+INFO  boundary Z346 k-
+INFO  boundary Z353 i+
+INFO  boundary Z354 i-
+INFO  boundary Z357 k-
+INFO  boundary Z362 i+
+INFO  boundary Z363 i-
+INFO  boundary Z368 k-
+INFO  boundary Z371 i+
+INFO  boundary Z372 i-
+INFO  boundary Z379 k-
+INFO  boundary Z380 i+
+INFO  boundary Z381 i-
+INFO  boundary Z381 j+
+INFO  boundary Z382 j+
+INFO  boundary Z383 j+
+INFO  boundary Z384 j+
+INFO  boundary Z385 j+
+INFO  boundary Z386 j+
+INFO  boundary Z387 j+
+INFO  boundary Z388 i+
+INFO  boundary Z388 j+
+INFO  boundary Z389 i-
+INFO  boundary Z389 j-
+INFO  boundary Z389 k+
+INFO  boundary Z390 k-
+INFO  boundary Z391 j-
+INFO  boundary Z391 k+
+INFO  boundary Z392 j-
+INFO  boundary Z392 k+
+INFO  boundary Z393 j-
+INFO  boundary Z393 k+
+INFO  boundary Z394 j-
+INFO  boundary Z394 k+
+INFO  boundary Z395 j-
+INFO  boundary Z395 k+
+INFO  boundary Z396 j-
+INFO  boundary Z396 k+
+INFO  boundary Z397 i+
+INFO  boundary Z397 j-
+INFO  boundary Z397 k+
+INFO  boundary Z398 i-
+INFO  boundary Z398 k+
+INFO  boundary Z399 k+
+INFO  boundary Z400 k+
+INFO  boundary Z401 k-
+INFO  boundary Z402 k+
+INFO  boundary Z403 k+
+INFO  boundary Z404 k+
+INFO  boundary Z405 k+
+INFO  boundary Z406 i+
+INFO  boundary Z406 k+
+INFO  boundary Z407 i-
+INFO  boundary Z407 k+
+INFO  boundary Z408 k+
+INFO  boundary Z409 k+
+INFO  boundary Z410 k+
+INFO  boundary Z411 k+
+INFO  boundary Z412 k-
+INFO  boundary Z413 k+
+INFO  boundary Z414 k+
+INFO  boundary Z415 i+
+INFO  boundary Z415 k+
+INFO  boundary Z416 i-
+INFO  boundary Z416 k+
+INFO  boundary Z417 k+
+INFO  boundary Z418 k+
+INFO  boundary Z419 k+
+INFO  boundary Z420 k+
+INFO  boundary Z421 k+
+INFO  boundary Z422 k+
+INFO  boundary Z423 i+
+INFO  boundary Z423 k-
+INFO  boundary Z424 i+
+INFO  boundary Z424 k+
+INFO  boundary Z425 i-
+INFO  boundary Z425 k+
+INFO  boundary Z426 k+
+INFO  boundary Z427 k+
+INFO  boundary Z428 k+
+INFO  boundary Z429 k+
+INFO  boundary Z430 k+
+INFO  boundary Z431 k+
+INFO  boundary Z432 i+
+INFO  boundary Z432 k+
+INFO  boundary Z433 i-
+INFO  boundary Z433 k+
+INFO  boundary Z434 i-
+INFO  boundary Z434 k-
+INFO  boundary Z435 k+
+INFO  boundary Z436 k+
+INFO  boundary Z437 k+
+INFO  boundary Z438 k+
+INFO  boundary Z439 k+
+INFO  boundary Z440 k+
+INFO  boundary Z441 i+
+INFO  boundary Z441 k+
+INFO  boundary Z442 i-
+INFO  boundary Z442 k+
+INFO  boundary Z443 k+
+INFO  boundary Z444 k+
+INFO  boundary Z445 j-
+INFO  boundary Z445 k-
+INFO  boundary Z446 k-
+INFO  boundary Z447 k+
+INFO  boundary Z448 k+
+INFO  boundary Z449 k+
+INFO  boundary Z450 k+
+INFO  boundary Z451 i+
+INFO  boundary Z451 k+
+INFO  boundary Z452 i-
+INFO  boundary Z452 j+
+INFO  boundary Z452 k+
+INFO  boundary Z453 j+
+INFO  boundary Z453 k+
+INFO  boundary Z454 j+
+INFO  boundary Z454 k+
+INFO  boundary Z455 j+
+INFO  boundary Z455 k+
+INFO  boundary Z456 j+
+INFO  boundary Z456 k+
+INFO  boundary Z457 k-
+INFO  boundary Z458 j+
+INFO  boundary Z458 k+
+INFO  boundary Z459 j+
+INFO  boundary Z459 k+
+INFO  boundary Z460 i+
+INFO  boundary Z460 j+
+INFO  boundary Z460 k+
+INFO  boundary Z461 k-
+INFO  boundary Z462 k-
+INFO  boundary Z463 k-
+INFO  boundary Z464 k-
+INFO  boundary Z465 i+
+INFO  boundary Z465 k-
+INFO  boundary Z466 i-
+INFO  boundary Z466 j+
+INFO  boundary Z466 k-
+INFO  boundary Z467 j+
+INFO  boundary Z467 k-
+INFO  boundary Z468 j+
+INFO  boundary Z468 k-
+INFO  boundary Z469 j-
+INFO  boundary Z469 k-
+INFO  boundary Z470 j+
+INFO  boundary Z470 k-
+INFO  boundary Z471 j+
+INFO  boundary Z471 k-
+INFO  boundary Z472 j+
+INFO  boundary Z472 k-
+INFO  boundary Z473 j+
+INFO  boundary Z473 k-
+INFO  boundary Z474 i+
+INFO  boundary Z474 j+
+INFO  boundary Z474 k-
+INFO  boundary Z475 i-
+INFO  boundary Z475 j-
+INFO  boundary Z476 j-
+INFO  boundary Z477 j-
+INFO  boundary Z478 j-
+INFO  boundary Z479 j-
+INFO  boundary Z480 j-
+INFO  boundary Z480 k-
+INFO  boundary Z481 j-
+INFO  boundary Z482 j-
+INFO  boundary Z483 i+
+INFO  boundary Z483 j-
+INFO  boundary Z484 i-
+INFO  boundary Z491 i+
+INFO  boundary Z491 j-
+INFO  boundary Z491 k-
+INFO  boundary Z492 i+
+INFO  boundary Z493 i-
+INFO  boundary Z500 i+
+INFO  boundary Z501 i-
+INFO  boundary Z502 i-
+INFO  boundary Z502 k-
+INFO  boundary Z509 i+
+INFO  boundary Z510 i-
+INFO  Finished OK.  Exiting.
+-------------------------------------------
+======================
+       Test 17
+======================
+Removing old mesh: tiny_square_4z.x
+Copying mesh to current directory: /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/meshes/plot3d/tiny/tiny_square_4z.x
+Running: /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/BC_define/bin/bc_define tiny_square_4z.x /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/meshes/plot3d/square/bcdef.input_square1
+INFO  BC_define started
+INFO  Mesh     : ./tiny_square_4z.x
+INFO  BC file  : /home/hyperwindcfdvm/con_temp/Connectivity_and_bcdef/meshes/plot3d/square/bcdef.input_square1
+INFO  Flags    : overwrite=yes autowall=yes autofarfield=no threads=16
+INFO  Opened Plot3D mesh with 4 zone(s)
+INFO  Faces read: 16/16
+INFO  Creating 1:1 connections
+INFO  interior Z1 i+ ↔ Z3 i-  (T=1,2,0)
+INFO  interior Z1 j+ ↔ Z2 j-  (T=1,2,0)
+INFO  interior Z2 i+ ↔ Z4 i-  (T=1,2,0)
+INFO  interior Z3 j+ ↔ Z4 j-  (T=1,2,0)
+INFO  Connectivity scan complete.
+INFO  Assigning boundary conditions
+INFO  boundary Z1 i-
+INFO  boundary Z1 j-
+INFO  boundary Z2 i-
+INFO  boundary Z2 j+
+INFO  boundary Z3 i+
+INFO  boundary Z3 j-
+INFO  boundary Z4 i+
+INFO  boundary Z4 j+
+INFO  Finished OK.  Exiting.
+-------------------------------------------

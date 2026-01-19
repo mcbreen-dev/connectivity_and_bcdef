@@ -111,6 +111,24 @@ Family name behavior:
 - `bc_define` writes BCs as `FamilySpecified` and attaches the family name.
 - BC node names are generated as `<family>_<face>_<count>` to keep them unique.
 
+## Build dependency note
+
+CMake attempts to find CGNS (with HDF5). If it is not found and `AUTO_DEPS=ON`,
+CMake will download and build pinned CGNS + HDF5 into the build tree. Set
+`-DAUTO_DEPS=OFF` and provide `CGNS_INCLUDE_DIR`/`CGNS_LIBRARY` or a `cgns`
+CMake package to use a system install. AUTO_DEPS applies to CMake only;
+the Makefile expects CGNS/HDF5 to be installed. Use the OS-specific
+Makefile in `macos/BC_define.Makefile` or `linux/BC_define.Makefile`.
+
+Linux (system packages + CMake):
+```
+sudo apt-get update
+sudo apt-get install -y libhdf5-dev libcgns-dev
+rm -rf build
+cmake -S . -B build -DAUTO_DEPS=OFF
+cmake --build build
+```
+
 ## Tests
 
 - `test/runtests_cgns.sh` runs the CGNS suite and writes `test/runtests.log`.

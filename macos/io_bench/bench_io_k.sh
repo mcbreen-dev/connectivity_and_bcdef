@@ -2,13 +2,14 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-ROOT_DIR="$(cd "${SCRIPT_DIR}/../.." && pwd)"
+TOP_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
+SRC_DIR="${TOP_DIR}/BC_define/scripts/io_bench"
 MESH_DIR="${MESH_DIR:-$SCRIPT_DIR}"
 
 BC_DEFINE_BIN="${BC_DEFINE_BIN:-${SCRIPT_DIR}/io_bench}"
-if [[ ! -x "$BC_DEFINE_BIN" || "${SCRIPT_DIR}/io_bench.cpp" -nt "$BC_DEFINE_BIN" ]]; then
+if [[ ! -x "$BC_DEFINE_BIN" || "${SRC_DIR}/io_bench.cpp" -nt "$BC_DEFINE_BIN" ]]; then
     clang++ -O2 -std=c++17 -I/opt/homebrew/include -L/opt/homebrew/lib \
-        "${SCRIPT_DIR}/io_bench.cpp" -lcgns -lhdf5 -o "$BC_DEFINE_BIN"
+        "${SRC_DIR}/io_bench.cpp" -lcgns -lhdf5 -o "$BC_DEFINE_BIN"
 fi
 
 BENCH_ITERS="${BENCH_ITERS:-3}"

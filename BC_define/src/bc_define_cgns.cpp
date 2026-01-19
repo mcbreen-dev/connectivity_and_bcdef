@@ -1,7 +1,34 @@
-/*─────────────────────────────────────────────────────────────
-  File: src/bc_define_cgns.cpp
-  CGNS mesh I/O and BC writing
-─────────────────────────────────────────────────────────────*/
+//─────────────────────────────────────────────────────────────
+// File: src/bc_define_cgns.cpp
+// CGNS mesh I/O and boundary-condition writing
+//─────────────────────────────────────────────────────────────
+//
+// This file contains the CGNS-facing portion of the BC_define pipeline.
+// It is responsible for translating resolved boundary patches and
+// user-defined BC specifications into CGNS BC_t nodes written
+// into the mesh file.
+//
+// Major responsibilities:
+//   - Benchmark CGNS coordinate I/O performance (optional diagnostic).
+//   - Map face directions to CGNS GridLocation_t values.
+//   - Detect which structured face a CGNS PointRange lies on.
+//   - Ensure CGNS Family_t nodes exist and carry the correct BC type.
+//   - Safely write BC_t nodes while avoiding duplicates and overlaps.
+//   - Enforce strict validation for user-specified BCs while allowing
+//     conservative behavior for automatically generated BCs.
+//
+// Design philosophy:
+//   - Be conservative with existing CGNS data: never overwrite or
+//     partially modify BCs in place.
+//   - Detect and error out on conflicting user specifications.
+//   - Allow auto-generated BCs (autowall / autofarfield) to yield to
+//     any existing BC definitions.
+//   - Cache CGNS lookups aggressively to minimize repeated I/O.
+//
+// This file does *not* perform connectivity detection or BC parsing;
+// those tasks are handled by connectivity_* and bc_define_bcspec.cpp
+// respectively.
+//─────────────────────────────────────────────────────────────
 #include "bc_define_internal.hpp"
 #include "logger.hpp"
 #include "mesh_utils.hpp"
@@ -12,6 +39,20 @@
 
 namespace fs::bc {
 
+/*=====================================================================
+  face_dims (local helper)
+
+  Compute the face-local cell grid dimensions (uLen, vLen) for a given
+  structured zone face.
+
+  This is a simplified, BC-local equivalent of the face dimension logic
+  used in the connectivity pipeline.
+
+  2-D behavior:
+    - For Nk == 1, only i- and j-faces are valid.
+    - vLen is forced to 1 so the rest of the logic can treat faces as
+      degenerate 2-D grids.
+=====================================================================*/
 static void face_dims(const fs::Zone& z, int face, int& uLen, int& vLen)
 {
     if (z.nk() == 1) {
@@ -40,6 +81,22 @@ static void face_dims(const fs::Zone& z, int face, int& uLen, int& vLen)
     }
 }
 
+/*=====================================================================
+  run_io_benchmark
+
+  Optional diagnostic routine that measures CGNS coordinate read
+  performance for:
+    - full-volume reads
+    - per-face reads
+
+  The benchmark reports:
+    - time per element for volume vs face reads
+    - relative cost factor (k_face)
+    - a heuristic indicating whether volume or face reads are cheaper
+
+  This is intended for developer diagnostics only and has no effect
+  on BC writing logic.
+=====================================================================*/
 void run_io_benchmark(fs::Mesh& mesh, fs::Logger& log, int iters)
 {
     const int fn = mesh.file_id();
@@ -73,6 +130,9 @@ void run_io_benchmark(fs::Mesh& mesh, fs::Logger& log, int iters)
         long long face_elems = 0;
         long long max_face = 0;
 
+        /*---------------------------------------------------------
+          Prepare per-face coordinate ranges
+        ---------------------------------------------------------*/
         for (int face = 0; face < 6; ++face) {
             int uLen = 0, vLen = 0;
             face_dims(z, face, uLen, vLen);
@@ -220,6 +280,15 @@ void run_io_benchmark(fs::Mesh& mesh, fs::Logger& log, int iters)
     log.info("IO benchmark finished");
 }
 
+/*=====================================================================
+  face_grid_location
+
+  Map a structured face direction to the appropriate CGNS GridLocation_t.
+
+  Behavior:
+    - 3-D meshes: returns IFaceCenter / JFaceCenter / KFaceCenter
+    - 2-D meshes: returns EdgeCenter
+=====================================================================*/
 CGNS_ENUMT(GridLocation_t) face_grid_location(fs::FaceDir face, int cell_dim)
 {
     if (cell_dim >= 3) {
@@ -241,6 +310,16 @@ CGNS_ENUMT(GridLocation_t) face_grid_location(fs::FaceDir face, int cell_dim)
     throw std::runtime_error("Unsupported CellDimension for BC grid location");
 }
 
+/*=====================================================================
+  range_face
+
+  Determine whether a CGNS PointRange corresponds to a full structured
+  face of the given zone, and if so, which face.
+
+  Returns:
+    - true  and sets 'out' if the range lies on a face
+    - false otherwise
+=====================================================================*/
 bool range_face(const fs::Zone& zone,
                 const std::array<cgsize_t, 6>& r,
                 fs::FaceDir& out)
@@ -283,6 +362,14 @@ bool range_face(const fs::Zone& zone,
     return false;
 }
 
+/*=====================================================================
+  ensure_family
+
+  Ensure that a CGNS Family_t with the given name exists and has an
+  associated FamilyBC of the requested BC type.
+
+  Uses a cache to avoid repeated CGNS tree traversal.
+=====================================================================*/
 int ensure_family(int fn, int B, const std::string& family,
                   CGNS_ENUMT(BCType_t) bc_type,
                   std::unordered_map<std::string, int>& cache)
@@ -320,6 +407,23 @@ int ensure_family(int fn, int B, const std::string& family,
     return F;
 }
 
+/*=====================================================================
+  write_boundary_conditions
+
+  Main entry point for BC emission.
+
+  Inputs:
+    - mesh        : CGNS mesh (open for modification)
+    - patches     : boundary patches detected by connectivity
+    - specs       : user-defined BC specifications (per zone/face)
+    - autowall    : assign wall BCs to unspecified faces
+    - autofarfield: assign farfield BCs to unspecified faces
+
+  Behavior:
+    - Validates against existing BCs to prevent conflicts.
+    - Writes new BC_t nodes only when safe.
+    - Uses FamilySpecified BCs with FamilyName linkage.
+=====================================================================*/
 void write_boundary_conditions(
     fs::Mesh& mesh,
     const std::vector<fs::BoundaryPatch>& patches,
