@@ -26,7 +26,7 @@
 #include <unordered_map>
 #include <stdexcept>
 
-namespace fs {
+namespace bcdef {
 
 /*======================================================================
   FaceDir
@@ -196,7 +196,7 @@ struct PointRange
     - Squared-distance comparisons between face-center coordinates
     - Bounding-box overlap tests
 
-    It is passed as fs::GEOM_TOL into ConnectivityDetector.
+    It is passed as bcdef::GEOM_TOL into ConnectivityDetector.
 
   Interpretation:
     - Absolute tolerance in coordinate space
@@ -233,4 +233,4 @@ constexpr double GEOM_TOL = 1.0e-8;
         }                                                   \
     } while (0)
 
-} // namespace fs
+} // namespace bcdef

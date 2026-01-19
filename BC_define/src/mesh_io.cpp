@@ -17,7 +17,7 @@
       stored internally in a 0-based vector.
 
   Higher-level connectivity, BC creation, and overwrite logic live
-  elsewhere (connectivity_* and mesh_utils.cpp).
+  elsewhere (connectivity_* and cgns_cleanup.cpp).
 ─────────────────────────────────────────────────────────────*/
 #include "mesh_io.hpp"
 #include "common.hpp"
@@ -26,7 +26,7 @@
 #define CGNS_MAX_NAME_LENGTH 32
 #endif
 
-namespace fs {
+namespace bcdef {
 
 /*=====================================================================
   Mesh::open
@@ -141,4 +141,4 @@ void Mesh::close()
 =====================================================================*/
 Mesh::~Mesh() { close(); }
 
-} // namespace fs
+} // namespace bcdef

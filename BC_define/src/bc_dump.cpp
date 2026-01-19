@@ -31,7 +31,7 @@
 //   - It does not modify the CGNS file.
 //─────────────────────────────────────────────────────────────
 #include "mesh_io.hpp"
-#include "mesh_utils.hpp"
+#include "cgns_cleanup.hpp"
 #include "logger.hpp"
 #include "common.hpp"
 
@@ -337,11 +337,11 @@ int main(int argc,char** argv)
     if (argc!=2){ std::cerr << "Usage: bc_dump mesh.cgns\n"; return 1; }
 
     const std::string path = argv[1];
-    fs::Logger log("bc_dump.log");
+    bcdef::Logger log("bc_dump.log");
     log.info("Opening "+path);
 
     try{
-        fs::Mesh mesh; mesh.open(path,false);
+        bcdef::Mesh mesh; mesh.open(path,false);
 
         /* Map native CGNS zone names to "Z<idx>" labels for cleaner printing. */
         g_zname2nice.clear();

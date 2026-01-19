@@ -6,7 +6,7 @@
   This class is used in:
     - bc_define_main.cpp (CLI orchestration + fatal error reporting)
     - connectivity_core.cpp (progress + connectivity/boundary reporting)
-    - mesh_utils.cpp (purge/prune reporting)
+    - cgns_cleanup.cpp (purge/prune reporting)
     - bc_define_cgns.cpp (IO benchmark + BC write stage reporting)
     - bc_dump.cpp (open/finish/error reporting)
     - resolve_matches_* code paths (via caller logs)
@@ -28,7 +28,7 @@
 #include <mutex>      // std::mutex, std::lock_guard (thread synchronization)
 #include <string>     // std::string (message storage/formatting)
 
-namespace fs {
+namespace bcdef {
 
 class Logger
 {
@@ -139,4 +139,4 @@ private:
     std::mutex    mtx_;
 };
 
-} // namespace fs
+} // namespace bcdef

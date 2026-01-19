@@ -4,8 +4,8 @@
   CGNS structured-zone mesh wrapper used by bc_define and connectivity code.
 
   This header defines:
-    - fs::Zone: lightweight per-zone metadata for a structured CGNS Zone_t
-    - fs::Mesh: RAII-style opener/closer for a CGNS file and collector of zones
+    - bcdef::Zone: lightweight per-zone metadata for a structured CGNS Zone_t
+    - bcdef::Mesh: RAII-style opener/closer for a CGNS file and collector of zones
 
   Usage:
     - bc_define_main.cpp:
@@ -13,7 +13,7 @@
         Mesh::zones() to enumerate zones and pass Mesh to connectivity detector
     - connectivity_core.cpp + connectivity_*:
         Mesh::file_id(), Mesh::base_id(), Mesh::zones() to read coordinates and build faces
-    - mesh_utils.cpp:
+    - cgns_cleanup.cpp:
         Mesh::file_id(), Mesh::base_id(), Mesh::zones() to delete nodes / scan families
     - bc_define_cgns.cpp:
         Mesh::cell_dim() and Mesh::zones() to compute ranges and grid locations for BC writes
@@ -37,7 +37,7 @@ extern "C" {
     #include <cgnslib.h>          // CGNS C API; provides cg_open/cg_close/cg_zone_read/...
 }
 
-namespace fs {
+namespace bcdef {
 
 /*-------------------------------------------------------------
   Zone – light wrapper around one CGNS Zone_t
@@ -176,4 +176,4 @@ private:
     std::vector<Zone> zones_;
 };
 
-} // namespace fs
+} // namespace bcdef

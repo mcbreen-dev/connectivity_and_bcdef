@@ -4,8 +4,8 @@
   Plot3D (structured multi-block) mesh representation and reader declaration.
 
   This header defines:
-    - fs::Plot3DZone: in-memory storage for one Plot3D block's vertex grid and coordinates
-    - fs::read_plot3d(): reads a Plot3D file and returns a vector of Plot3DZone
+    - bcdef::Plot3DZone: in-memory storage for one Plot3D block's vertex grid and coordinates
+    - bcdef::read_plot3d(): reads a Plot3D file and returns a vector of Plot3DZone
 
   Usage across the codebase:
     - bc_define_main.cpp:
@@ -41,7 +41,7 @@
 #include <string>
 #include <vector>
 
-namespace fs {
+namespace bcdef {
 
 struct Plot3DZone {
     /*
@@ -92,4 +92,4 @@ struct Plot3DZone {
 */
 std::vector<Plot3DZone> read_plot3d(const std::string& mesh_path);
 
-} // namespace fs
+} // namespace bcdef

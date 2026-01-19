@@ -42,7 +42,7 @@ extern "C" {
     #include <cgnslib.h>
 }
 
-namespace fs::conn {
+namespace bcdef::conn {
 
 /*=====================================================================
   face_center_from_plane
@@ -772,4 +772,4 @@ std::vector<FaceSummary> build_face_summaries(const FaceBuildResult& build)
     return summaries;
 }
 
-} // namespace fs::conn
+} // namespace bcdef::conn

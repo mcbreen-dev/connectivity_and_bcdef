@@ -9,12 +9,12 @@
   Usage in this codebase:
 
     - bc_define_main.cpp (CGNS path):
-        * fs::ConnectivityDetector::run(mesh, log, fs::GEOM_TOL, overwrite, threads)
+        * bcdef::ConnectivityDetector::run(mesh, log, bcdef::GEOM_TOL, overwrite, threads)
           returns boundary patches and also writes 1to1 connections into the CGNS
           file (via write_1to1 for each connection).
 
     - bc_define_main.cpp (Plot3D path):
-        * fs::ConnectivityDetector::run_plot3d(zones, log, fs::GEOM_TOL, threads)
+        * bcdef::ConnectivityDetector::run_plot3d(zones, log, bcdef::GEOM_TOL, threads)
           returns:
             - boundary patches (used to generate Plot3D BC ranges)
             - connection patches (written to a text "1to1s" file)
@@ -37,7 +37,7 @@
 #include "connectivity_writer.hpp"
 #include <vector>
 
-namespace fs {
+namespace bcdef {
     class Mesh;
     struct Plot3DZone;
     class Logger;
@@ -64,7 +64,7 @@ namespace fs {
 
       Field semantics:
         - zone:
-            1-based zone index (matches fs::Zone::idx in mesh_io.hpp).
+            1-based zone index (matches bcdef::Zone::idx in mesh_io.hpp).
             Type: int (CGNS zone numbering is int-based).
 
         - face:

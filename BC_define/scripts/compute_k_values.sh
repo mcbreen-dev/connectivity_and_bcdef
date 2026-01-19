@@ -42,7 +42,7 @@ fi
 cat <<EOF
 #pragma once
 
-namespace fs {
+namespace bcdef {
 constexpr double K2D = ${k2d};
 constexpr double K3D = ${k3d};
 constexpr unsigned long long MEM_CAP_BYTES = 1ULL << 30;

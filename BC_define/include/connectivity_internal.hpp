@@ -67,7 +67,7 @@
 #include <unordered_map>
 #include <vector>
 
-namespace fs::conn {
+namespace bcdef::conn {
 
 
 /*==============================================================================
@@ -1077,4 +1077,4 @@ void resolve_matches_plot3d(const std::vector<Plot3DZone>& zones, Logger& log,
                             std::vector<BoundaryRecord>& boundary_records,
                             std::vector<ConnPatch>& conn_patches);
 
-} // namespace fs::conn
+} // namespace bcdef::conn

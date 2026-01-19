@@ -64,7 +64,7 @@
 #include <limits>
 #include <thread>
 
-namespace fs::conn {
+namespace bcdef::conn {
 
 /*=====================================================================
 // derive_uv_mapping
@@ -1373,4 +1373,4 @@ void resolve_matches_plot3d(const std::vector<Plot3DZone>& zones, Logger& log,
     }
 }
 
-} // namespace fs::conn
+} // namespace bcdef::conn

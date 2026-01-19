@@ -23,7 +23,7 @@
 #include "logger.hpp"
 #include <unistd.h>          // isatty
 
-namespace fs {
+namespace bcdef {
 
 /*=====================================================================
   ANSI formatting constants
@@ -119,4 +119,4 @@ void Logger::write(Level lvl,const std::string& msg)
     if (file_) file_ << bare_tag(lvl) << "  " << msg << '\n';
 }
 
-} // namespace fs
+} // namespace bcdef

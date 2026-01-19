@@ -23,7 +23,7 @@
 #include "connectivity_writer.hpp"
 #include "logger.hpp"
 
-namespace fs {
+namespace bcdef {
 
 /*=====================================================================
   ConnectivityDetector::run_collect  (CGNS)
@@ -322,4 +322,4 @@ std::vector<BoundaryPatch> ConnectivityDetector::run(
     return result.boundary;
 }
 
-} // namespace fs
+} // namespace bcdef

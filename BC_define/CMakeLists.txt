@@ -24,7 +24,7 @@ set(BC_DEFINE_SOURCES
   src/bc_define_plot3d.cpp
   src/bc_define_helpers.cpp
   src/mesh_io.cpp
-  src/mesh_utils.cpp
+  src/cgns_cleanup.cpp
   src/plot3d_io.cpp
   src/connectivity_core.cpp
   src/connectivity_face_build.cpp
@@ -41,7 +41,7 @@ bc_define_target_setup(bc_define)
 set(BC_DUMP_SOURCES
   src/bc_dump.cpp
   src/mesh_io.cpp
-  src/mesh_utils.cpp
+  src/cgns_cleanup.cpp
   src/logger.cpp
 )
 

@@ -59,7 +59,7 @@
 
 #include <fstream>
 
-namespace fs::bc {
+namespace bcdef::boundary {
 
 /*=====================================================================
   write_plot3d_1to1s
@@ -79,8 +79,8 @@ namespace fs::bc {
     - Ranges and zone IDs are emitted exactly as stored (1-based IJK).
 =====================================================================*/
 void write_plot3d_1to1s(const std::string& path,
-                        const std::vector<fs::Plot3DZone>& zones,
-                        const std::vector<fs::ConnPatch>& conns)
+                        const std::vector<bcdef::Plot3DZone>& zones,
+                        const std::vector<bcdef::ConnPatch>& conns)
 {
     std::ofstream out(path);
     if (!out)
@@ -137,8 +137,8 @@ void write_plot3d_1to1s(const std::string& path,
       been emitted per zone for overlap checking.
 =====================================================================*/
 std::vector<Plot3DBcEntry> build_plot3d_bcs(
-    const std::vector<fs::Plot3DZone>& zones,
-    const std::vector<fs::BoundaryPatch>& patches,
+    const std::vector<bcdef::Plot3DZone>& zones,
+    const std::vector<bcdef::BoundaryPatch>& patches,
     const std::unordered_map<ZoneFaceKey, BCSpec, ZoneFaceKeyHash>& specs,
     bool autowall,
     bool autofarfield)
@@ -170,8 +170,8 @@ std::vector<Plot3DBcEntry> build_plot3d_bcs(
         }
 
         /* Compute the patch range in cell-center index space. */
-        const fs::Plot3DZone& zone = zones[static_cast<size_t>(patch.zone - 1)];
-        fs::PointRange face_range = face_center_range(zone, patch.face,
+        const bcdef::Plot3DZone& zone = zones[static_cast<size_t>(patch.zone - 1)];
+        bcdef::PointRange face_range = face_center_range(zone, patch.face,
                                                       patch.vtxBegin, patch.vtxEnd);
         std::array<long long, 6> new_range = {
             face_range.begin[0], face_range.begin[1], face_range.begin[2],
@@ -202,7 +202,7 @@ std::vector<Plot3DBcEntry> build_plot3d_bcs(
                 }
                 throw std::runtime_error(
                     "Overlapping BCs in zone " + std::to_string(patch.zone) +
-                    " face " + fs::facedir_to_string(patch.face) +
+                    " face " + bcdef::facedir_to_string(patch.face) +
                     ". Existing: " + existing.family +
                     " range " + range_to_string(existing.range) +
                     ", New: " + spec->family +
@@ -248,7 +248,7 @@ std::vector<Plot3DBcEntry> build_plot3d_bcs(
     - Ranges are cell-center indices (1..N-1 on varying axes).
 =====================================================================*/
 void write_plot3d_bcs(const std::string& path,
-                      const std::vector<fs::Plot3DZone>& zones,
+                      const std::vector<bcdef::Plot3DZone>& zones,
                       const std::vector<Plot3DBcEntry>& bcs)
 {
     std::ofstream out(path);
@@ -269,4 +269,4 @@ void write_plot3d_bcs(const std::string& path,
     }
 }
 
-} // namespace fs::bc
+} // namespace bcdef::boundary

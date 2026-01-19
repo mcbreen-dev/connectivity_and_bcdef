@@ -44,7 +44,7 @@
 #define CGNS_MAX_NAME_LENGTH 32
 #endif
 
-namespace fs {
+namespace bcdef {
 
 /*
 CGNS-SIDS (Multizone Interface Connectivity):
@@ -345,4 +345,4 @@ void write_1to1(Mesh& mesh,const ConnPatch& cp)
     existing.entries.push_back(new_entry);
 }
 
-} // namespace fs
+} // namespace bcdef

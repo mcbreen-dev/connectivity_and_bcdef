@@ -29,7 +29,7 @@
     - Zone indices: int (typically 32-bit). CGNS APIs take int zone indices.
     - FaceDir: enum class FaceDir : uint8_t (1 byte) from common.hpp.
     - transform[3]: int[3] (typically 3 * 4 bytes). CGNS transform vector uses int.
-    - PointRange indices: fs::IJK is std::array<long long,3> (3 * 8 bytes typical).
+    - PointRange indices: bcdef::IJK is std::array<long long,3> (3 * 8 bytes typical).
       These ranges are converted to cgsize_t arrays in connectivity_writer.cpp.
 */
 #pragma once
@@ -37,7 +37,7 @@
 #include "common.hpp"
 #include <cstdint>
 
-namespace fs {
+namespace bcdef {
 
 class Mesh;
 
@@ -68,7 +68,7 @@ struct ConnPatch
 {
     /*
       recvZone / donorZone
-        - 1-based zone indices (match fs::Zone::idx and CGNS zone numbering)
+        - 1-based zone indices (match bcdef::Zone::idx and CGNS zone numbering)
         - type: int
     */
     int      recvZone = 0;
@@ -97,8 +97,8 @@ struct ConnPatch
 
     /*
       recvRange / donorRange
-        - CGNS-style PointRange(begin,end) as fs::PointRange
-        - Each endpoint is fs::IJK = std::array<long long,3>
+        - CGNS-style PointRange(begin,end) as bcdef::PointRange
+        - Each endpoint is bcdef::IJK = std::array<long long,3>
     */
     PointRange recvRange{};
     PointRange donorRange{};
@@ -119,4 +119,4 @@ struct ConnPatch
 */
 void write_1to1(Mesh& mesh, const ConnPatch& cp);
 
-} // namespace fs
+} // namespace bcdef

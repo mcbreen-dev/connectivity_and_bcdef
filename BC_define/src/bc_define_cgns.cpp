@@ -31,13 +31,13 @@
 //─────────────────────────────────────────────────────────────
 #include "bc_define_internal.hpp"
 #include "logger.hpp"
-#include "mesh_utils.hpp"
+#include "cgns_cleanup.hpp"
 
 #include <chrono>
 #include <iostream>
 #include <unordered_map>
 
-namespace fs::bc {
+namespace bcdef::boundary {
 
 /*=====================================================================
   face_dims (local helper)
@@ -53,7 +53,7 @@ namespace fs::bc {
     - vLen is forced to 1 so the rest of the logic can treat faces as
       degenerate 2-D grids.
 =====================================================================*/
-static void face_dims(const fs::Zone& z, int face, int& uLen, int& vLen)
+static void face_dims(const bcdef::Zone& z, int face, int& uLen, int& vLen)
 {
     if (z.nk() == 1) {
         if (face == 0 || face == 1) { // iMin/iMax
@@ -97,7 +97,7 @@ static void face_dims(const fs::Zone& z, int face, int& uLen, int& vLen)
   This is intended for developer diagnostics only and has no effect
   on BC writing logic.
 =====================================================================*/
-void run_io_benchmark(fs::Mesh& mesh, fs::Logger& log, int iters)
+void run_io_benchmark(bcdef::Mesh& mesh, bcdef::Logger& log, int iters)
 {
     const int fn = mesh.file_id();
     const int B  = mesh.base_id();
@@ -289,18 +289,18 @@ void run_io_benchmark(fs::Mesh& mesh, fs::Logger& log, int iters)
     - 3-D meshes: returns IFaceCenter / JFaceCenter / KFaceCenter
     - 2-D meshes: returns EdgeCenter
 =====================================================================*/
-CGNS_ENUMT(GridLocation_t) face_grid_location(fs::FaceDir face, int cell_dim)
+CGNS_ENUMT(GridLocation_t) face_grid_location(bcdef::FaceDir face, int cell_dim)
 {
     if (cell_dim >= 3) {
         switch (face) {
-            case fs::FaceDir::IMIN:
-            case fs::FaceDir::IMAX:
+            case bcdef::FaceDir::IMIN:
+            case bcdef::FaceDir::IMAX:
                 return CGNS_ENUMV(IFaceCenter);
-            case fs::FaceDir::JMIN:
-            case fs::FaceDir::JMAX:
+            case bcdef::FaceDir::JMIN:
+            case bcdef::FaceDir::JMAX:
                 return CGNS_ENUMV(JFaceCenter);
-            case fs::FaceDir::KMIN:
-            case fs::FaceDir::KMAX:
+            case bcdef::FaceDir::KMIN:
+            case bcdef::FaceDir::KMAX:
                 return CGNS_ENUMV(KFaceCenter);
         }
         return CGNS_ENUMV(FaceCenter);
@@ -320,28 +320,28 @@ CGNS_ENUMT(GridLocation_t) face_grid_location(fs::FaceDir face, int cell_dim)
     - true  and sets 'out' if the range lies on a face
     - false otherwise
 =====================================================================*/
-bool range_face(const fs::Zone& zone,
+bool range_face(const bcdef::Zone& zone,
                 const std::array<cgsize_t, 6>& r,
-                fs::FaceDir& out)
+                bcdef::FaceDir& out)
 {
     if (r[0] == r[3]) {
         if (r[0] == 1) {
-            out = fs::FaceDir::IMIN;
+            out = bcdef::FaceDir::IMIN;
             return true;
         }
         if (r[0] == static_cast<cgsize_t>(zone.ni() - 1)) {
-            out = fs::FaceDir::IMAX;
+            out = bcdef::FaceDir::IMAX;
             return true;
         }
         return false;
     }
     if (r[1] == r[4]) {
         if (r[1] == 1) {
-            out = fs::FaceDir::JMIN;
+            out = bcdef::FaceDir::JMIN;
             return true;
         }
         if (r[1] == static_cast<cgsize_t>(zone.nj() - 1)) {
-            out = fs::FaceDir::JMAX;
+            out = bcdef::FaceDir::JMAX;
             return true;
         }
         return false;
@@ -350,11 +350,11 @@ bool range_face(const fs::Zone& zone,
         return false;
     if (r[2] == r[5]) {
         if (r[2] == 1) {
-            out = fs::FaceDir::KMIN;
+            out = bcdef::FaceDir::KMIN;
             return true;
         }
         if (r[2] == static_cast<cgsize_t>(zone.nk() - 1)) {
-            out = fs::FaceDir::KMAX;
+            out = bcdef::FaceDir::KMAX;
             return true;
         }
         return false;
@@ -425,8 +425,8 @@ int ensure_family(int fn, int B, const std::string& family,
     - Uses FamilySpecified BCs with FamilyName linkage.
 =====================================================================*/
 void write_boundary_conditions(
-    fs::Mesh& mesh,
-    const std::vector<fs::BoundaryPatch>& patches,
+    bcdef::Mesh& mesh,
+    const std::vector<bcdef::BoundaryPatch>& patches,
     const std::unordered_map<ZoneFaceKey, BCSpec, ZoneFaceKeyHash>& specs,
     bool autowall,
     bool autofarfield)
@@ -451,7 +451,7 @@ void write_boundary_conditions(
 
     std::unordered_map<int, ZoneBCIndex> existing_by_zone;
 
-    auto to_range = [&](const fs::PointRange& pr) {
+    auto to_range = [&](const bcdef::PointRange& pr) {
         std::array<cgsize_t, 6> out{};
         if (mesh.cell_dim() == 2) {
             out[0] = static_cast<cgsize_t>(pr.begin[0]);
@@ -544,8 +544,8 @@ void write_boundary_conditions(
             spec = &it->second;
         }
 
-        const fs::Zone& zone = mesh.zones()[patch.zone - 1];
-        fs::PointRange face_range = face_center_range(zone, patch.face,
+        const bcdef::Zone& zone = mesh.zones()[patch.zone - 1];
+        bcdef::PointRange face_range = face_center_range(zone, patch.face,
                                                       patch.vtxBegin, patch.vtxEnd);
         std::array<cgsize_t, 6> new_range = to_range(face_range);
         bool user_spec = (it != specs.end());
@@ -554,7 +554,7 @@ void write_boundary_conditions(
         for (const auto& existing : zone_index.entries) {
             if (!existing.has_range)
                 continue;
-            fs::FaceDir existing_face;
+            bcdef::FaceDir existing_face;
             if (!range_face(zone, existing.range, existing_face))
                 continue;
             if (existing_face != patch.face)
@@ -578,7 +578,7 @@ void write_boundary_conditions(
                     existing_desc = existing.family;
                 throw std::runtime_error(
                     "Overlapping BCs in zone " + std::to_string(patch.zone) +
-                    " face " + fs::facedir_to_string(patch.face) +
+                    " face " + bcdef::facedir_to_string(patch.face) +
                     ". Existing: " + existing_desc +
                     " range " + range_to_string(existing.range) +
                     ", New: " + spec->family +
@@ -677,4 +677,4 @@ void write_boundary_conditions(
     }
 }
 
-} // namespace fs::bc
+} // namespace bcdef::boundary

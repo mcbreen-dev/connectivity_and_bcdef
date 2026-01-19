@@ -1,9 +1,9 @@
 /*
-  File: include/mesh_utils.hpp
+  File: include/cgns_cleanup.hpp
 
   CGNS tree cleanup utilities used by bc_define when --overwrite is enabled.
 
-  This header declares two functions implemented in src/mesh_utils.cpp:
+  This header declares two functions implemented in src/cgns_cleanup.cpp:
 
     - purge_BC_and_connectivity:
         Deletes, for every Zone_t, the entire "ZoneBC" and "ZoneGridConnectivity"
@@ -35,12 +35,12 @@ extern "C" {
     #include <cgnslib.h>
 }
 
-namespace fs {
+namespace bcdef {
 
     /*
       purge_BC_and_connectivity(mesh, log)
 
-      Effects (src/mesh_utils.cpp):
+      Effects (src/cgns_cleanup.cpp):
         - For each zone index Z in mesh.zones():
             cg_goto(fn, B, "Zone_t", Z, NULL)
             cg_delete_node("ZoneBC")
@@ -62,7 +62,7 @@ namespace fs {
     /*
       prune_unused_families(mesh, log)
 
-      Effects (src/mesh_utils.cpp):
+      Effects (src/cgns_cleanup.cpp):
         - Builds a set of referenced family names by:
             1) checking Zone_t for a FamilyName_t (cg_famname_read at "Zone_t", Z)
             2) checking each BC_t for a FamilyName_t (cg_famname_read under "ZoneBC_t"/"BC_t")

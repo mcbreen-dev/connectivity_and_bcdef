@@ -16,7 +16,7 @@
 
 #include <algorithm>
 
-namespace fs::conn {
+namespace bcdef::conn {
 
 /*=====================================================================
 // build_hash_candidates
@@ -199,4 +199,4 @@ HashBuildResult build_hash_candidates(const FaceBuildResult& build,
     return result;
 }
 
-} // namespace fs::conn
+} // namespace bcdef::conn

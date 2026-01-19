@@ -32,7 +32,7 @@
 #include <cctype>
 #include <filesystem>
 
-namespace fs::bc {
+namespace bcdef::boundary {
 
 /*=====================================================================
   trim
@@ -166,9 +166,9 @@ bool is_plot3d_mesh(const std::string& path)
       (This preserves CGNS validity but can reduce uniqueness if users
        choose extremely long family names.)
 =====================================================================*/
-std::string bc_patch_name(const std::string& family, fs::FaceDir face, int index)
+std::string bc_patch_name(const std::string& family, bcdef::FaceDir face, int index)
 {
-    std::string name = family + "_" + fs::facedir_to_string(face) + "_" + std::to_string(index);
+    std::string name = family + "_" + bcdef::facedir_to_string(face) + "_" + std::to_string(index);
     if (name.size() > CGNS_MAX_NAME_LENGTH)
         name.resize(CGNS_MAX_NAME_LENGTH);
     return name;
@@ -198,22 +198,22 @@ std::string bc_patch_name(const std::string& family, fs::FaceDir face, int index
       [lo .. hi-1]. This corresponds to the cells between successive
       vertices.
 =====================================================================*/
-fs::PointRange face_center_range(const fs::Zone& zone, fs::FaceDir face,
-                                 const fs::IJK& vtxBegin, const fs::IJK& vtxEnd)
+bcdef::PointRange face_center_range(const bcdef::Zone& zone, bcdef::FaceDir face,
+                                 const bcdef::IJK& vtxBegin, const bcdef::IJK& vtxEnd)
 {
     /* Normalize corner ordering so vmin <= vmax component-wise. */
-    fs::IJK vmin = {
+    bcdef::IJK vmin = {
         std::min(vtxBegin[0], vtxEnd[0]),
         std::min(vtxBegin[1], vtxEnd[1]),
         std::min(vtxBegin[2], vtxEnd[2])
     };
-    fs::IJK vmax = {
+    bcdef::IJK vmax = {
         std::max(vtxBegin[0], vtxEnd[0]),
         std::max(vtxBegin[1], vtxEnd[1]),
         std::max(vtxBegin[2], vtxEnd[2])
     };
 
-    fs::PointRange pr{};
+    bcdef::PointRange pr{};
 
     /* Helper: set a varying axis' cell-center bounds. */
     auto set_var = [&](int axis, long long lo, long long hi, long long dim) {
@@ -227,37 +227,37 @@ fs::PointRange face_center_range(const fs::Zone& zone, fs::FaceDir face,
     };
 
     switch (face) {
-        case fs::FaceDir::IMIN:
+        case bcdef::FaceDir::IMIN:
             pr.begin[0] = 1;
             pr.end[0] = 1;
             set_var(1, vmin[1], vmax[1], zone.nj());
             set_var(2, vmin[2], vmax[2], zone.nk());
             break;
-        case fs::FaceDir::IMAX:
+        case bcdef::FaceDir::IMAX:
             pr.begin[0] = zone.ni() - 1;
             pr.end[0] = zone.ni() - 1;
             set_var(1, vmin[1], vmax[1], zone.nj());
             set_var(2, vmin[2], vmax[2], zone.nk());
             break;
-        case fs::FaceDir::JMIN:
+        case bcdef::FaceDir::JMIN:
             pr.begin[1] = 1;
             pr.end[1] = 1;
             set_var(0, vmin[0], vmax[0], zone.ni());
             set_var(2, vmin[2], vmax[2], zone.nk());
             break;
-        case fs::FaceDir::JMAX:
+        case bcdef::FaceDir::JMAX:
             pr.begin[1] = zone.nj() - 1;
             pr.end[1] = zone.nj() - 1;
             set_var(0, vmin[0], vmax[0], zone.ni());
             set_var(2, vmin[2], vmax[2], zone.nk());
             break;
-        case fs::FaceDir::KMIN:
+        case bcdef::FaceDir::KMIN:
             pr.begin[2] = 1;
             pr.end[2] = 1;
             set_var(0, vmin[0], vmax[0], zone.ni());
             set_var(1, vmin[1], vmax[1], zone.nj());
             break;
-        case fs::FaceDir::KMAX:
+        case bcdef::FaceDir::KMAX:
             pr.begin[2] = zone.nk() - 1;
             pr.end[2] = zone.nk() - 1;
             set_var(0, vmin[0], vmax[0], zone.ni());
@@ -276,21 +276,21 @@ fs::PointRange face_center_range(const fs::Zone& zone, fs::FaceDir face,
   This is used by the Plot3D BC writer path to convert connectivity
   patches (in vertex space) into cell-center index ranges.
 =====================================================================*/
-fs::PointRange face_center_range(const fs::Plot3DZone& zone, fs::FaceDir face,
-                                 const fs::IJK& vtxBegin, const fs::IJK& vtxEnd)
+bcdef::PointRange face_center_range(const bcdef::Plot3DZone& zone, bcdef::FaceDir face,
+                                 const bcdef::IJK& vtxBegin, const bcdef::IJK& vtxEnd)
 {
-    fs::IJK vmin = {
+    bcdef::IJK vmin = {
         std::min(vtxBegin[0], vtxEnd[0]),
         std::min(vtxBegin[1], vtxEnd[1]),
         std::min(vtxBegin[2], vtxEnd[2])
     };
-    fs::IJK vmax = {
+    bcdef::IJK vmax = {
         std::max(vtxBegin[0], vtxEnd[0]),
         std::max(vtxBegin[1], vtxEnd[1]),
         std::max(vtxBegin[2], vtxEnd[2])
     };
 
-    fs::PointRange pr{};
+    bcdef::PointRange pr{};
     auto set_var = [&](int axis, long long lo, long long hi, long long dim) {
         if (dim <= 1) {
             pr.begin[axis] = 1;
@@ -302,37 +302,37 @@ fs::PointRange face_center_range(const fs::Plot3DZone& zone, fs::FaceDir face,
     };
 
     switch (face) {
-        case fs::FaceDir::IMIN:
+        case bcdef::FaceDir::IMIN:
             pr.begin[0] = 1;
             pr.end[0] = 1;
             set_var(1, vmin[1], vmax[1], zone.nj());
             set_var(2, vmin[2], vmax[2], zone.nk());
             break;
-        case fs::FaceDir::IMAX:
+        case bcdef::FaceDir::IMAX:
             pr.begin[0] = zone.ni() - 1;
             pr.end[0] = zone.ni() - 1;
             set_var(1, vmin[1], vmax[1], zone.nj());
             set_var(2, vmin[2], vmax[2], zone.nk());
             break;
-        case fs::FaceDir::JMIN:
+        case bcdef::FaceDir::JMIN:
             pr.begin[1] = 1;
             pr.end[1] = 1;
             set_var(0, vmin[0], vmax[0], zone.ni());
             set_var(2, vmin[2], vmax[2], zone.nk());
             break;
-        case fs::FaceDir::JMAX:
+        case bcdef::FaceDir::JMAX:
             pr.begin[1] = zone.nj() - 1;
             pr.end[1] = zone.nj() - 1;
             set_var(0, vmin[0], vmax[0], zone.ni());
             set_var(2, vmin[2], vmax[2], zone.nk());
             break;
-        case fs::FaceDir::KMIN:
+        case bcdef::FaceDir::KMIN:
             pr.begin[2] = 1;
             pr.end[2] = 1;
             set_var(0, vmin[0], vmax[0], zone.ni());
             set_var(1, vmin[1], vmax[1], zone.nj());
             break;
-        case fs::FaceDir::KMAX:
+        case bcdef::FaceDir::KMAX:
             pr.begin[2] = zone.nk() - 1;
             pr.end[2] = zone.nk() - 1;
             set_var(0, vmin[0], vmax[0], zone.ni());
@@ -343,4 +343,4 @@ fs::PointRange face_center_range(const fs::Plot3DZone& zone, fs::FaceDir face,
     return pr;
 }
 
-} // namespace fs::bc
+} // namespace bcdef::boundary

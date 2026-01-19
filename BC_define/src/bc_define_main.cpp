@@ -15,7 +15,7 @@
 ─────────────────────────────────────────────────────────────*/
 #include "bc_define_internal.hpp"
 #include "logger.hpp"
-#include "mesh_utils.hpp"
+#include "cgns_cleanup.hpp"
 
 #include <filesystem>
 #include <iostream>
@@ -128,7 +128,7 @@ int main(int argc, char** argv)
       Mesh format detection:
       Plot3D meshes are identified purely by filename extension.
     ---------------------------------------------------------*/
-    const bool is_plot3d = fs::bc::is_plot3d_mesh(meshPath);
+    const bool is_plot3d = bcdef::boundary::is_plot3d_mesh(meshPath);
 
     /*---------------------------------------------------------
       Logger initialization.
@@ -136,7 +136,7 @@ int main(int argc, char** argv)
     ---------------------------------------------------------*/
     std::filesystem::path logPath = std::filesystem::path(meshPath).parent_path() /
                                     "bc_define.log";
-    fs::Logger log(logPath.string());
+    bcdef::Logger log(logPath.string());
     log.info("BC_define started");
     log.info("Mesh     : " + meshPath);
     if (!bcdefPath.empty())
@@ -181,18 +181,18 @@ int main(int argc, char** argv)
                 return 1;
             }
 
-            auto zones = fs::read_plot3d(meshPath);
+            auto zones = bcdef::read_plot3d(meshPath);
             log.info("Opened Plot3D mesh with " + std::to_string(zones.size()) + " zone(s)");
 
-            auto result = fs::ConnectivityDetector::run_plot3d(
-                zones, log, fs::GEOM_TOL, threads);
-            auto bc_specs = fs::bc::parse_bcdef(bcdefPath);
+            auto result = bcdef::ConnectivityDetector::run_plot3d(
+                zones, log, bcdef::GEOM_TOL, threads);
+            auto bc_specs = bcdef::boundary::parse_bcdef(bcdefPath);
 
-            auto bcs = fs::bc::build_plot3d_bcs(
+            auto bcs = bcdef::boundary::build_plot3d_bcs(
                 zones, result.boundary, bc_specs, autowall, autofarfield);
             std::filesystem::path cwd = std::filesystem::current_path();
-            fs::bc::write_plot3d_1to1s((cwd / "1to1s").string(), zones, result.connections);
-            fs::bc::write_plot3d_bcs((cwd / "bcs").string(), zones, bcs);
+            bcdef::boundary::write_plot3d_1to1s((cwd / "1to1s").string(), zones, result.connections);
+            bcdef::boundary::write_plot3d_bcs((cwd / "bcs").string(), zones, bcs);
 
             log.info("Finished OK.  Exiting.");
             return 0;
@@ -201,7 +201,7 @@ int main(int argc, char** argv)
         /*=====================================================
           CGNS workflow
         =====================================================*/
-        fs::Mesh mesh;
+        bcdef::Mesh mesh;
         mesh.open(meshPath, /*modify=*/!bench_io);
 
         /*-----------------------------------------------------
@@ -209,7 +209,7 @@ int main(int argc, char** argv)
           No BCs or connectivity are modified.
         -----------------------------------------------------*/
         if (bench_io) {
-            fs::bc::run_io_benchmark(mesh, log, bench_iters);
+            bcdef::boundary::run_io_benchmark(mesh, log, bench_iters);
             mesh.close();
             log.info("Finished OK.  Exiting.");
             return 0;
@@ -230,7 +230,7 @@ int main(int argc, char** argv)
           Removes existing BC_t and GridConnectivity_t nodes.
         -----------------------------------------------------*/
         if (overwrite)
-            fs::purge_BC_and_connectivity(mesh, log);
+            bcdef::purge_BC_and_connectivity(mesh, log);
 
 /*
 CGNS-SIDS design intent:
@@ -243,15 +243,15 @@ CGNS User Guide. CGNS/SIDS - Standard Interface Data Structures/8:Multizone Inte
 https://cgns.org/standard/SIDS/multizone.html
 */
 
-        std::vector<fs::BoundaryPatch> boundary_patches =
-            fs::ConnectivityDetector::run(mesh, log, fs::GEOM_TOL, overwrite, threads);
+        std::vector<bcdef::BoundaryPatch> boundary_patches =
+            bcdef::ConnectivityDetector::run(mesh, log, bcdef::GEOM_TOL, overwrite, threads);
 
         /*-----------------------------------------------------
           Write BCs only if uncovered boundary patches exist
         -----------------------------------------------------*/
         if (!boundary_patches.empty()) {
-            auto bc_specs = fs::bc::parse_bcdef(bcdefPath);
-            fs::bc::write_boundary_conditions(mesh, boundary_patches, bc_specs,
+            auto bc_specs = bcdef::boundary::parse_bcdef(bcdefPath);
+            bcdef::boundary::write_boundary_conditions(mesh, boundary_patches, bc_specs,
                                               autowall, autofarfield);
         }
 
@@ -259,7 +259,7 @@ https://cgns.org/standard/SIDS/multizone.html
           Remove unused CGNS Family_t nodes after overwrite
         -----------------------------------------------------*/
         if (overwrite)
-            fs::prune_unused_families(mesh, log);
+            bcdef::prune_unused_families(mesh, log);
 
         mesh.close();
         log.info("Finished OK.  Exiting.");

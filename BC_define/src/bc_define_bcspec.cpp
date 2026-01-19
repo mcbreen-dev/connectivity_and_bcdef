@@ -46,7 +46,7 @@
 #include <fstream>
 #include <sstream>
 
-namespace fs::bc {
+namespace bcdef::boundary {
 
 /*-------------------------------------------------------------
   parse_bc_type
@@ -240,7 +240,7 @@ parse_bcdef(const std::string& path)
         /*-----------------------------------------------------
           Parse face selector and BC type
         -----------------------------------------------------*/
-        fs::FaceDir face = fs::selector_to_facedir(face_token);
+        bcdef::FaceDir face = bcdef::selector_to_facedir(face_token);
         CGNS_ENUMT(BCType_t) bc_type = parse_bc_type(bc_token);
 
         /*-----------------------------------------------------
@@ -269,7 +269,7 @@ parse_bcdef(const std::string& path)
                 if (it->second.family != family_name || it->second.type != bc_type) {
                     throw std::runtime_error(
                         "Conflicting BCs for zone " + std::to_string(zone) + " face " +
-                        fs::facedir_to_string(face));
+                        bcdef::facedir_to_string(face));
                 }
                 continue;
             }
@@ -282,4 +282,4 @@ parse_bcdef(const std::string& path)
     return specs;
 }
 
-} // namespace fs::bc
+} // namespace bcdef::boundary

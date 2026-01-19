@@ -1,5 +1,5 @@
 /*─────────────────────────────────────────────────────────────
-  File: src/mesh_utils.cpp
+  File: src/cgns_cleanup.cpp
 
   CGNS mesh maintenance utilities used by bc_define --overwrite.
 
@@ -25,7 +25,7 @@
       (see common.hpp) where appropriate, and explicit CGNS error codes are
       handled where deletion semantics vary by backend (HDF5).
 ─────────────────────────────────────────────────────────────*/
-#include "mesh_utils.hpp"
+#include "cgns_cleanup.hpp"
 #include "common.hpp"
 #include <unordered_set>
 #include <vector>
@@ -38,7 +38,7 @@ extern "C" {
 #define CGNS_MAX_NAME_LENGTH 32
 #endif
 
-namespace fs {
+namespace bcdef {
 
 /*=====================================================================
   delete_child

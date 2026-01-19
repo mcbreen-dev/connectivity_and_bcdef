@@ -103,7 +103,7 @@ private:
 
 } // anonymous namespace
 
-namespace fs {
+namespace bcdef {
 
 /*=====================================================================
   read_plot3d
@@ -204,4 +204,4 @@ std::vector<Plot3DZone> read_plot3d(const std::string& mesh_path) {
     return zones;
 }
 
-} // namespace fs
+} // namespace bcdef

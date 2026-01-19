@@ -50,11 +50,11 @@
 #define CGNS_MAX_NAME_LENGTH 32
 #endif
 
-namespace fs {
+namespace bcdef {
 class Logger;
 }
 
-namespace fs::bc {
+namespace bcdef::boundary {
 
 /*
   ZoneFaceKey
@@ -79,7 +79,7 @@ namespace fs::bc {
 */
 struct ZoneFaceKey {
     int zone = 0;
-    fs::FaceDir face = fs::FaceDir::IMIN;
+    bcdef::FaceDir face = bcdef::FaceDir::IMIN;
 
     bool operator==(const ZoneFaceKey& other) const
     {
@@ -156,7 +156,7 @@ struct BCSpec {
 */
 struct Plot3DBcEntry {
     int zone = 0;
-    fs::FaceDir face = fs::FaceDir::IMIN;
+    bcdef::FaceDir face = bcdef::FaceDir::IMIN;
     std::string family;
     std::array<long long, 6> range{};
 };
@@ -225,23 +225,23 @@ bool is_plot3d_mesh(const std::string& path);
   face_center_range(zone, face, vtxBegin, vtxEnd)  (CGNS Zone overload)
 
   Input:
-    - zone: fs::Zone containing Ni/Nj/Nk vertex dimensions
+    - zone: bcdef::Zone containing Ni/Nj/Nk vertex dimensions
     - face: which boundary face the patch lies on
     - vtxBegin, vtxEnd:
         vertex indices (1-based) marking a patch on the face
 
   Output:
-    - fs::PointRange in face-center (cell-face) indexing:
+    - bcdef::PointRange in face-center (cell-face) indexing:
         For non-collapsed dimensions: [lo .. hi-1]
         For collapsed dimensions (dim<=1): [1..1]
 
   Used in:
     - write_boundary_conditions() (to compute cgsize_t ranges for cg_boco_write)
 */
-fs::PointRange face_center_range(const fs::Zone& zone,
-                                 fs::FaceDir face,
-                                 const fs::IJK& vtxBegin,
-                                 const fs::IJK& vtxEnd);
+bcdef::PointRange face_center_range(const bcdef::Zone& zone,
+                                 bcdef::FaceDir face,
+                                 const bcdef::IJK& vtxBegin,
+                                 const bcdef::IJK& vtxEnd);
 /*
   face_center_range(zone, face, vtxBegin, vtxEnd)  (Plot3DZone overload)
 
@@ -250,10 +250,10 @@ fs::PointRange face_center_range(const fs::Zone& zone,
   Used in:
     - build_plot3d_bcs()
 */
-fs::PointRange face_center_range(const fs::Plot3DZone& zone,
-                                 fs::FaceDir face,
-                                 const fs::IJK& vtxBegin,
-                                 const fs::IJK& vtxEnd);
+bcdef::PointRange face_center_range(const bcdef::Plot3DZone& zone,
+                                 bcdef::FaceDir face,
+                                 const bcdef::IJK& vtxBegin,
+                                 const bcdef::IJK& vtxEnd);
 
 /*------------------------------------------------------------------------------
   CGNS writing helpers (src/bc_define_cgns.cpp)
@@ -276,7 +276,7 @@ fs::PointRange face_center_range(const fs::Plot3DZone& zone,
   Used by:
     - write_boundary_conditions() to set grid location for each new BC.
 */
-CGNS_ENUMT(GridLocation_t) face_grid_location(fs::FaceDir face, int cell_dim);
+CGNS_ENUMT(GridLocation_t) face_grid_location(bcdef::FaceDir face, int cell_dim);
 
 /*
   Template: ranges_equal(a,b)
@@ -351,7 +351,7 @@ inline std::string range_to_string(const std::array<T, 6>& r)
   Used in:
     - write_boundary_conditions() when creating new BC_t nodes.
 */
-std::string bc_patch_name(const std::string& family, fs::FaceDir face, int index);
+std::string bc_patch_name(const std::string& family, bcdef::FaceDir face, int index);
 
 /*
   range_face(zone, r, out)
@@ -370,9 +370,9 @@ std::string bc_patch_name(const std::string& family, fs::FaceDir face, int index
     - write_boundary_conditions() to compare candidate patches against existing BCs
       on the same face.
 */
-bool range_face(const fs::Zone& zone,
+bool range_face(const bcdef::Zone& zone,
                 const std::array<cgsize_t, 6>& r,
-                fs::FaceDir& out);
+                bcdef::FaceDir& out);
 
 /*
   ensure_family(fn, B, family, bc_type, cache)
@@ -455,8 +455,8 @@ parse_bcdef(const std::string& path);
   Implementation: src/bc_define_cgns.cpp
 */
 void write_boundary_conditions(
-    fs::Mesh& mesh,
-    const std::vector<fs::BoundaryPatch>& patches,
+    bcdef::Mesh& mesh,
+    const std::vector<bcdef::BoundaryPatch>& patches,
     const std::unordered_map<ZoneFaceKey, BCSpec, ZoneFaceKeyHash>& specs,
     bool autowall,
     bool autofarfield);
@@ -471,7 +471,7 @@ void write_boundary_conditions(
   Prints per-zone and overall stats to stdout and logs start/finish.
   Used only in bc_define_main.cpp when --bench-io is provided.
 */
-void run_io_benchmark(fs::Mesh& mesh, fs::Logger& log, int iters);
+void run_io_benchmark(bcdef::Mesh& mesh, bcdef::Logger& log, int iters);
 
 
 /*
@@ -487,8 +487,8 @@ void run_io_benchmark(fs::Mesh& mesh, fs::Logger& log, int iters);
     - writes file "1to1s" in current working directory.
 */
 void write_plot3d_1to1s(const std::string& path,
-                        const std::vector<fs::Plot3DZone>& zones,
-                        const std::vector<fs::ConnPatch>& conns);
+                        const std::vector<bcdef::Plot3DZone>& zones,
+                        const std::vector<bcdef::ConnPatch>& conns);
 
 /*
   build_plot3d_bcs(zones, patches, specs, autowall, autofarfield)
@@ -509,8 +509,8 @@ void write_plot3d_1to1s(const std::string& path,
     - bc_define_main.cpp (Plot3D branch)
 */
 std::vector<Plot3DBcEntry> build_plot3d_bcs(
-    const std::vector<fs::Plot3DZone>& zones,
-    const std::vector<fs::BoundaryPatch>& patches,
+    const std::vector<bcdef::Plot3DZone>& zones,
+    const std::vector<bcdef::BoundaryPatch>& patches,
     const std::unordered_map<ZoneFaceKey, BCSpec, ZoneFaceKeyHash>& specs,
     bool autowall,
     bool autofarfield);
@@ -524,7 +524,7 @@ std::vector<Plot3DBcEntry> build_plot3d_bcs(
     - writes file "bcs" in current working directory.
 */
 void write_plot3d_bcs(const std::string& path,
-                      const std::vector<fs::Plot3DZone>& zones,
+                      const std::vector<bcdef::Plot3DZone>& zones,
                       const std::vector<Plot3DBcEntry>& bcs);
 
-} // namespace fs::bc
+} // namespace bcdef::boundary

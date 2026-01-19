@@ -26,7 +26,7 @@ BC_DEFINE_SRC := $(SRC_DIR)/bc_define_main.cpp \
                  $(SRC_DIR)/bc_define_plot3d.cpp \
                  $(SRC_DIR)/bc_define_helpers.cpp \
                  $(SRC_DIR)/mesh_io.cpp \
-                 $(SRC_DIR)/mesh_utils.cpp \
+                 $(SRC_DIR)/cgns_cleanup.cpp \
                  $(SRC_DIR)/plot3d_io.cpp \
                  $(SRC_DIR)/connectivity_core.cpp \
                  $(SRC_DIR)/connectivity_face_build.cpp \
@@ -38,7 +38,7 @@ BC_DEFINE_SRC := $(SRC_DIR)/bc_define_main.cpp \
 
 BC_DUMP_SRC   := $(SRC_DIR)/bc_dump.cpp \
                  $(SRC_DIR)/mesh_io.cpp \
-                 $(SRC_DIR)/mesh_utils.cpp \
+                 $(SRC_DIR)/cgns_cleanup.cpp \
                  $(SRC_DIR)/logger.cpp
 
 define make-exe

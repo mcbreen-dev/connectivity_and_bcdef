@@ -32,7 +32,7 @@ extern "C" {
     #include <cgnslib.h>
 }
 
-namespace fs::conn {
+namespace bcdef::conn {
 
 /*=====================================================================
 // plane_index
@@ -892,4 +892,4 @@ void compute_donor_range(const int transform[3], const IJK& recvBegin, const IJK
     donorEnd = index2;
 }
 
-} // namespace fs::conn
+} // namespace bcdef::conn
