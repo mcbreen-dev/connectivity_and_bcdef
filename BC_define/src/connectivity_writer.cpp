@@ -11,14 +11,9 @@
     - ConnPatch cp       : resolved interface patch produced by the
                            connectivity pipeline (connectivity_verify.cpp)
 
-  Two encoding paths are supported:
-    1) Explicit-range path (preferred; cp.useExplicitRanges == true)
-       - recvRange and donorRange are already computed and stored in cp
-       - transform[3] is provided directly in cp.transform
-
-    2) Legacy offset/size/orientation path (cp.useExplicitRanges == false)
-       - patch described via face-local offsets/sizes and ori bits
-       - this file derives receiver/donor PointRange and transform[3]
+  This writer uses explicit PointRange + transform data carried in ConnPatch:
+    - recvRange/donorRange are precomputed
+    - transform[3] is supplied by the connectivity pipeline
 
   Safety/robustness features:
     - 2D zones (nk==1) are handled by collapsing K indices and setting
@@ -37,7 +32,6 @@
 ─────────────────────────────────────────────────────────────*/
 #include "connectivity_writer.hpp"
 #include "common.hpp"
-#include "logger.hpp"
 #include "mesh_io.hpp"
 
 #include <array>
@@ -52,93 +46,6 @@
 
 namespace fs {
 
-/*=====================================================================
-  Face-axis helpers
-
-  The connectivity pipeline uses FaceDir to represent structured block
-  faces (iMin/iMax/jMin/jMax/kMin/kMax). Several helper routines in this
-  file convert FaceDir into:
-    - the primary axis (I/J/K) of the face normal
-    - whether the face is the "plus" side (max) or "minus" side (min)
-    - the two varying (in-plane) axes for that face
-
-  These helpers are used when reconstructing:
-    - the CGNS Transform vector (tvec[3])
-    - point ranges for receiver/donor patches
-=====================================================================*/
-static constexpr int face_axis(FaceDir f)
-{
-    switch (f) {
-        case FaceDir::IMIN: case FaceDir::IMAX: return 0;
-        case FaceDir::JMIN: case FaceDir::JMAX: return 1;
-        case FaceDir::KMIN: case FaceDir::KMAX: return 2;
-    }
-    return 0;
-}
-
-static constexpr bool is_plus_side(FaceDir f)
-{
-    return f==FaceDir::IMAX || f==FaceDir::JMAX || f==FaceDir::KMAX;
-}
-
-/*------------------------------------------------------------------
-  face_variable_axes
-
-  For a given face, return the two axes that vary on that face plane.
-
-  Output:
-    out[0], out[1] are axis ids (0=I, 1=J, 2=K) that span the face.
-------------------------------------------------------------------*/
-static void face_variable_axes(FaceDir f,int out[2])
-{
-    switch (f){
-        case FaceDir::IMIN: case FaceDir::IMAX: out[0]=1; out[1]=2; break;
-        case FaceDir::JMIN: case FaceDir::JMAX: out[0]=0; out[1]=2; break;
-        case FaceDir::KMIN: case FaceDir::KMAX: out[0]=0; out[1]=1; break;
-    }
-}
-
-/*=====================================================================
-  axis_map
-
-  Construct one component of the CGNS Transform vector.
-
-  Transform is stored as signed axes:
-      ±1 => donor I
-      ±2 => donor J
-      ±3 => donor K
-      0  => collapsed axis (used for 2D)
-
-  Parameters:
-    recv, donor : receiver and donor faces (FaceDir)
-    rAx         : receiver axis being mapped (0=I, 1=J, 2=K)
-    swapUV      : whether receiver U/V were swapped
-    flipU/V     : whether U/V axis direction was flipped
-
-  Behavior:
-    - If rAx is the collapsed axis of the receiver face (normal direction),
-      map it to the donor's normal axis with sign based on min/max pairing.
-    - Otherwise map receiver face tangential axes according to swap/flip.
-=====================================================================*/
-static int axis_map(FaceDir recv,FaceDir donor,int rAx,
-                    bool swapUV,bool flipU,bool flipV)
-{
-    int recvVar[2], donorVar[2];
-    face_variable_axes(recv, recvVar);
-    face_variable_axes(donor,donorVar);
-
-    if (rAx == face_axis(recv)){                 /* collapsed axis */
-        int sign = is_plus_side(recv)==is_plus_side(donor) ? -1:+1;
-        return sign * (face_axis(donor)+1);      /* ±(1|2|3) */
-    }
-
-    int idx = (rAx == recvVar[swapUV?1:0]) ? 0 : 1;   /* which param (U/V) */
-    int dAx = donorVar[idx];
-    int sign = (idx==0 ? (flipU?-1:+1) : (flipV?-1:+1));
-    return sign * (dAx+1);
-}
-
-
 /*
 CGNS-SIDS (Multizone Interface Connectivity):
 Interface ranges (PointRange / PointRangeDonor) are expressed in the grid IndexDimension,
@@ -149,76 +56,6 @@ This code always constructs 3-axis ranges (I,J,K) and collapses the unused axis 
 CGNS User Guide. CGNS/SIDS - Standard Interface Data Structures/8:Multizone Interface Connectivity
 https://cgns.org/standard/SIDS/multizone.html
 */
-
-/*=====================================================================
-  face_range
-
-  Build a CGNS-style PointRange array for a face patch.
-
-  Inputs:
-    z          : zone dimensions
-    d          : which face of the zone
-    offU/offV  : offsets along the two varying face axes
-    nu/nv      : extents (in vertices) along the two varying face axes
-
-  Output:
-    rng[6] = { imin, jmin, kmin, imax, jmax, kmax } (inclusive)
-
-  Notes:
-    - Offsets are applied in vertex coordinates (not cells).
-    - Callers often normalise the range after construction.
-=====================================================================*/
-static void face_range(const Zone& z,FaceDir d,
-                       long long offU,long long offV,
-                       long long nu,long long nv,
-                       cgsize_t rng[6])     /* imin jmin kmin imax jmax kmax */
-{
-    long long Ni=z.ni(), Nj=z.nj(), Nk=z.nk();
-    long long imin=1,imax=Ni, jmin=1,jmax=Nj,kmin=1,kmax=Nk;
-
-    switch (d){
-        case FaceDir::IMIN: imin=imax=1;
-            jmin+=offU; jmax=offU+nu;   kmin+=offV; kmax=offV+nv; break;
-        case FaceDir::IMAX: imin=imax=Ni;
-            jmin+=offU; jmax=offU+nu;   kmin+=offV; kmax=offV+nv; break;
-
-        case FaceDir::JMIN: jmin=jmax=1;
-            imin+=offU; imax=offU+nu;   kmin+=offV; kmax=offV+nv; break;
-        case FaceDir::JMAX: jmin=jmax=Nj;
-            imin+=offU; imax=offU+nu;   kmin+=offV; kmax=offV+nv; break;
-
-        case FaceDir::KMIN: kmin=kmax=1;
-            imin+=offU; imax=offU+nu;   jmin+=offV; jmax=offV+nv; break;
-        case FaceDir::KMAX: kmin=kmax=Nk;
-            imin+=offU; imax=offU+nu;   jmin+=offV; jmax=offV+nv; break;
-    }
-    rng[0]=imin; rng[1]=jmin; rng[2]=kmin;
-    rng[3]=imax; rng[4]=jmax; rng[5]=kmax;
-}
-
-/*=====================================================================
-  uv_dims_local
-
-  Return face-local vertex extents (U,V) for a given zone face.
-
-  For a face plane:
-    - i faces vary over (J,K)
-    - j faces vary over (I,K)
-    - k faces vary over (I,J)
-
-  Used by the legacy (non-explicit) path to derive default full-face
-  ranges and clamp patch sizes.
-=====================================================================*/
-static inline std::pair<long long,long long>
-uv_dims_local(const Zone& z,FaceDir d)
-{
-    switch (d){
-        case FaceDir::IMIN: case FaceDir::IMAX: return {z.nj(), z.nk()};
-        case FaceDir::JMIN: case FaceDir::JMAX: return {z.ni(), z.nk()};
-        case FaceDir::KMIN: case FaceDir::KMAX: return {z.ni(), z.nj()};
-    }
-    return {0,0};
-}
 
 /*=====================================================================
   Duplicate-avoidance cache
@@ -326,152 +163,59 @@ void write_1to1(Mesh& mesh,const ConnPatch& cp)
     int tvec[3]{0, 0, 0};
 
     /*=========================================================
-      Path A: explicit ranges
+      Explicit ranges
 
       resolve_matches_*() already computed:
         - receiver PointRange begin/end
         - donor PointRangeDonor begin/end
         - transform vector (signed axes)
-
-      This is the preferred path in the current pipeline.
     =========================================================*/
-    if (cp.useExplicitRanges) {
-        tvec[0] = cp.transform[0];
-        tvec[1] = cp.transform[1];
-        tvec[2] = cp.transform[2];
+    tvec[0] = cp.transform[0];
+    tvec[1] = cp.transform[1];
+    tvec[2] = cp.transform[2];
 
-        /*-----------------------------------------------------
-          2D receiver zones are represented by nk==1.
-          CGNS transform collapses K by setting transform[2]=0 and
-          ranges become 2D-style (imin jmin imax jmax 1 1).
-        -----------------------------------------------------*/
-        if (recvZ.nk() == 1) {
-            rRange[0] = static_cast<cgsize_t>(cp.recvRange.begin[0]);
-            rRange[1] = static_cast<cgsize_t>(cp.recvRange.begin[1]);
-            rRange[2] = static_cast<cgsize_t>(cp.recvRange.end[0]);
-            rRange[3] = static_cast<cgsize_t>(cp.recvRange.end[1]);
-            rRange[4] = 1;
-            rRange[5] = 1;
+    /*-----------------------------------------------------
+      2D receiver zones are represented by nk==1.
+      CGNS transform collapses K by setting transform[2]=0 and
+      ranges become 2D-style (imin jmin imax jmax 1 1).
+    -----------------------------------------------------*/
+    if (recvZ.nk() == 1) {
+        rRange[0] = static_cast<cgsize_t>(cp.recvRange.begin[0]);
+        rRange[1] = static_cast<cgsize_t>(cp.recvRange.begin[1]);
+        rRange[2] = static_cast<cgsize_t>(cp.recvRange.end[0]);
+        rRange[3] = static_cast<cgsize_t>(cp.recvRange.end[1]);
+        rRange[4] = 1;
+        rRange[5] = 1;
 
-            dRange[0] = static_cast<cgsize_t>(cp.donorRange.begin[0]);
-            dRange[1] = static_cast<cgsize_t>(cp.donorRange.begin[1]);
-            dRange[2] = static_cast<cgsize_t>(cp.donorRange.end[0]);
-            dRange[3] = static_cast<cgsize_t>(cp.donorRange.end[1]);
-            dRange[4] = 1;
-            dRange[5] = 1;
+        dRange[0] = static_cast<cgsize_t>(cp.donorRange.begin[0]);
+        dRange[1] = static_cast<cgsize_t>(cp.donorRange.begin[1]);
+        dRange[2] = static_cast<cgsize_t>(cp.donorRange.end[0]);
+        dRange[3] = static_cast<cgsize_t>(cp.donorRange.end[1]);
+        dRange[4] = 1;
+        dRange[5] = 1;
 
-            /* collapsed axis in 2D */
-            tvec[2] = 0;
+        /* collapsed axis in 2D */
+        tvec[2] = 0;
 
-            /* ensure remaining transform entries are valid non-K axes */
-            for (int k = 0; k < 2; ++k) {
-                if (tvec[k] == 0 || std::abs(tvec[k]) == 3)
-                    tvec[k] = (k == 0 ? 1 : 2);
-            }
-        } else {
-            rRange[0] = static_cast<cgsize_t>(cp.recvRange.begin[0]);
-            rRange[1] = static_cast<cgsize_t>(cp.recvRange.begin[1]);
-            rRange[2] = static_cast<cgsize_t>(cp.recvRange.begin[2]);
-            rRange[3] = static_cast<cgsize_t>(cp.recvRange.end[0]);
-            rRange[4] = static_cast<cgsize_t>(cp.recvRange.end[1]);
-            rRange[5] = static_cast<cgsize_t>(cp.recvRange.end[2]);
-
-            dRange[0] = static_cast<cgsize_t>(cp.donorRange.begin[0]);
-            dRange[1] = static_cast<cgsize_t>(cp.donorRange.begin[1]);
-            dRange[2] = static_cast<cgsize_t>(cp.donorRange.begin[2]);
-            dRange[3] = static_cast<cgsize_t>(cp.donorRange.end[0]);
-            dRange[4] = static_cast<cgsize_t>(cp.donorRange.end[1]);
-            dRange[5] = static_cast<cgsize_t>(cp.donorRange.end[2]);
+        /* ensure remaining transform entries are valid non-K axes */
+        for (int k = 0; k < 2; ++k) {
+            if (tvec[k] == 0 || std::abs(tvec[k]) == 3)
+                tvec[k] = (k == 0 ? 1 : 2);
         }
     } else {
-    /*=========================================================
-      Path B: legacy offset/size/orientation encoding
+        rRange[0] = static_cast<cgsize_t>(cp.recvRange.begin[0]);
+        rRange[1] = static_cast<cgsize_t>(cp.recvRange.begin[1]);
+        rRange[2] = static_cast<cgsize_t>(cp.recvRange.begin[2]);
+        rRange[3] = static_cast<cgsize_t>(cp.recvRange.end[0]);
+        rRange[4] = static_cast<cgsize_t>(cp.recvRange.end[1]);
+        rRange[5] = static_cast<cgsize_t>(cp.recvRange.end[2]);
 
-      This path reconstructs rRange/dRange and tvec from:
-        - receiver/donor face ids (FaceDir)
-        - patch offsets and extents (offU/offV/sizeU/sizeV)
-        - orientation bitfield cp.ori:
-            bit0 flipU
-            bit1 flipV
-            bit2 swapUV
-    =========================================================*/
-
-    /* -- receiver PointRange --------------------------------------- */
-    auto [fullU,fullV] = uv_dims_local(recvZ,cp.recvDir);
-
-    long long offU = cp.offU, offV = cp.offV;
-    if (offU<0 || offU>=fullU) offU = 0;
-    if (offV<0 || offV>=fullV) offV = 0;
-
-    long long sizeU = cp.sizeU<=0 || cp.sizeU>fullU ? fullU : cp.sizeU;
-    long long sizeV = cp.sizeV<=0 || cp.sizeV>fullV ? fullV : cp.sizeV;
-
-    face_range(recvZ,cp.recvDir,offU,offV,sizeU,sizeV,rRange);
-    normalise_range(rRange);
-
-    /* -- derive final tvec from ori bits --------------------------- */
-    {
-        bool swapUV = cp.ori & 4;
-        bool flipU  = cp.ori & 1;
-        bool flipV  = cp.ori & 2;
-        tvec[0] = axis_map(cp.recvDir,cp.donorDir,0,swapUV,flipU,flipV);
-        tvec[1] = axis_map(cp.recvDir,cp.donorDir,1,swapUV,flipU,flipV);
-        tvec[2] = axis_map(cp.recvDir,cp.donorDir,2,swapUV,flipU,flipV);
-    }
-
-    /*--------------------------------------------------------------
-      Additional sign correction when receiver and donor are faces on
-      the same axis plane (I↔I, J↔J, K↔K). This enforces CGNS sign
-      conventions for min/min, min/max, max/min, max/max pairings.
-    --------------------------------------------------------------*/
-    {
-        int ax = face_axis(cp.recvDir);        // 0=I,1=J,2=K
-        if (ax == face_axis(cp.donorDir)) {    // both faces lie on same axis plane
-            bool same_side = (is_plus_side(cp.recvDir) == is_plus_side(cp.donorDir));
-            int sgn = same_side ? +1 : -1;
-            tvec[ax] =  sgn * std::abs(tvec[ax]);   // enforce correct sign
-            if (same_side && ax == 0 && cp.ori == 1) {
-                tvec[0] = -tvec[0];
-                tvec[1] = -tvec[1];
-                tvec[2] = -tvec[2];
-            }
-        }
-    }
-
-    /* 2-D safety (collapsed K) */
-    if (recvZ.nk()==1) {
-        tvec[2]=0;
-        for (int k=0;k<2;++k)
-            if (tvec[k]==0 || std::abs(tvec[k])==3)
-                tvec[k] = (k==0?1:2);
-    }
-
-    /* -- donor PointRange (face-local) ------------------------------ */
-    auto [donU,donV]   = uv_dims_local(donorZ,cp.donorDir);
-
-    face_range(donorZ,cp.donorDir,0,0,donU,donV,dRange);
-    normalise_range(dRange);
-
-    /* apply patch offset (if any) */
-    if (cp.offU || cp.offV){
-        int dU = std::abs(tvec[0])-1;
-        int dV = std::abs(tvec[1])-1;
-        dRange[dU]     += cp.offU; dRange[dU+3] += cp.offU;
-        dRange[dV]     += cp.offV; dRange[dV+3] += cp.offV;
-    }
-
-    /* mirror collapsed axes */
-    sync_collapsed_axes(rRange,dRange,tvec);
-
-    /* -- 2-D remap for CGNS (index_dim=2) --------------------------- */
-    if (recvZ.nk() == 1) {
-        cgsize_t r2[6] = {rRange[0], rRange[1], rRange[3], rRange[4], 1, 1};
-        cgsize_t d2[6] = {dRange[0], dRange[1], dRange[3], dRange[4], 1, 1};
-        for (int i = 0; i < 6; ++i) {
-            rRange[i] = r2[i];
-            dRange[i] = d2[i];
-        }
-    }
+        dRange[0] = static_cast<cgsize_t>(cp.donorRange.begin[0]);
+        dRange[1] = static_cast<cgsize_t>(cp.donorRange.begin[1]);
+        dRange[2] = static_cast<cgsize_t>(cp.donorRange.begin[2]);
+        dRange[3] = static_cast<cgsize_t>(cp.donorRange.end[0]);
+        dRange[4] = static_cast<cgsize_t>(cp.donorRange.end[1]);
+        dRange[5] = static_cast<cgsize_t>(cp.donorRange.end[2]);
     }
 
     /*=========================================================

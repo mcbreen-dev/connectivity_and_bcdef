@@ -540,7 +540,7 @@ std::vector<MatchPair> collect_match_pairs(const FaceBuildResult& build,
 //   Step 3: For a completed patch:
 //             - If boundary: emit BoundaryRecord(zone, face, begin/end, full?)
 //             - If interior: compute CGNS transform and explicit donor ranges,
-//               then emit ConnPatch with useExplicitRanges=true.
+//               then emit ConnPatch.
 //
 // 2D handling:
 //   - For zones with nk==1, recv and donor k are fixed to 1.
@@ -743,7 +743,7 @@ void resolve_matches_cgns(const Mesh& mesh, Logger& log,
                       during growth (or neither was inferred for tiny patches).
                     - Build CGNS transform vector for receiver axes.
                     - Compute explicit donor point range using compute_donor_range().
-                    - Emit ConnPatch with useExplicitRanges=true.
+                    - Emit ConnPatch.
                 ---------------------------------------------------------*/
                 } else {
                     int donorFace = curOther.face;
@@ -872,17 +872,6 @@ void resolve_matches_cgns(const Mesh& mesh, Logger& log,
                         cp.recvDir = face_dir_from_id(face);
                         cp.donorDir = face_dir_from_id(donorFace);
 
-                        // Patch offsets/sizes are stored in face-local units.
-                        // sizeU/sizeV represent vertex counts in the patch range
-                        // (cell span + 1), hence “+2” used during fill_point_range.
-                        cp.offU = uStart;
-                        cp.offV = vStart;
-                        cp.sizeU = (uEnd - uStart + 2);
-                        cp.sizeV = (vEnd - vStart + 2);
-
-                        // ori is not used when useExplicitRanges=true.
-                        cp.ori = 0;
-
                         // transform is stored as CGNS-style signed axes.
                         cp.transform[0] = transform_cgns[0];
                         cp.transform[1] = transform_cgns[1];
@@ -893,8 +882,6 @@ void resolve_matches_cgns(const Mesh& mesh, Logger& log,
                         cp.recvRange.end = recvEnd;
                         cp.donorRange.begin = donorBegin;
                         cp.donorRange.end = donorEnd;
-
-                        cp.useExplicitRanges = true;
 
                         conn_patches.push_back(cp);
                     }
@@ -950,7 +937,7 @@ void resolve_matches_cgns(const Mesh& mesh, Logger& log,
 //
 // Outputs (appended to):
 //   boundary_records : vector<BoundaryRecord>
-//   conn_patches     : vector<ConnPatch> with useExplicitRanges=true
+//   conn_patches     : vector<ConnPatch>
 //
 // Patch construction overview:
 //
@@ -997,11 +984,7 @@ void resolve_matches_cgns(const Mesh& mesh, Logger& log,
 //   - resulting PointRanges are valid 2D IJK ranges with k==1
 //
 // Notes:
-//   - Unlike the CGNS path, Plot3D output always uses explicit ranges
-//     (useExplicitRanges=true) and is written to text by
-//     bc_define_plot3d.cpp.
-//   - ConnPatch.offU/offV/sizeU/sizeV are still populated for consistency
-//     with the CGNS writer and for debugging, but the ranges are authoritative.
+//   - Plot3D output always uses explicit ranges and is written to text by bc_define_plot3d.cpp.
 //=====================================================================*/
 void resolve_matches_plot3d(const std::vector<Plot3DZone>& zones, Logger& log,
                             FaceBuildResult& build,
@@ -1340,28 +1323,14 @@ void resolve_matches_plot3d(const std::vector<Plot3DZone>& zones, Logger& log,
                                      std::to_string(transform_cgns[2]) + ")");
                         }
 
-                        // ConnPatch stores both "legacy" offset/size fields (offU/offV/sizeU/sizeV)
-                        // and explicit vertex ranges (recvRange/donorRange). For Plot3D output,
-                        // the explicit ranges are the authoritative representation and are
-                        // written by bc_define_plot3d.cpp to the "1to1s" text file.
+                        // ConnPatch stores explicit vertex ranges (recvRange/donorRange).
+                        // For Plot3D output, the explicit ranges are the authoritative representation
+                        // and are written by bc_define_plot3d.cpp to the "1to1s" text file.
                         ConnPatch cp;
                         cp.recvZone = recvZone;
                         cp.donorZone = donorZone;
                         cp.recvDir = face_dir_from_id(face);
                         cp.donorDir = face_dir_from_id(donorFace);
-
-                        // offU/offV are 0-based face-cell offsets.
-                        cp.offU = uStart;
-                        cp.offV = vStart;
-
-                        // sizeU/sizeV are vertex extents in that direction:
-                        //   (uEnd - uStart + 1) cells => +1 vertices => +2 in total.
-                        cp.sizeU = (uEnd - uStart + 2);
-                        cp.sizeV = (vEnd - vStart + 2);
-
-                        // ori is unused in the explicit-range path (kept for compatibility
-                        // with the older non-explicit writer code path in connectivity_writer.cpp).
-                        cp.ori = 0;
 
                         // Store transform and explicit ranges.
                         cp.transform[0] = transform_cgns[0];
@@ -1372,8 +1341,6 @@ void resolve_matches_plot3d(const std::vector<Plot3DZone>& zones, Logger& log,
                         cp.recvRange.end = recvEnd;
                         cp.donorRange.begin = donorBegin;
                         cp.donorRange.end = donorEnd;
-
-                        cp.useExplicitRanges = true;
 
                         conn_patches.push_back(cp);
                     }

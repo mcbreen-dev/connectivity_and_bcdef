@@ -27,8 +27,6 @@
 #include <iostream>   // std::cout (console output stream)
 #include <mutex>      // std::mutex, std::lock_guard (thread synchronization)
 #include <string>     // std::string (message storage/formatting)
-#include <chrono>     // (included for timestamp formatting)
-#include <iomanip>    // (included for timestamp formatting)
 
 namespace fs {
 
@@ -139,22 +137,6 @@ private:
           (single contiguous line to stdout, and single line to file)
     ------------------------------------------------------------------*/
     std::mutex    mtx_;
-
-    /*------------------------------------------------------------------
-      timestamp: constructs a human-readable time string.
-
-      Return:
-        std::string
-
-      Intended formatting (implementation-defined):
-        - Typically includes date/time to at least seconds resolution
-
-      Note:
-        - The current src/logger.cpp DOES NOT call timestamp() when building
-          log lines, but the declaration remains available for testing and 
-          future use.
-    ------------------------------------------------------------------*/
-    static std::string timestamp();
 };
 
 } // namespace fs

@@ -67,18 +67,6 @@ struct Zone
     long long ni() const { return vtxSize[0]; }
     long long nj() const { return vtxSize[1]; }
     long long nk() const { return vtxSize[2]; }
-
-    /*
-      face_range(dir):
-        - Returns a PointRange on the *vertex grid* describing the full face plane.
-        - Output is 1-based indices.
-        - Implemented in mesh_io.cpp.
-
-      Usage:
-        - NOT CURRENTLY USED: the connectivity code computes face ranges via
-          other helpers (fill_point_range, face_center_range).
-    */
-    PointRange face_range(FaceDir dir) const;
 };
 
 /*-------------------------------------------------------------

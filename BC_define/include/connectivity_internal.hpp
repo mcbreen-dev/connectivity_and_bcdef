@@ -828,7 +828,7 @@ void fill_point_range(const Plot3DZone& z, int face, int uStart, int vStart, int
     - donorEnd = donorBeginIn + T * delta1 (with an adjustment step if any axis flips)
 
   Used in:
-    - resolve_matches_*() to populate ConnPatch donorRange when useExplicitRanges=true
+    - resolve_matches_*() to populate ConnPatch donorRange
 */
 void compute_donor_range(const int transform[3],
                          const IJK& recvBegin, const IJK& recvEnd,
@@ -1050,7 +1050,7 @@ int find_match_in_face(const FaceHash& hash,
                - set normal component via set_normal_transform()
                - compute donorBegin/donorEnd via compute_donor_range()
                - apply should_write() to emit connection once
-               - append ConnPatch with useExplicitRanges=true
+               - append ConnPatch
 
   Called by:
     - ConnectivityDetector::run_collect()

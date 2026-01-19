@@ -10,10 +10,6 @@
         * Record per-zone vertex dimensions (Ni,Nj,Nk)
         * Normalize 2-D structured meshes so Nk == 1
 
-    - Zone::face_range
-        * Convenience helper returning the full IJK PointRange
-          corresponding to a given boundary face of a structured zone
-
   Scope and assumptions:
     - Only structured grids are handled here.
     - Only the first CGNS base (base_id() == 1) is used.
@@ -24,7 +20,6 @@
   elsewhere (connectivity_* and mesh_utils.cpp).
 ─────────────────────────────────────────────────────────────*/
 #include "mesh_io.hpp"
-#include "logger.hpp"
 #include "common.hpp"
 
 #ifndef CGNS_MAX_NAME_LENGTH
@@ -145,62 +140,5 @@ void Mesh::close()
   Ensures the CGNS file is closed when the Mesh object is destroyed.
 =====================================================================*/
 Mesh::~Mesh() { close(); }
-
-/*=====================================================================
-  Zone::face_range
-
-  Return the full vertex PointRange corresponding to a boundary face
-  of this structured zone.
-
-  Parameters:
-    dir : FaceDir (IMIN, IMAX, JMIN, JMAX, KMIN, KMAX)
-
-  Returns:
-    PointRange with:
-      - begin : inclusive 1-based IJK index
-      - end   : inclusive 1-based IJK index
-
-  Notes:
-    - For 2-D zones (nk == 1), the K extent will always be 1..1.
-    - This helper is primarily used when constructing BCs or
-      connectivity ranges that span an entire face.
-=====================================================================*/
-PointRange Zone::face_range(FaceDir dir) const
-{
-    PointRange pr;
-    switch (dir)
-    {
-        case FaceDir::IMIN:
-            pr.begin = {1, 1, 1};
-            pr.end   = {1, nj(), nk()};
-            break;
-
-        case FaceDir::IMAX:
-            pr.begin = {ni(), 1, 1};
-            pr.end   = {ni(), nj(), nk()};
-            break;
-
-        case FaceDir::JMIN:
-            pr.begin = {1, 1, 1};
-            pr.end   = {ni(), 1, nk()};
-            break;
-
-        case FaceDir::JMAX:
-            pr.begin = {1, nj(), 1};
-            pr.end   = {ni(), nj(), nk()};
-            break;
-
-        case FaceDir::KMIN:
-            pr.begin = {1, 1, 1};
-            pr.end   = {ni(), nj(), 1};
-            break;
-
-        case FaceDir::KMAX:
-            pr.begin = {1, 1, nk()};
-            pr.end   = {ni(), nj(), nk()};
-            break;
-    }
-    return pr;
-}
 
 } // namespace fs

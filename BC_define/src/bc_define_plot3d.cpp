@@ -75,9 +75,7 @@ namespace fs::bc {
         t1 t2 t3
 
   Notes:
-    - ConnPatch is expected to carry explicit ranges (useExplicitRanges=true)
-      in the Plot3D pipeline. The writer does not attempt to reconstruct
-      ranges from offU/offV/sizeU/sizeV.
+    - ConnPatch is expected to carry explicit ranges.
     - Ranges and zone IDs are emitted exactly as stored (1-based IJK).
 =====================================================================*/
 void write_plot3d_1to1s(const std::string& path,
